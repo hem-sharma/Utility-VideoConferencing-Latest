@@ -1,4 +1,4 @@
-kurento_room.service('authService', function ($http, $q) {
+kurento_room.factory('authService', function ($http, $q) {
     var authorize = {};
     authorize.auth = auth;
     return authorize;
