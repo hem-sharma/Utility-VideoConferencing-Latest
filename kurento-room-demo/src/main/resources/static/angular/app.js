@@ -21,7 +21,7 @@ kurento_room.config(function ($routeProvider) {
         });
 });
 
-var a = function ($http) {
+var a = function ($http,authService) {
    console.log('call working');
 }
 
