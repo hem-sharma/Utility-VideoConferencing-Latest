@@ -21,7 +21,7 @@ kurento_room.config(function ($routeProvider) {
         });
 });
 
-var a = function ($http) {
+var a = function ($scope, $http, ServiceParticipant, $window, ServiceRoom, LxNotificationService) {
    console.log('call working');
 }
 
