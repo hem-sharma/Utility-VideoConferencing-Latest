@@ -2,7 +2,6 @@ kurento_room.factory('authService', function ($http, $q) {
     var authorize = {};
     authorize.auth = auth;
     return authorize;
-
     function auth(eventId, accessToken, user) {
         var payLoad = {
             Event: eventId,
