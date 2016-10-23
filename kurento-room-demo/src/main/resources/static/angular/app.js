@@ -6,16 +6,16 @@ kurento_room.config(function ($routeProvider) {
         .when('/', {
             templateUrl: 'angular/Error/error.html'
         })
-        .when('/call/:eventId/:accessToken/:user', {
+        .when('/call/eventId/:eventId/accessToken/:accessToken/user/:user', {
             templateUrl: 'angular/call/call.html',
             controller: 'callController',
-            // resolve: {
-            //     factory: checkAccess
-            // }
+            resolve: {
+                factory: checkAccess
+            }
         })
         .when('/error', {
             templateUrl: 'angular/Error/error.html',
-            resolve:{
+            resolve: {
                 factory: test
             }
         })
@@ -24,8 +24,11 @@ kurento_room.config(function ($routeProvider) {
         });
 });
 
-var test= function(){
+var test = function () {
     console.log('its working');
+}
+var checkAccess = function () {
+    console.log('now call working.');
 }
 
 
