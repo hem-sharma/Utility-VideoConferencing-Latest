@@ -1,4 +1,4 @@
-kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, Fullscreen, LxNotificationService, $routeParams) {
+kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, Fullscreen, LxNotificationService, $routeParams, $q) {
     //login code start
     var options;
 
@@ -179,7 +179,23 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         username: $routeParams.user
     };
     console.log('room found from url');
-    // var check = authService.auth(room.roomName, room.token, room.username);
+    var deferred = $q.defer();
+    var req = 'http://localhost:6212/api/room/checkroomaccess?eventId=' + room.roomName + '&accessToken=' + room.token + '&user=' + room.username;
+    $http.get(req)
+        .then(function (response) {
+            console.log('response 1');
+            console.log(response);
+            deferred.resolve(response);
+        })
+        .then(function (response) {
+            console.log('response 2');
+            console.log(response);
+            deferred.reject(response);
+        });
+    console.log('deferred.promise');
+    console.log(deferred.promise);
+    var test = deferred.promise;
+    console.log(test);
     console.log('checked service');
 
     // if ($rootScope.isParticipant) {
