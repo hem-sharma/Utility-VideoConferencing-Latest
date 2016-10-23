@@ -1,17 +1,28 @@
-kurento_room.factory('authService', ['$http',  
-function ($http) {
-    var service = {};
-    service.auth = auth;
-    return service;
-
-    function auth() {
-        // var deferred = $q.defer();
-        // $http.get('http://52.187.79.197:85/api/room/authorize').then(function (res) {
-        //     deferred.resolve(res);
-        // })
-        //     .then(function (res) {
-        //         deferred.reject(res);
-        //     });
-        // return deferred.promise;
-    };
-}]);
+kurento_room.factory('authService', function ($http, $q) {
+    var authorize = {};
+    authorize.auth = auth;
+    return authorize;
+    function auth(eventId, accessToken, user) {
+        var payLoad = {
+            Event: eventId,
+            Token: accessToken,
+            User: user
+        };
+        var deferred = $q.defer();
+        var req = 'http://52.187.79.197:85/api/room/checkroomaccess?eventId=' + payLoad.Event + '&accessToken=' + payLoad.Token + '&user=' + payLoad.User;
+        $http.get(req)
+            .then(function (response) {
+                console.log('response 1');
+                console.log(response);
+                deferred.resolve(response);
+            })
+            .then(function (response) {
+                console.log('response 2');
+                console.log(response);
+                deferred.reject(response);
+            });
+            console.log('deferred.promise');
+            console.log(deferred.promise);
+        return deferred.promise;
+    }
+});

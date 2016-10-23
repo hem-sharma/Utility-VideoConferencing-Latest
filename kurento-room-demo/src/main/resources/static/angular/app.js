@@ -9,9 +9,6 @@ kurento_room.config(function ($routeProvider) {
         .when('/call/eventId/:eventId/accessToken/:accessToken/user/:user', {
             templateUrl: 'angular/call/call.html',
             controller: 'callController',
-            resolve: {
-                factory: a
-            }
         })
         .when('/error', {
             templateUrl: 'angular/Error/error.html',
@@ -20,9 +17,5 @@ kurento_room.config(function ($routeProvider) {
             templateUrl: 'angular/Error/error.html'
         });
 });
-
-var a = function ($scope, $http, ServiceParticipant, $window, ServiceRoom, LxNotificationService) {
-   console.log('call working');
-}
 
 
