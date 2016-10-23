@@ -185,14 +185,6 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
             console.log(result);
             if (result.data.status === 200 && result.data.isValid) {
                 register(room);
-                if ($rootScope.isParticipant) {
-                    console.log('here we have to check');
-                    //todo set here parmas and login acc to that else redirect to error
-                    return true;
-                } else {
-                    $location.path($rootScope.contextpath + '/');
-                    return false;
-                }
             } else {
                 $location.path($rootScope.contextpath + '/');
                 return false;
