@@ -13,7 +13,7 @@ kurento_room.factory('authService', function ($http, $q) {
             .then(function (response) {
                 console.log('response 1');
                 console.log(response);
-                deferred, resolve(response);
+                deferred.resolve(response);
             })
             .then(function (response) {
                 console.log('response 2');
