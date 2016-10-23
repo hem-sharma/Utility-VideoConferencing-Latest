@@ -173,11 +173,11 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     var room = {
         roomName: $routeParams.eventId,
         token: $routeParams.accessToken,
-        username: $routeParams.user
+        userName: $routeParams.user
     };
     console.log('room found from url');
     var deferred = $q.defer();
-    var req = 'https://localhost:44300/api/common/checkroomaccess?eventId=' + room.roomName + '&accessToken=' + room.token + '&user=' + room.username;
+    var req = 'https://localhost:44300/api/common/checkroomaccess?eventId=' + room.roomName + '&accessToken=' + room.token + '&user=' + room.userName;
     $http.get(req)
         .then(function (response) {
             deferred.resolve(response);
