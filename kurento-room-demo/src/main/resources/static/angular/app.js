@@ -18,6 +18,9 @@ kurento_room.config(function ($routeProvider) {
             .when('/call', {
                 templateUrl: 'angular/call/call.html',
                 controller: 'callController'
+            })
+            .when('/error',{
+                templateUrl:'angular/Error/error.html'
             });
 //            .otherwise({
 //                templateUrl: 'error.html',
