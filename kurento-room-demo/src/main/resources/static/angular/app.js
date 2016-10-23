@@ -1,6 +1,6 @@
 var kurento_room = angular.module('kurento_room', ['ngRoute', 'FBAngular', 'lumx']);
 
-kurento_room.config(function ($routeProvider, $routeParams) {
+kurento_room.config(function ($routeProvider) {
 
     $routeProvider
         .when('/', {
