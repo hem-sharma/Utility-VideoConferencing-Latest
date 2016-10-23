@@ -1,4 +1,4 @@
-kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, Fullscreen, LxNotificationService, $routeParams, $q) {
+kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, Fullscreen, LxNotificationService, $routeParams, $q, $rootScope, $location) {
     //login code start
     var options;
 
@@ -183,31 +183,32 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     var req = 'https://localhost:44300/api/common/checkroomaccess?eventId=' + room.roomName + '&accessToken=' + room.token + '&user=' + room.username;
     $http.get(req)
         .then(function (response) {
-            console.log('response 1');
-            console.log(response);
             deferred.resolve(response);
         })
         .then(function (response) {
-            console.log('response 2');
-            console.log(response);
             deferred.reject(response);
         });
-    console.log('deferred.promise');
-    console.log(deferred.promise);
-    var test = deferred.promise;
-    console.log(test);
-    console.log('checked service');
 
-    // if ($rootScope.isParticipant) {
-    //     console.log('here we have to check');
-    //     //todo set here parmas and login acc to that else redirect to error
-    //     return true;
-    // } else {
-    //     console('here we have to restrict');
-    //     console.log('Not a participant, routing to login');
-    //     $location.path($rootScope.contextpath + '/');
-    //     return false;
-    // }
+
+    var result = deferred.promise;
+    console.log(result);
+    if (result.data.status === 200 && result.data.isValid) {
+        register(room);
+        if ($rootScope.isParticipant) {
+            console.log('here we have to check');
+            //todo set here parmas and login acc to that else redirect to error
+            return true;
+        } else {
+            console('here we have to restrict');
+            console.log('Not a participant, routing to login');
+            $location.path($rootScope.contextpath + '/');
+            return false;
+        }
+    } else {
+        $location.path($rootScope.contextpath + '/');
+    }
+
+    
     //login code ends
 
     $scope.roomName = ServiceRoom.getRoomName();
