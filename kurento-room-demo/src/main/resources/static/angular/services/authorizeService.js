@@ -8,6 +8,7 @@ kurento_room.factory('authService', function ($http, $q) {
             Token: accessToken,
             User: user
         };
+        var deferred = $q.defer();
         var req = 'http://52.187.79.197:85/api/room/checkroomaccess?eventId=' + payLoad.Event + '&accessToken=' + payLoad.Token + '&user=' + payLoad.User;
         $http.get(req)
             .then(function (response) {
