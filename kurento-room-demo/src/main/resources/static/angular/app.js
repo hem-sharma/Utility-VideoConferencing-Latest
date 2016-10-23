@@ -21,7 +21,7 @@ kurento_room.config(function ($routeProvider) {
         });
 });
 
-var a = function ($rootScope, $scope, $location, $routeParams, $http, ServiceParticipant, $window, ServiceRoom, LxNotificationService) {
+var a = function ($scope, $http, ServiceParticipant, $window, ServiceRoom, LxNotificationService) {
     var options;
 
     $http.get('/getAllRooms').
@@ -194,16 +194,16 @@ var a = function ($rootScope, $scope, $location, $routeParams, $http, ServicePar
         //redirect to call
         $window.location.href = '#/call';
     };
-    if ($rootScope.isParticipant) {
-        console.log('here we have to check');
-        //todo set here parmas and login acc to that else redirect to error
-        return true;
-    } else {
-        console('here we have to restrict');
-        console.log('Not a participant, routing to login');
-        $location.path($rootScope.contextpath + '/');
-        return false;
-    }
+    // if ($rootScope.isParticipant) {
+    //     console.log('here we have to check');
+    //     //todo set here parmas and login acc to that else redirect to error
+    //     return true;
+    // } else {
+    //     console('here we have to restrict');
+    //     console.log('Not a participant, routing to login');
+    //     $location.path($rootScope.contextpath + '/');
+    //     return false;
+    // }
 }
 
 
