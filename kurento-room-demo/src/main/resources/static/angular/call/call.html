@@ -15,8 +15,6 @@
 
         <div id="room-name">{{roomName}}</div>
         <div class="mb" align="right" style="margin: 1em; padding-bottom: 5px" id="buttonActions"> 
-            <!--eliminado class action de los botones para cambiar el css-->
-            <!--aumentado el tamaño de los iconos con css (room.css)-->
             <button class="btn btn--xl btn--brown btn--fab mdi md-recent-actors" lx-ripple ng-click="disableMainSpeaker()" id="buttonMainSpeaker" title="Main Speaker toggle"></button> <!--disable Main Speaker-->
             <button class="btn btn--xl btn--teal btn--fab mdi md-volume-up" lx-ripple ng-click="onOffVolume()" id="buttonVolume" title="Audio toggle"></button> <!--mute audio-->
             <button class="btn btn--xl btn--grey btn--fab mdi md-videocam" lx-ripple ng-click="onOffVideocam()" id="buttonVideocam" title="Video toggle"></button> <!--mute video-->
