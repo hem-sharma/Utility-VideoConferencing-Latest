@@ -168,9 +168,6 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         ServiceRoom.setKurento(kurento);
         ServiceRoom.setRoomName($scope.roomName);
         ServiceRoom.setUserName($scope.userName);
-
-        //redirect to call
-        $window.location.href = '#/call';
     };
 
     var room = {
@@ -193,13 +190,12 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                     //todo set here parmas and login acc to that else redirect to error
                     return true;
                 } else {
-                    console('here we have to restrict');
-                    console.log('Not a participant, routing to login');
                     $location.path($rootScope.contextpath + '/');
                     return false;
                 }
             } else {
                 $location.path($rootScope.contextpath + '/');
+                return false;
             }
         })
         .then(function (response) {
@@ -224,7 +220,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         ServiceParticipant.removeParticipants();
 
         //redirect to login
-        $window.location.href = '#/login';
+        $window.location.href = '#/';
     };
 
     window.onbeforeunload = function () {
