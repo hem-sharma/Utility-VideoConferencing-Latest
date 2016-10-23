@@ -1,6 +1,6 @@
 var kurento_room = angular.module('kurento_room', ['ngRoute', 'FBAngular', 'lumx']);
 
-kurento_room.config(function ($routeProvider) {
+kurento_room.config(function ($routeProvider, $routeParams) {
 
     $routeProvider
         .when('/', {
@@ -21,7 +21,7 @@ kurento_room.config(function ($routeProvider) {
         });
 });
 
-var checkAccess = function ($rootScope, $location, authService,$scope, $http, ServiceParticipant, $window, ServiceRoom, LxNotificationService,$routeParams) {
+var checkAccess = function ($rootScope, $location, authService, $scope, $http, ServiceParticipant, $window, ServiceRoom, LxNotificationService, $routeParams) {
     /**
      var options;
 
@@ -202,7 +202,7 @@ var checkAccess = function ($rootScope, $location, authService,$scope, $http, Se
         $scope.roomName = "";
     };
      */
-    
+
     if ($rootScope.isParticipant) {
         //todo set here parmas and login acc to that else redirect to error
         return true;
