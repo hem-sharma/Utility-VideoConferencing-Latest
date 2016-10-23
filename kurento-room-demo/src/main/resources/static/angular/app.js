@@ -21,7 +21,7 @@ kurento_room.config(function ($routeProvider) {
         });
 });
 
-var a = function ($rootScope, $scope, $location, $routeParams, $http, ServiceParticipant, $window, ServiceRoom, LxNotificationService, authService) {
+var a = function ($rootScope, $scope, $location, $routeParams, $http, ServiceParticipant, $window, ServiceRoom, LxNotificationService) {
     var options;
 
     $http.get('/getAllRooms').
