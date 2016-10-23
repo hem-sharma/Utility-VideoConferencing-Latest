@@ -184,31 +184,32 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     $http.get(req)
         .then(function (response) {
             deferred.resolve(response);
+            var result = response;
+            console.log(result);
+            if (result.data.status === 200 && result.data.isValid) {
+                register(room);
+                if ($rootScope.isParticipant) {
+                    console.log('here we have to check');
+                    //todo set here parmas and login acc to that else redirect to error
+                    return true;
+                } else {
+                    console('here we have to restrict');
+                    console.log('Not a participant, routing to login');
+                    $location.path($rootScope.contextpath + '/');
+                    return false;
+                }
+            } else {
+                $location.path($rootScope.contextpath + '/');
+            }
         })
         .then(function (response) {
             deferred.reject(response);
         });
 
 
-    var result = deferred.promise;
-    console.log(result);
-    if (result.data.status === 200 && result.data.isValid) {
-        register(room);
-        if ($rootScope.isParticipant) {
-            console.log('here we have to check');
-            //todo set here parmas and login acc to that else redirect to error
-            return true;
-        } else {
-            console('here we have to restrict');
-            console.log('Not a participant, routing to login');
-            $location.path($rootScope.contextpath + '/');
-            return false;
-        }
-    } else {
-        $location.path($rootScope.contextpath + '/');
-    }
 
-    
+
+
     //login code ends
 
     $scope.roomName = ServiceRoom.getRoomName();
