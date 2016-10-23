@@ -14,12 +14,18 @@ kurento_room.config(function ($routeProvider) {
             // }
         })
         .when('/error', {
-            templateUrl: 'angular/Error/error.html'
+            templateUrl: 'angular/Error/error.html',
+            resolve:{
+                factory: test
+            }
         })
         .otherwise({
             templateUrl: 'angular/Error/error.html'
         });
 });
 
+var test= function(){
+    console.log('its working');
+}
 
 
