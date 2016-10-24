@@ -14,7 +14,7 @@ kurento_room.config(function ($routeProvider) {
             templateUrl: 'angular/Error/error.html',
         })
         .when('/thanks',{
-            templateUrl:'angular/Error/thanks.html'
+            templateUrl:'angular/thanks/thanks.html'
         })
         .otherwise({
             templateUrl: 'angular/home/index.html'
