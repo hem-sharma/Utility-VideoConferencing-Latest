@@ -177,7 +177,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     };
     console.log('room found from url');
     var deferred = $q.defer();
-    var req = 'https://localhost:44300/api/common/checkroomaccess?eventId=' + room.roomName + '&accessToken=' + room.token + '&user=' + room.userName;
+    var req = 'https://52.187.79.197/api/common/checkroomaccess?eventId=' + room.roomName + '&accessToken=' + room.token + '&user=' + room.userName;
     $http.get(req)
         .then(function (response) {
             deferred.resolve(response);
