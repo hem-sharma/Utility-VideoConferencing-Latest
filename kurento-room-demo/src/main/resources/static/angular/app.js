@@ -4,7 +4,7 @@ kurento_room.config(function ($routeProvider) {
 
     $routeProvider
         .when('/', {
-            templateUrl: 'angular/Error/error.html'
+            templateUrl: 'angular/home/index.html'
         })
         .when('/call/eventId/:eventId/accessToken/:accessToken/user/:user', {
             templateUrl: 'angular/call/call.html',
@@ -13,8 +13,11 @@ kurento_room.config(function ($routeProvider) {
         .when('/error', {
             templateUrl: 'angular/Error/error.html',
         })
+        .when('/thanks',{
+            templateUrl:'angular/Error/thanks.html'
+        })
         .otherwise({
-            templateUrl: 'angular/Error/error.html'
+            templateUrl: 'angular/home/index.html'
         });
 });
 
