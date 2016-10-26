@@ -1,7 +1,7 @@
 kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, Fullscreen, LxNotificationService, $routeParams, $q, $rootScope, $location) {
 
     var options;
-
+    $scope.roomName = '';
     $http.get('/getAllRooms').
         success(function (data, status, headers, config) {
             console.log(JSON.stringify(data));
@@ -30,7 +30,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         }).
         error(function (data, status, headers, config) {
         });
-    $scope.roomName=$routeParams.eventId;
+    $scope.roomName = $routeParams.eventId;
     var room = {
         roomName: $routeParams.eventId,
         token: $routeParams.accessToken,
@@ -47,11 +47,12 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
             console.log(result);
             if (result.data.status === 200 && result.data.isValid) {
                 room.roomName = result.data.event;
-                $scope.roomName=result.data.event;
+                $scope.roomName = result.data.event;
                 room.userName = result.data.user;
                 register(room);
             } else {
                 //$location.path($rootScope.contextpath + '/');
+                $scope.roomName = $routeParams.eventId;
                 $window.location.href = '#/error';
                 return false;
             }
