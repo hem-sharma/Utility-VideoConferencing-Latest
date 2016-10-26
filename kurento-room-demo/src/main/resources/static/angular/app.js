@@ -13,12 +13,18 @@ kurento_room.config(function ($routeProvider) {
         .when('/error', {
             templateUrl: 'angular/Error/error.html',
         })
-        .when('/thanks',{
-            templateUrl:'angular/thanks/thanks.html'
+        .when('/thanks', {
+            templateUrl: 'angular/thanks/thanks.html'
         })
         .otherwise({
             templateUrl: 'angular/home/index.html'
         });
+});
+
+kurento_room.filter('split', function () {
+    return function (input, splitChar, splitIndex) {
+        return input.split(splitChar)[splitIndex];
+    }
 });
 
 
