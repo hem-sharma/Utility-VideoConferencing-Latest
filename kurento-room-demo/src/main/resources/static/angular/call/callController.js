@@ -1,5 +1,5 @@
 kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, Fullscreen, LxNotificationService, $routeParams, $q, $rootScope, $location) {
-    
+
     var options;
 
     $http.get('/getAllRooms').
@@ -30,7 +30,35 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         }).
         error(function (data, status, headers, config) {
         });
+    $scope.roomName=$routeParams.eventId;
+    var room = {
+        roomName: $routeParams.eventId,
+        token: $routeParams.accessToken,
+        userName: $routeParams.user
+    };
 
+    var deferred = $q.defer();
+    // var req = 'https://52.187.79.197/api/common/checkroomaccess?eventId=' + room.roomName + '&accessToken=' + room.token + '&user=' + room.userName;
+    var req = 'https://localhost:44300/api/common/checkroomaccess?eventId=' + room.roomName + '&accessToken=' + room.token + '&user=' + room.userName;
+    $http.get(req)
+        .then(function (response) {
+            deferred.resolve(response);
+            var result = response;
+            console.log(result);
+            if (result.data.status === 200 && result.data.isValid) {
+                room.roomName = result.data.event;
+                $scope.roomName=result.data.event;
+                room.userName = result.data.user;
+                register(room);
+            } else {
+                //$location.path($rootScope.contextpath + '/');
+                $window.location.href = '#/error';
+                return false;
+            }
+        })
+        .then(function (response) {
+            deferred.reject(response);
+        });
     var register = function (room) {
 
         if (!room)
@@ -45,9 +73,9 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
         var wsUri = 'wss://' + location.host + '/room';
 
-        
+
         var displayPublished = $scope.clientConfig.loopbackRemote || false;
-       
+
         var mirrorLocal = $scope.clientConfig.loopbackAndLocal || false;
 
         var kurento = KurentoRoom(wsUri, function (error, kurento) {
@@ -55,7 +83,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
             if (error)
                 return console.log(error);
 
-             
+
             kurento.setRpcParams({ token: room.token });
 
             room = kurento.Room({
@@ -164,39 +192,13 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
             localStream.init();
         });
 
-        
+
         ServiceRoom.setKurento(kurento);
         ServiceRoom.setRoomName($scope.roomName);
         ServiceRoom.setUserName($scope.userName);
     };
 
-    var room = {
-        roomName: $routeParams.eventId,
-        token: $routeParams.accessToken,
-        userName: $routeParams.user
-    };
 
-    var deferred = $q.defer();
-    // var req = 'https://52.187.79.197/api/common/checkroomaccess?eventId=' + room.roomName + '&accessToken=' + room.token + '&user=' + room.userName;
-    var req = 'https://localhost:44300/api/common/checkroomaccess?eventId=' + room.roomName + '&accessToken=' + room.token + '&user=' + room.userName;
-    $http.get(req)
-        .then(function (response) {
-            deferred.resolve(response);
-            var result = response;
-            console.log(result);
-            if (result.data.status === 200 && result.data.isValid) {
-                room.roomName = result.data.event;
-                room.userName = result.data.user;
-                register(room);
-            } else {
-                //$location.path($rootScope.contextpath + '/');
-                $window.location.href = '#/error';
-                return false;
-            }
-        })
-        .then(function (response) {
-            deferred.reject(response);
-        });
 
     $scope.roomName = ServiceRoom.getRoomName();
     $scope.userName = ServiceRoom.getUserName();
@@ -209,12 +211,12 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
         ServiceParticipant.removeParticipants();
 
-        
+
         $window.location.href = '#/thanks';
     };
 
     window.onbeforeunload = function () {
-        
+
         if (ServiceParticipant.isConnected()) {
             ServiceRoom.getKurento().close();
         }
@@ -233,11 +235,11 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     $scope.disableMainSpeaker = function (value) {
 
         var element = document.getElementById("buttonMainSpeaker");
-        if (element.classList.contains("md-person")) { 
+        if (element.classList.contains("md-person")) {
             element.classList.remove("md-person");
             element.classList.add("md-recent-actors");
             ServiceParticipant.enableMainSpeaker();
-        } else { 
+        } else {
             element.classList.remove("md-recent-actors");
             element.classList.add("md-person");
             ServiceParticipant.disableMainSpeaker();
@@ -247,11 +249,11 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     $scope.onOffVolume = function () {
         var localStream = ServiceRoom.getLocalStream();
         var element = document.getElementById("buttonVolume");
-        if (element.classList.contains("md-volume-off")) { 
+        if (element.classList.contains("md-volume-off")) {
             element.classList.remove("md-volume-off");
             element.classList.add("md-volume-up");
             localStream.audioEnabled = true;
-        } else { 
+        } else {
             element.classList.remove("md-volume-up");
             element.classList.add("md-volume-off");
             localStream.audioEnabled = false;
@@ -285,7 +287,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         ServiceRoom.getKurento().disconnectParticipant(participant.getStream());
     }
 
-    
+
     $scope.message;
 
     $scope.sendMessage = function () {
@@ -295,17 +297,17 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         $scope.message = "";
     };
 
-    
+
     $scope.toggleChat = function () {
         var selectedEffect = "slide";
-        
+
         var options = { direction: "right" };
         if ($("#effect").is(':visible')) {
             $("#content").animate({ width: '100%' }, 500);
         } else {
             $("#content").animate({ width: '80%' }, 500);
         }
-        
+
         $("#effect").toggle(selectedEffect, options, 500);
     };
 
@@ -316,13 +318,13 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         var onImgStyle = "md-face-unlock";
         var onColorStyle = "btn--purple";
         var element = document.getElementById("hatButton");
-        if (element.classList.contains(offImgStyle)) { 
+        if (element.classList.contains(offImgStyle)) {
             element.classList.remove(offImgStyle);
             element.classList.remove(offColorStyle);
             element.classList.add(onImgStyle);
             element.classList.add(onColorStyle);
             targetHat = true;
-        } else if (element.classList.contains(onImgStyle)) { 
+        } else if (element.classList.contains(onImgStyle)) {
             element.classList.remove(onImgStyle);
             element.classList.remove(onColorStyle);
             element.classList.add(offImgStyle);
