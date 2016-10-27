@@ -53,15 +53,15 @@ function AppParticipant(stream) {
     }
 
     function playVideo() {
-        var naming=stream.getGlobalID().split('-');
-        var toName=naming[0];
-        var t=stream.getGlobalID().split('_');
-        toName+='_'+t[t.length-1];
+        // var naming=stream.getGlobalID().split('-');
+        // var toName=naming[0];
+        // var t=stream.getGlobalID().split('_');
+        // toName+='_'+t[t.length-1];
         that.thumbnailId = "video-" + stream.getGlobalID();
 
         that.videoElement = document.createElement('div');
         // that.videoElement.setAttribute("id", that.thumbnailId);
-        that.videoElement.setAttribute("id", toName);
+        that.videoElement.setAttribute("id", that.thumbnailId);
         that.videoElement.className = "video";
 
         var buttonVideo = document.createElement('button');
@@ -87,7 +87,7 @@ function AppParticipant(stream) {
 
         document.getElementById("participants").appendChild(that.videoElement);
         // that.stream.playThumbnail(that.thumbnailId);
-        that.stream.playThumbnail(toName);
+        that.stream.playThumbnail(that.thumbnailId);
     }
 
     playVideo();
