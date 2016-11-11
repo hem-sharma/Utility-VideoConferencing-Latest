@@ -4,7 +4,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     $scope.roomName = '';
     $http.get('/getAllRooms').
         success(function (data, status, headers, config) {
-            console.log(JSON.stringify(data));
+            // console.log(JSON.stringify(data));
             $scope.listRooms = data;
         }).
         error(function (data, status, headers, config) {
@@ -12,7 +12,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
     $http.get('/getClientConfig').
         success(function (data, status, headers, config) {
-            console.log(JSON.stringify(data));
+            // console.log(JSON.stringify(data));
             $scope.clientConfig = data;
         }).
         error(function (data, status, headers, config) {
@@ -46,7 +46,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         .then(function (response) {
             deferred.resolve(response);
             var result = response;
-            console.log(result);
+            // console.log(result);
             if (result.data.status === 200 && result.data.isValid) {
                 room.roomName = result.data.event;
                 $scope.roomName = result.data.event;
@@ -336,7 +336,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         }
 
         var hatTo = targetHat ? "on" : "off";
-        console.log("Toggle hat to " + hatTo);
+        // console.log("Toggle hat to " + hatTo);
         ServiceRoom.getKurento().sendCustomRequest({ hat: targetHat }, function (error, response) {
             if (error) {
                 console.error("Unable to toggle hat " + hatTo, error);
