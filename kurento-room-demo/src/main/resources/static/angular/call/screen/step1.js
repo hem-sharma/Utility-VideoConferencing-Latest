@@ -10,7 +10,7 @@ function intallFirefoxScreenCapturingExtension() {
     });
 }
 
-var isWebRTCExperimentsDomain = document.domain.indexOf('webrtc-experiment.com') != -1;
+var isWebRTCExperimentsDomain = false;
 
 var config = {
     openSocket: function (config) {
@@ -101,23 +101,23 @@ function captureUserMedia(callback, extensionAvailable) {
     };
 
     // try to check if extension is installed.
-    if (isChrome && isWebRTCExperimentsDomain && typeof extensionAvailable == 'undefined' && DetectRTC.screen.chromeMediaSource != 'desktop') {
-        DetectRTC.screen.isChromeExtensionAvailable(function (available) {
-            captureUserMedia(callback, available);
-        });
-        return;
-    }
+    // if (isChrome && isWebRTCExperimentsDomain && typeof extensionAvailable == 'undefined' && DetectRTC.screen.chromeMediaSource != 'desktop') {
+    //     DetectRTC.screen.isChromeExtensionAvailable(function (available) {
+    //         captureUserMedia(callback, available);
+    //     });
+    //     return;
+    // }
 
-    if (isChrome && isWebRTCExperimentsDomain && DetectRTC.screen.chromeMediaSource == 'desktop' && !DetectRTC.screen.sourceId) {
-        DetectRTC.screen.getSourceId(function (error) {
-            if (error && error == 'PermissionDeniedError') {
-                alert('PermissionDeniedError: User denied to share content of his screen.');
-            }
+    // if (isChrome && isWebRTCExperimentsDomain && DetectRTC.screen.chromeMediaSource == 'desktop' && !DetectRTC.screen.sourceId) {
+    //     DetectRTC.screen.getSourceId(function (error) {
+    //         if (error && error == 'PermissionDeniedError') {
+    //             alert('PermissionDeniedError: User denied to share content of his screen.');
+    //         }
 
-            captureUserMedia(callback);
-        });
-        return;
-    }
+    //         captureUserMedia(callback);
+    //     });
+    //     return;
+    // }
 
     // for non-www.webrtc-experiment.com domains
     if (isChrome && !isWebRTCExperimentsDomain && !DetectRTC.screen.sourceId) {
