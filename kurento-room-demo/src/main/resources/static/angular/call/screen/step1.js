@@ -1,4 +1,3 @@
-// First script start
 function intallFirefoxScreenCapturingExtension() {
     InstallTrigger.install({
         'Foo': {
@@ -230,4 +229,3 @@ function rotateVideo(video) {
 })();
 
 var Firefox_Screen_Capturing_Warning = 'Make sure that you are using Firefox Nightly and you enabled: media.getusermedia.screensharing.enabled flag from about:config page. You also need to add your domain in "media.getusermedia.screensharing.allowed_domains" flag.';
-        // First script end

@@ -1,4 +1,3 @@
-// Third script start
 // todo: need to check exact chrome browser because opera also uses chromium framework
 var isChrome = !!navigator.webkitGetUserMedia;
 
@@ -104,6 +103,3 @@ window.addEventListener('message', function (event) {
 });
 
 console.log('current chromeMediaSource', DetectRTC.screen.chromeMediaSource);
-
-
-        // Third script end

@@ -1,5 +1,3 @@
-// Second script start
-
 var screenFrame, loadedScreenFrame;
 
 function loadScreenFrame(skip) {
@@ -42,5 +40,3 @@ else {
     document.getElementById('share-screen').disabled = false;
     document.getElementById('room-name').disabled = false;
 }
-
-        // Second script end
