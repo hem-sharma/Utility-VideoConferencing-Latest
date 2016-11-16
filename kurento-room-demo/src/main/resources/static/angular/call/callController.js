@@ -304,7 +304,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 };
             },
             onNewParticipant: function (numberOfParticipants) {
-                document.title = numberOfParticipants + ' users are viewing your screen!';
+                // document.title = numberOfParticipants + ' users are viewing your screen!';
                 var element = document.getElementById('number-of-participants');
                 if (element) {
                     element.innerHTML = numberOfParticipants + ' users are viewing your screen!';
@@ -312,11 +312,11 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
             },
             oniceconnectionstatechange: function (state) {
                 if (state == 'failed') {
-                    alert('Failed to bypass Firewall rules. It seems that target user did not receive your screen. Please ask him reload the page and try again.');
+                    // alert('Failed to bypass Firewall rules. It seems that target user did not receive your screen. Please ask him reload the page and try again.');
                 }
 
                 if (state == 'connected') {
-                    alert('A user successfully received your screen.');
+                    // alert('A user successfully received your screen.');
                 }
             }
         };
@@ -408,6 +408,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
             var video = document.createElement('video');
             video.setAttribute('autoplay', true);
             video.setAttribute('controls', true);
+            video.setAttribute('id','desktopSharing')
             videosContainer.insertBefore(video, videosContainer.firstChild);
 
             getUserMedia({
