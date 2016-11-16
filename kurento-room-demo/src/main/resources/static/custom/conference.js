@@ -503,7 +503,8 @@ function getUserMedia(options) {
     function streaming(stream) {
         var video = options.video;
         if (video) {
-            video[moz ? 'mozSrcObject' : 'src'] = moz ? stream : window.webkitURL.createObjectURL(stream);
+            // video[moz ? 'mozSrcObject' : 'src'] = moz ? stream : window.webkitURL.createObjectURL(stream);
+            video[moz ? 'mozSrcObject' : 'src'] = moz ? stream : window.URL.createObjectURL(stream);//changed for  deprecation
             video.play();
         }
         options.onsuccess && options.onsuccess(stream);
