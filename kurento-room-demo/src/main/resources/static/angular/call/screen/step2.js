@@ -11,8 +11,8 @@ function loadScreenFrame(skip) {
         iframe.isLoaded = true;
         console.log('Screen Capturing frame is loaded.');
 
-        document.getElementById('share-screen').disabled = false;
-        document.getElementById('room-name').disabled = false;
+        // document.getElementById('share-screen').disabled = false;
+        // document.getElementById('room-name').disabled = false;
     };
     iframe.src = 'https://www.webrtc-experiment.com/getSourceId/';
     // iframe.src = 'https://www.kazastream.com/images/getSourceId.html';
