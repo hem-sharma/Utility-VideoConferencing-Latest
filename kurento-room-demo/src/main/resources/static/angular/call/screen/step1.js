@@ -203,16 +203,16 @@ var conferenceUI = conference(config);
 var videosContainer = document.getElementById("videos-container") || document.body;
 var roomsList = document.getElementById('rooms-list');
 
-document.getElementById('share-screen').onclick = function () {
-    var roomName = document.getElementById('room-name') || {};
-    roomName.disabled = true;
-    captureUserMedia(function () {
-        conferenceUI.createRoom({
-            roomName: (roomName.value || 'Anonymous') + ' shared his screen with you'
-        });
-    });
-    this.disabled = true;
-};
+// document.getElementById('share-screen').onclick = function () {
+//     var roomName = document.getElementById('room-name') || {};
+//     roomName.disabled = true;
+//     captureUserMedia(function () {
+//         conferenceUI.createRoom({
+//             roomName: (roomName.value || 'Anonymous') + ' shared his screen with you'
+//         });
+//     });
+//     this.disabled = true;
+// };
 
 function rotateVideo(video) {
     video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
