@@ -229,11 +229,32 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
     // For Screen Sharing start
     $scope.shareScreen = function () {
-        captureUserMedia(function () {
-            conferenceUI.createRoom({
-                roomName: ('test') + ' shared his screen with you'
-            });
-        });
+        // captureUserMedia(function () {
+        //     conferenceUI.createRoom({
+        //         roomName: ('test') + ' shared his screen with you'
+        //     });
+        // });
+        getUserMedia({
+        video: video,
+        constraints: constraints,
+        onsuccess: function (stream) {
+            config.attachStream = stream;
+            callback && callback();
+
+            video.setAttribute('muted', true);
+            rotateVideo(video);
+        },
+        onerror: function () {
+            if (isChrome && location.protocol === 'http:') {
+                alert('Please test this WebRTC experiment on HTTPS.');
+            } else if (isChrome) {
+                alert('Screen capturing is either denied or not supported. Please install chrome extension for screen capturing or run chrome with command-line flag: --enable-usermedia-screen-capturing');
+            }
+            else if (!!navigator.mozGetUserMedia) {
+                alert(Firefox_Screen_Capturing_Warning);
+            }
+        }
+    });
 
     };
     // end
