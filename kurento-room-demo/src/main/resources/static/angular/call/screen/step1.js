@@ -166,7 +166,10 @@ function captureUserMedia(callback, extensionAvailable) {
     }
 
     console.log(JSON.stringify(constraints, null, '\t'));
-
+    // resetting elements again if not loaded start
+    videosContainer = document.getElementById("videos-container") || document.body;
+    roomsList = document.getElementById('rooms-list');
+    // resetting elements again if not loaded end
     var video = document.createElement('video');
     video.setAttribute('autoplay', true);
     video.setAttribute('controls', true);
