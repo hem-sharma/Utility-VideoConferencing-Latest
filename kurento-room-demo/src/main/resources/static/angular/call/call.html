@@ -12,7 +12,7 @@
             <img src="img/kaza-logo.png" />
         </div>
 
-        <div id="room-name">{{roomName | split:'-':0}}</div>
+        <div id="room-name">Room : {{roomName | split:'-':0}}</div>
         <div class="mb" align="right" style="margin: 1em; padding-bottom: 5px" id="buttonActions">
             <!--<button class="btn btn--xl btn--brown btn--fab mdi md-recent-actors" lx-ripple ng-click="disableMainSpeaker()" id="buttonMainSpeaker" title="Main Speaker toggle"></button> disable Main Speaker-->
             <button class="btn btn--xl btn--teal btn--fab mdi md-volume-up" lx-ripple ng-click="onOffVolume()" id="buttonVolume" title="Audio toggle"></button>
