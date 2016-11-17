@@ -246,8 +246,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         //     alert('Error, my friend. Screen stream is not available. Try in latest Chrome with Screen sharing enabled in about:flags.');
         // }
         // );
-
-        var dummyStream = kurento.Stream(room, {
+       
+        var dummyStream = ServiceRoom.getKurento().Stream(room, {
            audio:false,
            video: {
                mandatory:{
