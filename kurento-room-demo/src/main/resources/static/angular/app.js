@@ -23,7 +23,7 @@ kurento_room.config(function ($routeProvider) {
 
 kurento_room.filter('split', function () {
     return function (input, splitChar, splitIndex) {
-        if (typeof (input) != undefined)
+        if (typeof (input) != 'undefined')
             return input.split(splitChar)[splitIndex];
         return '';
     }
