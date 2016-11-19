@@ -1,0 +1,593 @@
+INFO	?	main	2016-11-19T07:41:11.752Z	org.javacs.Main#connectToNode	Connected to parent using socket on port 55282
+INFO	?	main	2016-11-19T07:41:12.406Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\KurentoRoomDemoApp.java]
+INFO	?	main	2016-11-19T07:41:12.719Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath3441717648783863623.txt
+SEVERE	?	main	2016-11-19T07:41:12.734Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.doLint(JavaLanguageServer.java:315)
+	at org.javacs.JavaLanguageServer.doLint(JavaLanguageServer.java:303)
+	at org.javacs.JavaLanguageServer.access$1000(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.lambda$didOpen$14(JavaLanguageServer.java:193)
+	at java.util.Optional.ifPresent(Unknown Source)
+	at org.javacs.JavaLanguageServer$1.didOpen(JavaLanguageServer.java:188)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:198)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:194)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 23 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 27 more
+
+INFO	?	main	2016-11-19T07:41:23.464Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath1929004683551980615.txt
+SEVERE	?	main	2016-11-19T07:41:23.473Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:477)
+	at org.javacs.JavaLanguageServer.findTree(JavaLanguageServer.java:809)
+	at org.javacs.JavaLanguageServer.lambda$doHover$34(JavaLanguageServer.java:983)
+	at java.util.Optional.ifPresent(Unknown Source)
+	at org.javacs.JavaLanguageServer.doHover(JavaLanguageServer.java:982)
+	at org.javacs.JavaLanguageServer.access$000(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.hover(JavaLanguageServer.java:118)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:130)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:117)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 24 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 28 more
+
+INFO	?	main	2016-11-19T07:41:24.372Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath9160954760671793246.txt
+SEVERE	?	main	2016-11-19T07:41:24.380Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:477)
+	at org.javacs.JavaLanguageServer.findTree(JavaLanguageServer.java:809)
+	at org.javacs.JavaLanguageServer.lambda$doHover$34(JavaLanguageServer.java:983)
+	at java.util.Optional.ifPresent(Unknown Source)
+	at org.javacs.JavaLanguageServer.doHover(JavaLanguageServer.java:982)
+	at org.javacs.JavaLanguageServer.access$000(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.hover(JavaLanguageServer.java:118)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:130)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:117)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 24 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 28 more
+
+INFO	?	main	2016-11-19T07:41:24.840Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath4324845241777199236.txt
+SEVERE	?	main	2016-11-19T07:41:24.850Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:477)
+	at org.javacs.JavaLanguageServer.findTree(JavaLanguageServer.java:809)
+	at org.javacs.JavaLanguageServer.lambda$doHover$34(JavaLanguageServer.java:983)
+	at java.util.Optional.ifPresent(Unknown Source)
+	at org.javacs.JavaLanguageServer.doHover(JavaLanguageServer.java:982)
+	at org.javacs.JavaLanguageServer.access$000(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.hover(JavaLanguageServer.java:118)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:130)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:117)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 24 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 28 more
+
+INFO	?	main	2016-11-19T07:41:25.737Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath6919666709431771046.txt
+SEVERE	?	main	2016-11-19T07:41:25.744Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:477)
+	at org.javacs.JavaLanguageServer.findTree(JavaLanguageServer.java:809)
+	at org.javacs.JavaLanguageServer.lambda$doHover$34(JavaLanguageServer.java:983)
+	at java.util.Optional.ifPresent(Unknown Source)
+	at org.javacs.JavaLanguageServer.doHover(JavaLanguageServer.java:982)
+	at org.javacs.JavaLanguageServer.access$000(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.hover(JavaLanguageServer.java:118)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:130)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:117)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 24 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 28 more
+
+INFO	?	main	2016-11-19T07:41:40.424Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath7124512327971247504.txt
+SEVERE	?	main	2016-11-19T07:41:40.431Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:477)
+	at org.javacs.JavaLanguageServer.findTree(JavaLanguageServer.java:809)
+	at org.javacs.JavaLanguageServer.lambda$doHover$34(JavaLanguageServer.java:983)
+	at java.util.Optional.ifPresent(Unknown Source)
+	at org.javacs.JavaLanguageServer.doHover(JavaLanguageServer.java:982)
+	at org.javacs.JavaLanguageServer.access$000(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.hover(JavaLanguageServer.java:118)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:130)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:117)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 24 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 28 more
+
+INFO	?	main	2016-11-19T07:41:40.851Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath9040147511884863791.txt
+SEVERE	?	main	2016-11-19T07:41:40.863Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:477)
+	at org.javacs.JavaLanguageServer.findTree(JavaLanguageServer.java:809)
+	at org.javacs.JavaLanguageServer.lambda$doHover$34(JavaLanguageServer.java:983)
+	at java.util.Optional.ifPresent(Unknown Source)
+	at org.javacs.JavaLanguageServer.doHover(JavaLanguageServer.java:982)
+	at org.javacs.JavaLanguageServer.access$000(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.hover(JavaLanguageServer.java:118)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:130)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:117)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 24 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 28 more
+
+INFO	?	main	2016-11-19T07:41:41.291Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath629779855383602585.txt
+SEVERE	?	main	2016-11-19T07:41:41.303Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:477)
+	at org.javacs.JavaLanguageServer.findTree(JavaLanguageServer.java:809)
+	at org.javacs.JavaLanguageServer.lambda$doHover$34(JavaLanguageServer.java:983)
+	at java.util.Optional.ifPresent(Unknown Source)
+	at org.javacs.JavaLanguageServer.doHover(JavaLanguageServer.java:982)
+	at org.javacs.JavaLanguageServer.access$000(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.hover(JavaLanguageServer.java:118)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:130)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:117)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 24 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 28 more
+
+INFO	?	main	2016-11-19T07:41:50.223Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath4705915011231093394.txt
+SEVERE	?	main	2016-11-19T07:41:50.229Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:477)
+	at org.javacs.JavaLanguageServer.findTree(JavaLanguageServer.java:809)
+	at org.javacs.JavaLanguageServer.lambda$doHover$34(JavaLanguageServer.java:983)
+	at java.util.Optional.ifPresent(Unknown Source)
+	at org.javacs.JavaLanguageServer.doHover(JavaLanguageServer.java:982)
+	at org.javacs.JavaLanguageServer.access$000(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.hover(JavaLanguageServer.java:118)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:130)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:117)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 24 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 28 more
+
+INFO	?	main	2016-11-19T07:41:50.610Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath8594812612758454386.txt
+SEVERE	?	main	2016-11-19T07:41:50.620Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:477)
+	at org.javacs.JavaLanguageServer.findTree(JavaLanguageServer.java:809)
+	at org.javacs.JavaLanguageServer.lambda$doHover$34(JavaLanguageServer.java:983)
+	at java.util.Optional.ifPresent(Unknown Source)
+	at org.javacs.JavaLanguageServer.doHover(JavaLanguageServer.java:982)
+	at org.javacs.JavaLanguageServer.access$000(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.hover(JavaLanguageServer.java:118)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:130)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:117)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 24 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 28 more
+
+INFO	?	main	2016-11-19T07:41:51.423Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath6764467531249607842.txt
+SEVERE	?	main	2016-11-19T07:41:51.431Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:477)
+	at org.javacs.JavaLanguageServer.findTree(JavaLanguageServer.java:809)
+	at org.javacs.JavaLanguageServer.lambda$doHover$34(JavaLanguageServer.java:983)
+	at java.util.Optional.ifPresent(Unknown Source)
+	at org.javacs.JavaLanguageServer.doHover(JavaLanguageServer.java:982)
+	at org.javacs.JavaLanguageServer.access$000(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.hover(JavaLanguageServer.java:118)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:130)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:117)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 24 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 28 more
+
+INFO	?	main	2016-11-19T07:42:26.788Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\DemoController.java]
+INFO	?	main	2016-11-19T07:42:26.796Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath7115705634822419228.txt
+SEVERE	?	main	2016-11-19T07:42:26.830Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.doLint(JavaLanguageServer.java:315)
+	at org.javacs.JavaLanguageServer.doLint(JavaLanguageServer.java:303)
+	at org.javacs.JavaLanguageServer.access$1000(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.lambda$didOpen$14(JavaLanguageServer.java:193)
+	at java.util.Optional.ifPresent(Unknown Source)
+	at org.javacs.JavaLanguageServer$1.didOpen(JavaLanguageServer.java:188)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:198)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:194)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 23 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 27 more
+
+INFO	?	main	2016-11-19T08:14:49.754Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath8389001980383868071.txt
+SEVERE	?	main	2016-11-19T08:14:49.775Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:477)
+	at org.javacs.JavaLanguageServer.findTree(JavaLanguageServer.java:809)
+	at org.javacs.JavaLanguageServer.lambda$doHover$34(JavaLanguageServer.java:983)
+	at java.util.Optional.ifPresent(Unknown Source)
+	at org.javacs.JavaLanguageServer.doHover(JavaLanguageServer.java:982)
+	at org.javacs.JavaLanguageServer.access$000(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.hover(JavaLanguageServer.java:118)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:130)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:117)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 24 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 28 more
+
+INFO	?	main	2016-11-19T08:14:52.629Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath1647503461426896611.txt
+SEVERE	?	main	2016-11-19T08:14:52.641Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:477)
+	at org.javacs.JavaLanguageServer.access$600(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.didClose(JavaLanguageServer.java:227)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:202)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:194)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 20 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 24 more
+
+INFO	?	main	2016-11-19T08:14:52.651Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath2494433249367859503.txt
+SEVERE	?	main	2016-11-19T08:14:52.679Z	org.javacs.Main$4#onError	java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+java.lang.RuntimeException: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:593)
+	at org.javacs.JavaLanguageServer.readIfConfig(JavaLanguageServer.java:556)
+	at org.javacs.JavaLanguageServer.doFindConfig(JavaLanguageServer.java:525)
+	at java.util.HashMap.computeIfAbsent(Unknown Source)
+	at org.javacs.JavaLanguageServer.findConfig(JavaLanguageServer.java:517)
+	at org.javacs.JavaLanguageServer.findCompiler(JavaLanguageServer.java:477)
+	at org.javacs.JavaLanguageServer.access$600(JavaLanguageServer.java:31)
+	at org.javacs.JavaLanguageServer$1.didClose(JavaLanguageServer.java:227)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint._doAccept(LanguageServerEndpoint.xtend:202)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.doAccept(LanguageServerEndpoint.xtend:194)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend:114)
+	at io.typefox.lsapi.services.transport.server.LanguageServerEndpoint.accept(LanguageServerEndpoint.xtend)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.handleMessage(LanguageEndpoint.xtend:67)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.lambda$connect$4(LanguageEndpoint.xtend:61)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:46)
+	at io.typefox.lsapi.services.json.StreamMessageReader$1.apply(StreamMessageReader.java:44)
+	at io.typefox.lsapi.services.json.StreamMessageReader.handleMessage(StreamMessageReader.xtend:128)
+	at io.typefox.lsapi.services.json.StreamMessageReader.listen(StreamMessageReader.xtend:61)
+	at io.typefox.lsapi.services.transport.AbstractLanguageEndpoint.connect(LanguageEndpoint.xtend:60)
+	at org.javacs.Main.run(Main.java:150)
+	at org.javacs.Main.main(Main.java:69)
+Caused by: java.io.IOException: Cannot run program "null" (in directory "e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo"): CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at java.lang.Runtime.exec(Unknown Source)
+	at org.javacs.JavaLanguageServer.buildClassPath(JavaLanguageServer.java:586)
+	... 20 more
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	... 24 more
+

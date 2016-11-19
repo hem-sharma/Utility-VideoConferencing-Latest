@@ -1,6 +1,6 @@
-org/kurento/room/demo/KurentoRoomDemoApp.class
-org/kurento/room/demo/ClientConfig.class
-org/kurento/room/demo/DemoController.class
-org/kurento/room/demo/FixedNKmsManager.class
-org/kurento/room/demo/DemoJsonRpcUserControl.class
-org/kurento/room/demo/DemoController$ResourceNotFoundException.class
+org\kurento\room\demo\KurentoRoomDemoApp.class
+org\kurento\room\demo\ClientConfig.class
+org\kurento\room\demo\DemoController.class
+org\kurento\room\demo\DemoController$ResourceNotFoundException.class
+org\kurento\room\demo\DemoJsonRpcUserControl.class
+org\kurento\room\demo\FixedNKmsManager.class

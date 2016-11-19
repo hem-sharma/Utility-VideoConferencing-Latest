@@ -19,12 +19,12 @@ function AppParticipant(stream) {
     this.stream = stream;
     this.videoElement;
     this.thumbnailId;
-    
+
     var that = this;
 
-    this.getStream = function() {
-		return this.stream;
-	}
+    this.getStream = function () {
+        return this.stream;
+    }
 
     this.setMain = function () {
 
@@ -53,10 +53,14 @@ function AppParticipant(stream) {
     }
 
     function playVideo() {
-
+        // var naming=stream.getGlobalID().split('-');
+        // var toName=naming[0];
+        // var t=stream.getGlobalID().split('_');
+        // toName+='_'+t[t.length-1];
         that.thumbnailId = "video-" + stream.getGlobalID();
 
         that.videoElement = document.createElement('div');
+        // that.videoElement.setAttribute("id", that.thumbnailId);
         that.videoElement.setAttribute("id", that.thumbnailId);
         that.videoElement.className = "video";
 
@@ -70,9 +74,9 @@ function AppParticipant(stream) {
         buttonVideo.style.top = "60%";
         buttonVideo.style.zIndex = "100";
         that.videoElement.appendChild(buttonVideo);
-        
+
         var speakerSpeakingVolumen = document.createElement('div');
-        speakerSpeakingVolumen.setAttribute("id","speaker" + that.thumbnailId);
+        speakerSpeakingVolumen.setAttribute("id", "speaker" + that.thumbnailId);
         speakerSpeakingVolumen.className = 'btn--m btn--green btn--fab mdi md-volume-up blinking';
         speakerSpeakingVolumen.style.position = "absolute";
         speakerSpeakingVolumen.style.left = "3%";
@@ -82,7 +86,15 @@ function AppParticipant(stream) {
         that.videoElement.appendChild(speakerSpeakingVolumen);
 
         document.getElementById("participants").appendChild(that.videoElement);
+        // that.stream.playThumbnail(that.thumbnailId);
         that.stream.playThumbnail(that.thumbnailId);
+        
+        //changing name showing in thumbnail start
+        var element = $('.name');
+        var currentText = element.text();
+        currentText = currentText.split('-')[0] + '_' + currentText.split('_')[1];
+        element.html(currentText);
+        //changing name showing in thumbnail end
     }
 
     playVideo();
@@ -99,21 +111,21 @@ function Participants() {
     var connected = true;
     var displayingRelogin = false;
     var mainSpeaker = true;
-    
-    this.isConnected = function() {
-    	return connected;
+
+    this.isConnected = function () {
+        return connected;
     }
-    
+
     this.getRoomName = function () {
         console.log("room - getRoom " + roomName);
         roomName = room.name;
         return roomName;
     };
 
-    this.getMainParticipant = function() {
-		return mainParticipant;
-	}
-    
+    this.getMainParticipant = function () {
+        return mainParticipant;
+    }
+
     function updateVideoStyle() {
         var MAX_WIDTH = 14;
         var numParticipants = Object.keys(participants).length;
@@ -132,7 +144,7 @@ function Participants() {
 
     function updateMainParticipant(participant) {
         if (mainParticipant) {
-        	mainParticipant.removeMain();
+            mainParticipant.removeMain();
         }
         mainParticipant = participant;
         mainParticipant.setMain();
@@ -145,9 +157,9 @@ function Participants() {
     };
 
     this.addLocalMirror = function (stream) {
-		mirrorParticipant = that.addParticipant(stream);
-	};
-    
+        mirrorParticipant = that.addParticipant(stream);
+    };
+
     this.addParticipant = function (stream) {
 
         var participant = new AppParticipant(stream);
@@ -163,60 +175,60 @@ function Participants() {
 
         return participant;
     };
-    
+
     this.removeParticipantByStream = function (stream) {
         this.removeParticipant(stream.getGlobalID());
     };
 
     this.disconnectParticipant = function (appParticipant) {
-    	this.removeParticipant(appParticipant.getStream().getGlobalID());
+        this.removeParticipant(appParticipant.getStream().getGlobalID());
     };
 
     this.removeParticipant = function (streamId) {
-    	var participant = participants[streamId];
+        var participant = participants[streamId];
         delete participants[streamId];
         participant.remove();
-        
+
         if (mirrorParticipant) {
-        	var otherLocal = null;
-        	if (participant === localParticipant) {
-        		otherLocal = mirrorParticipant;
-        	}
-        	if (participant === mirrorParticipant) {
-        		otherLocal = localParticipant;
-        	}
-        	if (otherLocal) {
-        		console.log("Removed local participant (or mirror) so removing the other local as well");
-        		delete participants[otherLocal.getStream().getGlobalID()];
-        		otherLocal.remove();
-        	}
+            var otherLocal = null;
+            if (participant === localParticipant) {
+                otherLocal = mirrorParticipant;
+            }
+            if (participant === mirrorParticipant) {
+                otherLocal = localParticipant;
+            }
+            if (otherLocal) {
+                console.log("Removed local participant (or mirror) so removing the other local as well");
+                delete participants[otherLocal.getStream().getGlobalID()];
+                otherLocal.remove();
+            }
         }
-        
+
         //setting main
         if (mainParticipant && mainParticipant === participant) {
-        	var mainIsLocal = false;
-        	if (localParticipant) {
-        		if (participant !== localParticipant && participant !== mirrorParticipant) {
-        			mainParticipant = localParticipant;
-        			mainIsLocal = true;
-        		} else {
-        			localParticipant = null;
-                	mirrorParticipant = null;
-        		}
-        	}
-        	if (!mainIsLocal) {
-        		var keys = Object.keys(participants);
-        		if (keys.length > 0) {
-        			mainParticipant = participants[keys[0]];
-        		} else {
-        			mainParticipant = null;
-        		}
-        	}
-        	if (mainParticipant) {
-        		mainParticipant.setMain();
-        		console.log("Main video from " + mainParticipant.getStream().getGlobalID());
-        	} else
-        		console.error("No media streams left to display");
+            var mainIsLocal = false;
+            if (localParticipant) {
+                if (participant !== localParticipant && participant !== mirrorParticipant) {
+                    mainParticipant = localParticipant;
+                    mainIsLocal = true;
+                } else {
+                    localParticipant = null;
+                    mirrorParticipant = null;
+                }
+            }
+            if (!mainIsLocal) {
+                var keys = Object.keys(participants);
+                if (keys.length > 0) {
+                    mainParticipant = participants[keys[0]];
+                } else {
+                    mainParticipant = null;
+                }
+            }
+            if (mainParticipant) {
+                mainParticipant.setMain();
+                console.log("Main video from " + mainParticipant.getStream().getGlobalID());
+            } else
+                console.error("No media streams left to display");
         }
 
         updateVideoStyle();
@@ -224,7 +236,7 @@ function Participants() {
 
     //only called when leaving the room
     this.removeParticipants = function () {
-    	connected = false;
+        connected = false;
         for (var index in participants) {
             var participant = participants[index];
             participant.remove();
@@ -236,19 +248,19 @@ function Participants() {
     };
 
     this.enableMainSpeaker = function () {
-    	mainSpeaker = true;
+        mainSpeaker = true;
     }
 
     this.disableMainSpeaker = function () {
-    	mainSpeaker = false;
+        mainSpeaker = false;
     }
 
     // Open the chat automatically when a message is received
     function autoOpenChat() {
         var selectedEffect = "slide";
-        var options = {direction: "right"};
+        var options = { direction: "right" };
         if ($("#effect").is(':hidden')) {
-            $("#content").animate({width: '80%'}, 500);
+            $("#content").animate({ width: '80%' }, 500);
             $("#effect").toggle(selectedEffect, options, 500);
         }
     };
@@ -261,7 +273,7 @@ function Participants() {
         var updateScroll = true;
 
         if (messages.outerHeight() - chatDiv.scrollTop > chatDiv.offsetHeight) {
-        	updateScroll = false;
+            updateScroll = false;
         }
         console.log(localParticipant)
         var localUser = localParticipant.thumbnailId.replace("_webcam", "").replace("video-", "");
@@ -287,16 +299,16 @@ function Participants() {
             li.appendChild(div2);
             ul[0].appendChild(li);
 
-//               <li class="list-row list-row--has-primary list-row--has-separator">
-//                        <div class="list-secondary-tile">
-//                            <img class="list-primary-tile__img" src="http://ui.lumapps.com/images/placeholder/2-square.jpg">
-//                        </div>
-//
-//                        <div class="list-content-tile list-content-tile--two-lines">
-//                            <strong>User 1</strong>
-//                            <span>.............................</span>
-//                        </div>
-//                    </li>
+            //               <li class="list-row list-row--has-primary list-row--has-separator">
+            //                        <div class="list-secondary-tile">
+            //                            <img class="list-primary-tile__img" src="http://ui.lumapps.com/images/placeholder/2-square.jpg">
+            //                        </div>
+            //
+            //                        <div class="list-content-tile list-content-tile--two-lines">
+            //                            <strong>User 1</strong>
+            //                            <span>.............................</span>
+            //                        </div>
+            //                    </li>
 
 
         } else {//others
@@ -322,20 +334,20 @@ function Participants() {
             ul[0].appendChild(li);
             autoOpenChat();
 
-//                 <li class="list-row list-row--has-primary list-row--has-separator">
-//                        <div class="list-primary-tile">
-//                            <img class="list-primary-tile__img" src="http://ui.lumapps.com/images/placeholder/1-square.jpg">
-//                        </div>
-//
-//                        <div class="list-content-tile list-content-tile--two-lines">
-//                            <strong>User 2</strong>
-//                            <span>.............................</span>
-//                        </div>
-//                    </li>
+            //                 <li class="list-row list-row--has-primary list-row--has-separator">
+            //                        <div class="list-primary-tile">
+            //                            <img class="list-primary-tile__img" src="http://ui.lumapps.com/images/placeholder/1-square.jpg">
+            //                        </div>
+            //
+            //                        <div class="list-content-tile list-content-tile--two-lines">
+            //                            <strong>User 2</strong>
+            //                            <span>.............................</span>
+            //                        </div>
+            //                    </li>
         }
-        
+
         if (updateScroll) {
-        	chatDiv.scrollTop = messages.outerHeight();
+            chatDiv.scrollTop = messages.outerHeight();
         }
     };
 
@@ -343,61 +355,61 @@ function Participants() {
         if (displayingRelogin) {
             console.warn('Already displaying an alert that leads to relogin');
             return false;
-          }
+        }
         displayingRelogin = true;
         that.removeParticipants();
-        LxNotificationService.alert('Error!', e.error.message, 'Reconnect', function(answer) {
-        	displayingRelogin = false;
+        LxNotificationService.alert('Error!', e.error.message, 'Reconnect', function (answer) {
+            displayingRelogin = false;
             $window.location.href = '/';
         });
     };
-    
+
     this.forceClose = function ($window, LxNotificationService, msg) {
         if (displayingRelogin) {
             console.warn('Already displaying an alert that leads to relogin');
             return false;
-          }
+        }
         displayingRelogin = true;
         that.removeParticipants();
-        LxNotificationService.alert('Warning!', msg, 'Reload', function(answer) {
-        	displayingRelogin = false;
+        LxNotificationService.alert('Warning!', msg, 'Reload', function (answer) {
+            displayingRelogin = false;
             $window.location.href = '/';
         });
     };
-    
+
     this.alertMediaError = function ($window, LxNotificationService, msg, callback) {
         if (displayingRelogin) {
             console.warn('Already displaying an alert that leads to relogin');
             return false;
-          }
-    	LxNotificationService.confirm('Warning!', 'Server media error: ' + msg
-    			+ ". Please reconnect.", { cancel:'Disagree', ok:'Agree' }, 
-    			function(answer) {
-    	            console.log("User agrees upon media error: " + answer);
-    	            if (answer) {
-    	            	that.removeParticipants();
-    	                $window.location.href = '/';
-    	            }
-    	            if (typeof callback === "function") {
-    	            	callback(answer);
-    	            }
-    			});
-	};
+        }
+        LxNotificationService.confirm('Warning!', 'Server media error: ' + msg
+            + ". Please reconnect.", { cancel: 'Disagree', ok: 'Agree' },
+            function (answer) {
+                console.log("User agrees upon media error: " + answer);
+                if (answer) {
+                    that.removeParticipants();
+                    $window.location.href = '/';
+                }
+                if (typeof callback === "function") {
+                    callback(answer);
+                }
+            });
+    };
 
-    this.streamSpeaking = function(participantId) {
-    	if (participants[participantId.participantId] != undefined)
-    		document.getElementById("speaker" + participants[participantId.participantId].thumbnailId).style.display='';
+    this.streamSpeaking = function (participantId) {
+        if (participants[participantId.participantId] != undefined)
+            document.getElementById("speaker" + participants[participantId.participantId].thumbnailId).style.display = '';
     }
 
-    this.streamStoppedSpeaking = function(participantId) {
-    	if (participants[participantId.participantId] != undefined)
-    		document.getElementById("speaker" + participants[participantId.participantId].thumbnailId).style.display = "none";
+    this.streamStoppedSpeaking = function (participantId) {
+        if (participants[participantId.participantId] != undefined)
+            document.getElementById("speaker" + participants[participantId.participantId].thumbnailId).style.display = "none";
     }
 
-    this.updateMainSpeaker = function(participantId) {
-    	if (participants[participantId.participantId] != undefined) {
-    		if (mainSpeaker)
-    			updateMainParticipant(participants[participantId.participantId]);
-    	}
+    this.updateMainSpeaker = function (participantId) {
+        if (participants[participantId.participantId] != undefined) {
+            if (mainSpeaker)
+                updateMainParticipant(participants[participantId.participantId]);
+        }
     }
 }

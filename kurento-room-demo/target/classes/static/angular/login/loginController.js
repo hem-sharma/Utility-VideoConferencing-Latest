@@ -1,8 +1,3 @@
-/*
- * @author Micael Gallego (micael.gallego@gmail.com)
- * @author Raquel Díaz González
- */
-
 kurento_room.controller('loginController', function ($scope, $http, ServiceParticipant, $window, ServiceRoom, LxNotificationService) {
 
 	var options;
