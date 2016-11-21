@@ -38,9 +38,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     };
 
     var deferred = $q.defer();
-    //TODO:change Api url
-    // var req = 'https://www.kazastream.com/api/common/checkroomaccess?';
-    var req = 'https://localhost:44300/api/common/checkroomaccess?';
+    var req = 'https://www.kazastream.com/api/common/checkroomaccess?';
     req += 'eventId=' + room.roomName;
     req += '&accessToken=' + room.token;
     req += '&user=' + room.userName;
@@ -227,40 +225,33 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         }
     };
 
-    // For Screen Sharing start
-    $scope.shareScreen = function () {
-        // navigator.getUserMedia({
-        //     audio: false,
-        //     video: {
-        //         mandatory: {
-        //             chromeMediaSource: 'screen',
-        //             maxWidth: 1280,
-        //             maxHeight: 720
-        //         },
-        //         optional: []
-        //     }
-        // }, function (stream) {
-        //     document.getElementById('video').src = window.URL.createObjectURL(stream);;
-        //     $('#share_screen').hide();
-        // }, function () {
-        //     alert('Error, my friend. Screen stream is not available. Try in latest Chrome with Screen sharing enabled in about:flags.');
-        // }
-        // );
-       
-        var dummyStream = ServiceRoom.getKurento().Stream(room, {
-           audio:false,
-           video: {
-               mandatory:{
-                   chromeMediaSource:'screen',
-                   maxWidth:1280,
-                   maxHeight:720, 
-               },
-               optional:[]
-           } 
-        });
 
+    $scope.shareScreen = function () {
+        var def = $q.defer();
+        var req = 'https://www.kazastream.com/api/common/getScreenShareUrl';
+        $http.get(req)
+            .then(function (response) {
+                def.resolve(response);
+                var result = response;
+                if (result.data.status === 200) {
+                    var screenShare = result.data.url;
+                    var openedWindow = window.open(screenShare, '_blank');
+                    if (openedWindow) {
+                        openedWindow.focus();
+                    }
+                    else {
+                        alert('Please allow popups in browser to process.');
+                    }
+                } else {
+                    //TODO:if result is 500
+                    return false;
+                }
+            })
+            .then(function (response) {
+                def.reject(response);
+            });
     };
-    // end
+
 
     $scope.goFullscreen = function () {
 
