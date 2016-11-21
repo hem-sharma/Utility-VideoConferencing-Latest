@@ -38,7 +38,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     };
 
     var deferred = $q.defer();
-    var req = 'https://www.kazastream.com/api/common/checkroomaccess?';
+    // var req = 'https://www.kazastream.com/api/common/checkroomaccess?';
+    var req = 'https://localhost:44300/api/common/getScreenShareUrl';
     req += 'eventId=' + room.roomName;
     req += '&accessToken=' + room.token;
     req += '&user=' + room.userName;
@@ -228,7 +229,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
     $scope.shareScreen = function () {
         var def = $q.defer();
-        var req = 'https://www.kazastream.com/api/common/getScreenShareUrl';
+        // var req = 'https://www.kazastream.com/api/common/getScreenShareUrl';
+        var req = 'https://localhost:44300/api/common/getScreenShareUrl';
         $http.get(req)
             .then(function (response) {
                 def.resolve(response);
