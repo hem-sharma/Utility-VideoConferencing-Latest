@@ -86,11 +86,11 @@ function AppParticipant(stream) {
         that.videoElement.appendChild(speakerSpeakingVolumen);
 
         document.getElementById("participants").appendChild(that.videoElement);
-        // that.stream.playThumbnail(that.thumbnailId);
+
         that.stream.playThumbnail(that.thumbnailId);
-        
+
         //changing name showing in thumbnail start
-        var element = $('.name');
+        var element = $('#' + that.thumbnailId.replace('video-', ''));
         var currentText = element.text();
         currentText = currentText.split('-')[0] + '_' + currentText.split('_')[1];
         element.html(currentText);
