@@ -95,9 +95,15 @@ function AppParticipant(stream) {
         // currentText = currentText.split('-')[0] + '_' + currentText.split('_')[1];
         // element.html(currentText);
         //changing name showing in thumbnail end
+        
+        $('#' + stream.getGlobalID())
+            .html($('#' + stream.getGlobalID()).text()
+                .split('-')[0] + '_' + $('#' + stream.getGlobalID()).text().split('_')[1])
     }
 
     playVideo();
+
+
 }
 
 function Participants() {
