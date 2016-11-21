@@ -96,9 +96,9 @@ function AppParticipant(stream) {
         // element.html(currentText);
         //changing name showing in thumbnail end
         
-        $('#' + stream.getGlobalID())
-            .html($('#' + stream.getGlobalID()).text()
-                .split('-')[0] + '_' + $('#' + stream.getGlobalID()).text().split('_')[1])
+        // $('#' + stream.getGlobalID())
+        //     .html($('#' + stream.getGlobalID()).text()
+        //         .split('-')[0] + '_' + $('#' + stream.getGlobalID()).text().split('_')[1]);
     }
 
     playVideo();
