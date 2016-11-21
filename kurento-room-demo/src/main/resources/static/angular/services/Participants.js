@@ -90,10 +90,10 @@ function AppParticipant(stream) {
         that.stream.playThumbnail(that.thumbnailId);
 
         //changing name showing in thumbnail start
-        var element = $('#' + that.thumbnailId.replace('video-', ''));
-        var currentText = element.text();
-        currentText = currentText.split('-')[0] + '_' + currentText.split('_')[1];
-        element.html(currentText);
+        // var element = $('#' + that.thumbnailId.replace('video-', ''));
+        // var currentText = element.text();
+        // currentText = currentText.split('-')[0] + '_' + currentText.split('_')[1];
+        // element.html(currentText);
         //changing name showing in thumbnail end
     }
 
