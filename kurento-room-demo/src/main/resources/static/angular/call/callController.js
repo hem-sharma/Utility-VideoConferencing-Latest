@@ -236,11 +236,11 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 def.resolve(response);
                 var result = response;
                 if (result.data.status === 200) {
-                    var screenShare = result.data.url + (Math.random() * 100).toString().replace('.', '');
+                    var screenShare = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '');
                     var openedWindow = window.open(screenShare, '_blank');
                     if (openedWindow) {
                         openedWindow.focus();
-                         var dskKurento = ServiceRoom.getKurento();
+                        var dskKurento = ServiceRoom.getKurento();
                         dskKurento.sendMessage($scope.roomName, $scope.userName, $scope.message);
                         $scope.message = "";
                     }
