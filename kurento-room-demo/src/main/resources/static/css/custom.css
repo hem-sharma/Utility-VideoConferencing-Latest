@@ -1,0 +1,4 @@
+.list-content-tile--two-lines span, .list-content-tile--two-lines strong {
+line-height: 20px;
+word-wrap: break-word;
+}
