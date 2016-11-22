@@ -241,7 +241,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                     if (openedWindow) {
                         openedWindow.focus();
                         var dskKurento = ServiceRoom.getKurento();
-                        dskKurento.sendMessage($scope.roomName, $scope.userName, $scope.message);
+                        dskKurento.sendMessage($scope.roomName, $scope.userName, 'Please find the Screen having url: ' + screenShare);
                         $scope.message = "";
                     }
                     else {
