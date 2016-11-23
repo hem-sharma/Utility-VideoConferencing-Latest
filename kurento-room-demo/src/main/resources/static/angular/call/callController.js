@@ -200,6 +200,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         ServiceRoom.setKurento(kurento);
         ServiceRoom.setRoomName($scope.roomName);
         ServiceRoom.setUserName($scope.userName);
+        //TODO: service to start recording...
     };
 
 
