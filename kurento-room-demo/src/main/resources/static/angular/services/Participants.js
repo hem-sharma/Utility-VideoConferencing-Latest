@@ -117,7 +117,7 @@ function startRecording() {
         {
             default:
             {
-                ws_uri: 'ws://52.187.34.155:8888/kurento',
+                ws_uri: 'wss://52.187.34.155:8888/kurento',
                 file_uri: 'file:///tmp/' + getFileName() + '.webm', // file to be stored in media server
                 ice_servers: undefined
             }
