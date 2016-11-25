@@ -102,6 +102,7 @@ function AppParticipant(stream) {
 }
 
 function startRecording() {
+    var client;
     //TODO: start each participant videos 
     function getopts(args, opts) {
         var result = opts.default || {};
