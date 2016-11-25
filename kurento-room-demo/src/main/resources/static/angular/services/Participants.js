@@ -96,8 +96,108 @@ function AppParticipant(stream) {
     }
 
     playVideo();
+    
+    //startRecording();
 
+}
 
+function startRecording() {
+    //TODO: start each participant videos 
+    function getopts(args, opts) {
+        var result = opts.default || {};
+        args.replace(
+            new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+            function ($0, $1, $2, $3) { result[$1] = decodeURI($3); });
+
+        return result;
+    };
+
+    var args = getopts(location.search,
+        {
+            default:
+            {
+                ws_uri: 'ws://52.187.34.155:8888/kurento',
+                file_uri: 'file:///tmp/' + getFileName() + '.webm', // file to be stored in media server
+                ice_servers: undefined
+            }
+        });
+    var options =
+  {
+    // localVideo: videoInput,
+    // remoteVideo: videoOutput
+  };
+  var  webRtcPeer = kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(options, function(error)
+  {
+    if(error) return onError(error)
+
+    this.generateOffer(onStartOffer)
+  });
+
+  function onStartOffer(error, sdpOffer)
+    {
+  if(error) return onError(error)
+
+  co(function*(){
+    try{
+      if(!client)
+        client = yield kurentoClient('ws://52.187.34.155:8888/kurento');
+
+      pipeline = yield client.create('MediaPipeline');
+
+      var webRtc = yield pipeline.create('WebRtcEndpoint');
+      setIceCandidateCallbacks(webRtcPeer, webRtc, onError)
+
+      var recorder = yield pipeline.create('RecorderEndpoint', {uri: args.file_uri});
+
+      yield webRtc.connect(recorder);
+      yield webRtc.connect(webRtc);
+
+      yield recorder.record();
+
+      var sdpAnswer = yield webRtc.processOffer(sdpOffer);
+      webRtc.gatherCandidates(onError);
+      webRtcPeer.processAnswer(sdpAnswer)
+
+    //   setStatus(CALLING);
+
+    } catch(e){
+      onError(e);
+    }
+  })();
+}
+
+function onError(error) {
+  if(error)
+  {
+    console.log(error);
+    // stop();
+  }
+}
+
+function setIceCandidateCallbacks(webRtcPeer, webRtcEp, onerror)
+{
+  webRtcPeer.on('icecandidate', function(candidate) {
+    console.log("Local candidate:",candidate);
+
+    candidate = kurentoClient.getComplexType('IceCandidate')(candidate);
+
+    webRtcEp.addIceCandidate(candidate, onerror)
+  });
+
+  webRtcEp.on('OnIceCandidate', function(event) {
+    var candidate = event.candidate;
+
+    console.log("Remote candidate:",candidate);
+
+    webRtcPeer.addIceCandidate(candidate, onerror);
+  });
+}
+
+};
+
+function getFileName() {
+    var date = new Date($.now());
+    return room.roomName + '_' + room.userName + '_' + date.getDate() + '_' + (date.getMonth() + 1) + '_' + date.getFullYear() + '_' + (date.getHours() + 1) + ':' + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds();
 }
 
 function Participants() {

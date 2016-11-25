@@ -200,10 +200,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         ServiceRoom.setKurento(kurento);
         ServiceRoom.setRoomName($scope.roomName);
         ServiceRoom.setUserName($scope.userName);
-        //TODO: service to start recording...
     };
-
-
 
     $scope.roomName = ServiceRoom.getRoomName();
     $scope.userName = ServiceRoom.getUserName();
@@ -239,15 +236,11 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 if (result.data.status === 200) {
                     var screenShare = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '');
                     var openedWindow = window.open(screenShare, '_blank');
-                    if (openedWindow) {
-                        openedWindow.focus();
-                        var dskKurento = ServiceRoom.getKurento();
-                        dskKurento.sendMessage($scope.roomName, $scope.userName, 'Please find the Screen having url: ' + screenShare);
-                        $scope.message = "";
-                    }
-                    else {
-                        alert('Please allow popups in browser to process.');
-                    }
+
+                    var dskKurento = ServiceRoom.getKurento();
+                    dskKurento.sendMessage($scope.roomName, $scope.userName, 'Please find the Screen having url: ' + screenShare);
+                    $scope.message = "";
+
                 } else {
                     //TODO:if result is 500
                     return false;
