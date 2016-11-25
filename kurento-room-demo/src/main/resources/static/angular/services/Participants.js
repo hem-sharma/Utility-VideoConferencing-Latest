@@ -141,7 +141,7 @@ function startRecording() {
   co(function*(){
     try{
       if(!client)
-        client = yield kurentoClient('ws://52.187.34.155:8888/kurento');
+        client = yield kurentoClient('wss://52.187.34.155:8888/kurento');
 
       pipeline = yield client.create('MediaPipeline');
 
