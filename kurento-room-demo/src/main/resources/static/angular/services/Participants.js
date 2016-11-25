@@ -102,6 +102,7 @@ function AppParticipant(stream) {
 }
 
 function startRecording() {
+    var kurentoServer='wss://52.187.34.155:8433/kurento';
     var client;
     //TODO: start each participant videos 
     function getopts(args, opts) {
@@ -117,7 +118,7 @@ function startRecording() {
         {
             default:
             {
-                ws_uri: 'wss://52.187.34.155:8888/kurento',
+                ws_uri: kurentoServer,
                 file_uri: 'file:///tmp/' + getFileName() + '.webm', // file to be stored in media server
                 ice_servers: undefined
             }
@@ -141,7 +142,7 @@ function startRecording() {
   co(function*(){
     try{
       if(!client)
-        client = yield kurentoClient('wss://52.187.34.155:8888/kurento');
+        client = yield kurentoClient(args.ws_uri);
 
       pipeline = yield client.create('MediaPipeline');
 
