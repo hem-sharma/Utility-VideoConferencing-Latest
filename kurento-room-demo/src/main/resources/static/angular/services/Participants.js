@@ -97,7 +97,7 @@ function AppParticipant(stream) {
 
     playVideo();
     
-    //startRecording();
+    startRecording();
 
 }
 
