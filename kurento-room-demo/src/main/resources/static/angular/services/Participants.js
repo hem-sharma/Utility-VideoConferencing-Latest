@@ -102,7 +102,7 @@ function AppParticipant(stream) {
 }
 
 function startRecording() {
-    var kurentoServer='wss://52.187.34.155:8433/kurento';
+    var kmsServer='wss://192.168.0.9:6443/kurento';
     var client;
     //TODO: start each participant videos 
     function getopts(args, opts) {
@@ -118,7 +118,7 @@ function startRecording() {
         {
             default:
             {
-                ws_uri: kurentoServer,
+                ws_uri: kmsServer,
                 file_uri: 'file:///tmp/' + getFileName() + '.webm', // file to be stored in media server
                 ice_servers: undefined
             }
