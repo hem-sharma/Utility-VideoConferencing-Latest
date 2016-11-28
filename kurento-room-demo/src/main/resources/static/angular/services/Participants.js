@@ -197,11 +197,10 @@ function startRecording() {
 function getFileName() {
     var date = new Date($.now());
     var roomName, userName;
-    // var rootScope = angular.injector(["kurento_room", "ng"]).get("$rootScope");
     var rootScope = angular.element($('body')).scope().$root;
     rootScope.$apply(function () {
         roomName = rootScope.roomName;
-        userName = rootScope.roomName;
+        userName = rootScope.userName;
     });
     return roomName + '_' + userName + '_' + date.getDate() + '_' + (date.getMonth() + 1) + '_' + date.getFullYear() + '_' + (date.getHours() + 1) + ':' + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds();
 }
