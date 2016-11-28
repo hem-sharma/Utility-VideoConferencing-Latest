@@ -199,6 +199,8 @@ function setIceCandidateCallbacks(webRtcPeer, webRtcEp, onerror)
 
 function getFileName() {
     var date = new Date($.now());
+    var roomName=ServiceRoom.getRoomName();
+    var userName=ServiceRoom.getUserName();
     return room.roomName + '_' + room.userName + '_' + date.getDate() + '_' + (date.getMonth() + 1) + '_' + date.getFullYear() + '_' + (date.getHours() + 1) + ':' + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds();
 }
 
