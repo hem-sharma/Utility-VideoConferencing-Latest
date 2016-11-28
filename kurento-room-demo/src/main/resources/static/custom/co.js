@@ -54,7 +54,10 @@
       // wrap the callback in a setImmediate
       // so that any of its errors aren't caught by `co`
       function exit(err, res) {
-        setImmediate(done.bind(ctx, err, res));
+        try{
+          setImmediate(done.bind(ctx, err, res));
+        }
+        catch(e){ }
       }
 
       function next(err, res) {
