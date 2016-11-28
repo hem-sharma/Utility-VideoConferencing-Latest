@@ -37,6 +37,9 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         userName: $routeParams.user
     };
 
+    ServiceRoom.setRoomName(room.roomName);
+    ServiceRoom.setUserName(room.userName);
+
     var deferred = $q.defer();
     var req = 'https://www.kazastream.com/api/common/checkroomaccess?';
     // var req = 'https://localhost:44300/api/common/checkroomaccess?';
