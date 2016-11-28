@@ -196,10 +196,13 @@ function startRecording() {
 
 function getFileName() {
     var date = new Date($.now());
-    var test = angular.injector(["kurento_room", "ng"]).get("ServiceRoom");
-    var roomName = test.getRoomName();
-    var userName = test.getUserName();
-    return room.roomName + '_' + room.userName + '_' + date.getDate() + '_' + (date.getMonth() + 1) + '_' + date.getFullYear() + '_' + (date.getHours() + 1) + ':' + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds();
+    var roomName, userName;
+    var rootScope = angular.injector(["kurento_room", "ng"]).get("$rootScope");
+    rootScope.$apply(function () {
+        roomName = rootScope.roomName;
+        userName = rootScope.roomName;
+    });
+    return roomName + '_' + userName + '_' + date.getDate() + '_' + (date.getMonth() + 1) + '_' + date.getFullYear() + '_' + (date.getHours() + 1) + ':' + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds();
 }
 
 function Participants() {

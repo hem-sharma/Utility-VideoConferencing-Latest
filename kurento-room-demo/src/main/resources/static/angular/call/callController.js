@@ -3,33 +3,29 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     var options;
     $scope.roomName = '';
     $http.get('/getAllRooms').
-        success(function (data, status, headers, config) {
-            // console.log(JSON.stringify(data));
-            $scope.listRooms = data;
-        }).
-        error(function (data, status, headers, config) {
-        });
+    success(function (data, status, headers, config) {
+        // console.log(JSON.stringify(data));
+        $scope.listRooms = data;
+    }).
+    error(function (data, status, headers, config) {});
 
     $http.get('/getClientConfig').
-        success(function (data, status, headers, config) {
-            // console.log(JSON.stringify(data));
-            $scope.clientConfig = data;
-        }).
-        error(function (data, status, headers, config) {
-        });
+    success(function (data, status, headers, config) {
+        // console.log(JSON.stringify(data));
+        $scope.clientConfig = data;
+    }).
+    error(function (data, status, headers, config) {});
     $http.get('/getUpdateSpeakerInterval').
-        success(function (data, status, headers, config) {
-            $scope.updateSpeakerInterval = data
-        }).
-        error(function (data, status, headers, config) {
-        });
+    success(function (data, status, headers, config) {
+        $scope.updateSpeakerInterval = data
+    }).
+    error(function (data, status, headers, config) {});
 
     $http.get('/getThresholdSpeaker').
-        success(function (data, status, headers, config) {
-            $scope.thresholdSpeaker = data
-        }).
-        error(function (data, status, headers, config) {
-        });
+    success(function (data, status, headers, config) {
+        $scope.thresholdSpeaker = data
+    }).
+    error(function (data, status, headers, config) {});
     $scope.roomName = $routeParams.eventId;
     var room = {
         roomName: $routeParams.eventId,
@@ -37,12 +33,11 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         userName: $routeParams.user
     };
 
-    ServiceRoom.setRoomName(room.roomName);
-    ServiceRoom.setUserName(room.userName);
+    $rootScope.roomName = room.roomName;
+    $rootScope.userName = room.userName;
 
     var deferred = $q.defer();
     var req = 'https://www.kazastream.com/api/common/checkroomaccess?';
-    // var req = 'https://localhost:44300/api/common/checkroomaccess?';
     req += 'eventId=' + room.roomName;
     req += '&accessToken=' + room.token;
     req += '&user=' + room.userName;
@@ -50,11 +45,12 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         .then(function (response) {
             deferred.resolve(response);
             var result = response;
-            // console.log(result);
             if (result.data.status === 200 && result.data.isValid) {
                 room.roomName = result.data.event;
-                $scope.roomName = result.data.event;
                 room.userName = result.data.user;
+                $scope.roomName = result.data.event;
+                $rootScope.roomName = result.data.event;
+                $rootScope.userName = result.data.user;
                 register(room);
             } else {
                 //$location.path($rootScope.contextpath + '/');
@@ -91,7 +87,9 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 return console.log(error);
 
 
-            kurento.setRpcParams({ token: room.token });
+            kurento.setRpcParams({
+                token: room.token
+            });
 
             room = kurento.Room({
                 room: $scope.roomName,
@@ -162,8 +160,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                             msg.room, $scope.roomName);
                     } else {
                         kurento.close(true);
-                        ServiceParticipant.forceClose($window, LxNotificationService, 'Room '
-                            + msg.room + ' has been forcibly closed from server');
+                        ServiceParticipant.forceClose($window, LxNotificationService, 'Room ' +
+                            msg.room + ' has been forcibly closed from server');
                     }
                 });
 
@@ -311,8 +309,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         var localStream = ServiceRoom.getLocalStream();
         var participant = ServiceParticipant.getMainParticipant();
         if (!localStream || !participant) {
-            LxNotificationService.alert('Error!', "Not connected yet", 'Ok', function (answer) {
-            });
+            LxNotificationService.alert('Error!', "Not connected yet", 'Ok', function (answer) {});
             return false;
         }
         ServiceParticipant.disconnectParticipant(participant);
@@ -333,11 +330,17 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     $scope.toggleChat = function () {
         var selectedEffect = "slide";
 
-        var options = { direction: "right" };
+        var options = {
+            direction: "right"
+        };
         if ($("#effect").is(':visible')) {
-            $("#content").animate({ width: '100%' }, 500);
+            $("#content").animate({
+                width: '100%'
+            }, 500);
         } else {
-            $("#content").animate({ width: '80%' }, 500);
+            $("#content").animate({
+                width: '80%'
+            }, 500);
         }
 
         $("#effect").toggle(selectedEffect, options, 500);
@@ -366,11 +369,14 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
         var hatTo = targetHat ? "on" : "off";
         // console.log("Toggle hat to " + hatTo);
-        ServiceRoom.getKurento().sendCustomRequest({ hat: targetHat }, function (error, response) {
+        ServiceRoom.getKurento().sendCustomRequest({
+            hat: targetHat
+        }, function (error, response) {
             if (error) {
                 console.error("Unable to toggle hat " + hatTo, error);
                 LxNotificationService.alert('Error!', "Unable to toggle hat " + hatTo,
-                    'Ok', function (answer) { });
+                    'Ok',
+                    function (answer) {});
                 return false;
             } else {
                 console.debug("Response on hat toggle", response);
@@ -378,5 +384,3 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         });
     };
 });
-
-
