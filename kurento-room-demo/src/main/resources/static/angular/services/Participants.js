@@ -96,112 +96,109 @@ function AppParticipant(stream) {
     }
 
     playVideo();
-    
+
     startRecording();
 
 }
 
 function startRecording() {
-    var kmsServer='wss://192.168.0.9:6443/kurento';
+    var kmsServer = 'wss://192.168.0.9:6443/kurento';
     var client;
     //TODO: start each participant videos 
     function getopts(args, opts) {
         var result = opts.default || {};
         args.replace(
             new RegExp("([^?=&]+)(=([^&]*))?", "g"),
-            function ($0, $1, $2, $3) { result[$1] = decodeURI($3); });
+            function ($0, $1, $2, $3) {
+                result[$1] = decodeURI($3);
+            });
 
         return result;
     };
 
-    var args = getopts(location.search,
-        {
-            default:
-            {
-                ws_uri: kmsServer,
-                file_uri: 'file:///tmp/' + getFileName() + '.webm', // file to be stored in media server
-                ice_servers: undefined
+    var args = getopts(location.search, {
+        default: {
+            ws_uri: kmsServer,
+            file_uri: 'file:///tmp/' + getFileName() + '.webm', // file to be stored in media server
+            ice_servers: undefined
+        }
+    });
+    var options = {
+        // localVideo: videoInput,
+        // remoteVideo: videoOutput
+    };
+    var webRtcPeer = kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(options, function (error) {
+        if (error) return onError(error)
+
+        this.generateOffer(onStartOffer)
+    });
+
+    function onStartOffer(error, sdpOffer) {
+        if (error) return onError(error)
+
+        co(function* () {
+            try {
+                if (!client)
+                    client = yield kurentoClient(args.ws_uri);
+
+                pipeline = yield client.create('MediaPipeline');
+
+                var webRtc = yield pipeline.create('WebRtcEndpoint');
+                setIceCandidateCallbacks(webRtcPeer, webRtc, onError)
+
+                var recorder = yield pipeline.create('RecorderEndpoint', {
+                    uri: args.file_uri
+                });
+
+                yield webRtc.connect(recorder);
+                yield webRtc.connect(webRtc);
+
+                yield recorder.record();
+
+                var sdpAnswer = yield webRtc.processOffer(sdpOffer);
+                webRtc.gatherCandidates(onError);
+                webRtcPeer.processAnswer(sdpAnswer)
+
+                //   setStatus(CALLING);
+
+            } catch (e) {
+                onError(e);
             }
-        });
-    var options =
-  {
-    // localVideo: videoInput,
-    // remoteVideo: videoOutput
-  };
-  var  webRtcPeer = kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(options, function(error)
-  {
-    if(error) return onError(error)
-
-    this.generateOffer(onStartOffer)
-  });
-
-  function onStartOffer(error, sdpOffer)
-    {
-  if(error) return onError(error)
-
-  co(function*(){
-    try{
-      if(!client)
-        client = yield kurentoClient(args.ws_uri);
-
-      pipeline = yield client.create('MediaPipeline');
-
-      var webRtc = yield pipeline.create('WebRtcEndpoint');
-      setIceCandidateCallbacks(webRtcPeer, webRtc, onError)
-
-      var recorder = yield pipeline.create('RecorderEndpoint', {uri: args.file_uri});
-
-      yield webRtc.connect(recorder);
-      yield webRtc.connect(webRtc);
-
-      yield recorder.record();
-
-      var sdpAnswer = yield webRtc.processOffer(sdpOffer);
-      webRtc.gatherCandidates(onError);
-      webRtcPeer.processAnswer(sdpAnswer)
-
-    //   setStatus(CALLING);
-
-    } catch(e){
-      onError(e);
+        })();
     }
-  })();
-}
 
-function onError(error) {
-  if(error)
-  {
-    console.log(error);
-    // stop();
-  }
-}
+    function onError(error) {
+        if (error) {
+            console.log(error);
+            // stop();
+        }
+    }
 
-function setIceCandidateCallbacks(webRtcPeer, webRtcEp, onerror)
-{
-  webRtcPeer.on('icecandidate', function(candidate) {
-    console.log("Local candidate:",candidate);
+    function setIceCandidateCallbacks(webRtcPeer, webRtcEp, onerror) {
+        webRtcPeer.on('icecandidate', function (candidate) {
+            console.log("Local candidate:", candidate);
 
-    candidate = kurentoClient.getComplexType('IceCandidate')(candidate);
+            candidate = kurentoClient.getComplexType('IceCandidate')(candidate);
 
-    webRtcEp.addIceCandidate(candidate, onerror)
-  });
+            webRtcEp.addIceCandidate(candidate, onerror)
+        });
 
-  webRtcEp.on('OnIceCandidate', function(event) {
-    var candidate = event.candidate;
+        webRtcEp.on('OnIceCandidate', function (event) {
+            var candidate = event.candidate;
 
-    console.log("Remote candidate:",candidate);
+            console.log("Remote candidate:", candidate);
 
-    webRtcPeer.addIceCandidate(candidate, onerror);
-  });
-}
+            webRtcPeer.addIceCandidate(candidate, onerror);
+        });
+    }
 
 };
 
 function getFileName() {
     var date = new Date($.now());
     var test = angular.injector(["kurento_room", "ng"]).get("ServiceRoom");
-    var roomName=test.getRoomName();
-    var userName=test.getUserName();
+    var roomName = test.getRoomName();
+    var userName = test.getUserName();
     return room.roomName + '_' + room.userName + '_' + date.getDate() + '_' + (date.getMonth() + 1) + '_' + date.getFullYear() + '_' + (date.getHours() + 1) + ':' + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds();
 }
 
@@ -363,9 +360,13 @@ function Participants() {
     // Open the chat automatically when a message is received
     function autoOpenChat() {
         var selectedEffect = "slide";
-        var options = { direction: "right" };
+        var options = {
+            direction: "right"
+        };
         if ($("#effect").is(':hidden')) {
-            $("#content").animate({ width: '80%' }, 500);
+            $("#content").animate({
+                width: '80%'
+            }, 500);
             $("#effect").toggle(selectedEffect, options, 500);
         }
     };
@@ -416,7 +417,7 @@ function Participants() {
             //                    </li>
 
 
-        } else {//others
+        } else { //others
 
             var li = document.createElement('li');
             li.className = "list-row list-row--has-primary list-row--has-separator";
@@ -487,8 +488,11 @@ function Participants() {
             console.warn('Already displaying an alert that leads to relogin');
             return false;
         }
-        LxNotificationService.confirm('Warning!', 'Server media error: ' + msg
-            + ". Please reconnect.", { cancel: 'Disagree', ok: 'Agree' },
+        LxNotificationService.confirm('Warning!', 'Server media error: ' + msg +
+            ". Please reconnect.", {
+                cancel: 'Disagree',
+                ok: 'Agree'
+            },
             function (answer) {
                 console.log("User agrees upon media error: " + answer);
                 if (answer) {
