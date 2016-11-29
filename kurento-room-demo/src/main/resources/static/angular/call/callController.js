@@ -263,7 +263,13 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 def.reject(response);
             });
     };
-
+    $scope.showAlert = false;
+    $scope.showSharingPopup = function (url) {
+        $scope.showAlert = !$scope.showAlert;
+        var html = '<iframe src=' + url + ' style="height:100%;width:100%"></iframe>';
+        $('#popUp').html(html)
+    };
+    
     function sendSharedScreenMessage(message) {
         var dskKurento = ServiceRoom.getKurento();
         dskKurento.sendMessage($scope.roomName, $scope.userName, message);

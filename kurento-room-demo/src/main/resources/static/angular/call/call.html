@@ -1,17 +1,14 @@
+<div id='popUp' class="popupAlert" ng-if="showAlert">
+    <span class="closeAlert" ng-click="showAlert = !showAlert">x</span>
+</div>
 <div id="room">
-
     <div id="content">
-
         <div id="main-video">
-
             <!--big videos-->
-
         </div>
-
         <div id="logo">
             <img src="img/kaza-logo.png" />
         </div>
-
         <div id="room-name">Room : {{roomName | split:'-':0}}</div>
         <div class="mb" align="right" style="margin: 1em; padding-bottom: 5px" id="buttonActions">
             <!--<button class="btn btn--xl btn--brown btn--fab mdi md-recent-actors" lx-ripple ng-click="disableMainSpeaker()" id="buttonMainSpeaker" title="Main Speaker toggle"></button> disable Main Speaker-->
@@ -29,27 +26,21 @@
             <button class="btn btn--xl btn--blue btn--fab mdi md-chat" lx-ripple ng-click="toggleChat()" title="Chat toggle"></button>
             <!--chat-->
         </div>
-
         <div id="participants">
-
             <!--small videos-->
-
         </div>
         <!--test for dsk sharing start-->
         <!--<article>
             <input type="text" id="room-name" disabled>
             <table style="width: 100%;" id="rooms-list"></table>
             <div id="videos-container"></div>-->
-            <!--<script src="./angular/call/screen/step1.js"></script>
+        <!--<script src="./angular/call/screen/step1.js"></script>
             <script src="./angular/call/screen/step2.js"></script>
             <script src="./angular/call/screen/step3.js"></script>-->
         <!--</article>-->
         <!--test for dsk sharing end-->
     </div>
-
-
     <!--CHAT-->
-
     <div class="toggler" style="width: 20%;height: 100%;float: right">
         <div id="effect" style="display:none">
             <!--head-->
@@ -58,17 +49,13 @@
                 <button class="btn btn--s btn--blue btn--icon mdi md-close" lx-ripple ng-click="toggleChat()" id="button"></button>
                 <!--close-->
             </div>
-
             <div id="chatDiv" style="height: 30em;  overflow: scroll;">
                 <div id="messages">
                     <ul class="list">
-
                         <!--chat messages with scroll-->
-
                     </ul>
                 </div>
             </div>
-
             <!--message and button to send-->
             <div>
                 <form>
