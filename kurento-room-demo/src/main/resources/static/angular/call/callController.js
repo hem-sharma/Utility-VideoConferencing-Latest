@@ -222,7 +222,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
         ServiceParticipant.removeParticipants();
         //stop recording
-        stopRecording();
+        stopRecording($rootScope.webRtcPeer, $rootScope.pipeline);
 
         $window.location.href = '#/thanks';
     };
@@ -232,7 +232,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         if (ServiceParticipant.isConnected()) {
             ServiceRoom.getKurento().close();
             //stop recording
-            stopRecording();
+            stopRecording($rootScope.webRtcPeer, $rootScope.pipeline);
         }
     };
 
@@ -325,7 +325,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         ServiceParticipant.disconnectParticipant(participant);
         ServiceRoom.getKurento().disconnectParticipant(participant.getStream());
         //stop recording for current participant
-        stopRecording();
+        stopRecording($rootScope.webRtcPeer, $rootScope.pipeline);
     }
 
 

@@ -114,18 +114,13 @@ function startRecording() {
     var args = getopts(location.search, {
         default: {
             ws_uri: kmsServer,
-            file_uri: 'file:///tmp/' + getFileName() + '.webm', // file to be stored in media server
+            //file_uri: 'file:///tmp/' + getFileName() + '.webm', // file to be stored in media server
             ice_servers: undefined
         }
     });
     var webRtcPeer = kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(options, function (error) {
         if (error) return onError(error)
-
         this.generateOffer(onStartOffer)
-    });
-
-    rootScope.$apply(function () {
-        rootScope.webRtcPeer = webRtcPeer;
     });
 
     function onStartOffer(error, sdpOffer) {
@@ -138,16 +133,21 @@ function startRecording() {
 
                 pipeline = yield client.create('MediaPipeline');
 
+                var userName, roomName;
                 //setting recording pipeline to rootscope used in stop
                 rootScope.$apply(function () {
+
+                    rootScope.webRtcPeer = webRtcPeer;
                     rootScope.pipeline = pipeline;
+                    userName = rootScope.userName;
+                    roomName = rootScope.roomName;
                 });
 
                 var webRtc = yield pipeline.create('WebRtcEndpoint');
                 setIceCandidateCallbacks(webRtcPeer, webRtc, onError)
-
+                    //can use here only
                 var recorder = yield pipeline.create('RecorderEndpoint', {
-                    uri: args.file_uri
+                    uri: getFileName(userName, roomName)
                 });
 
                 yield webRtc.connect(recorder);
@@ -166,7 +166,7 @@ function startRecording() {
     function onError(error) {
         if (error) {
             console.log(error);
-            stopRecording();
+            //stopRecording();//TODO:getting pipeline and peer
         }
     }
 
@@ -183,14 +183,7 @@ function startRecording() {
     }
 };
 
-function stopRecording() {
-    var webRtcPeer, pipeline,
-        rootScope = angular.element($('body')).scope().$root;
-
-    rootScope.$apply(function () {
-        webRtcPeer = rootScope.webRtcPeer;
-        pipeline = rootScope.pipeline;
-    });
+function stopRecording(webRtcPeer, pipeline) {
 
     if (webRtcPeer) {
         webRtcPeer.dispose();
@@ -202,17 +195,20 @@ function stopRecording() {
     }
 }
 
-function getFileName() {
+function getFileName(userName, roomName) {
     var date = new Date($.now()),
-        roomName, userName,
         rootScope = angular.element($('body')).scope().$root;
-    
-    rootScope.$apply(function () {
-        roomName = rootScope.roomName;
-        userName = rootScope.userName;
-    });
-    
-    return roomName + '_' + userName + '_' + date.getDate() + '_' + (date.getMonth() + 1) + '_' + date.getFullYear() + '_' + (date.getHours()) + ':' + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds();
+    if (!roomName && !userName) {
+        rootScope.$apply(function () {
+            roomName = rootScope.roomName;
+            userName = rootScope.userName;
+        });
+    }
+    return 'file:///tmp/' +
+        roomName + '_' + userName + '_' +
+        date.getDate() + '_' + (date.getMonth() + 1) + '_' + date.getFullYear() +
+        '_' + (date.getHours()) + ':' + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds() +
+        '.webm';
 }
 
 function Participants() {
