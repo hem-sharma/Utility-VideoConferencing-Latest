@@ -248,9 +248,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                     var url = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '');
                     var msg = '<a href=' + url + ' target=\'_blank\'>' + 'View</a>';
                     window.open(url, '_blank');
-                    var dskKurento = ServiceRoom.getKurento();
-                    dskKurento.sendMessage($scope.roomName, $scope.userName, 'Shared Screen : ' + msg);
-                    $scope.message = "";
+                    setTimeout(sendSharedScreenMessage(msg), 8000)
 
                 } else {
                     $window.location.href = '#/error';
@@ -262,6 +260,11 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
             });
     };
 
+    function sendSharedScreenMessage(message) {
+        var dskKurento = ServiceRoom.getKurento();
+        dskKurento.sendMessage($scope.roomName, $scope.userName, 'Shared Screen : ' + message);
+        $scope.message = "";
+    }
 
     $scope.goFullscreen = function () {
 
