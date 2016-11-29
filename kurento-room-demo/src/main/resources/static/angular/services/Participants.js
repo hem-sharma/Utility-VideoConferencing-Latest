@@ -96,12 +96,10 @@ function AppParticipant(stream) {
 }
 
 function startRecording() {
-    var kmsServer = 'wss://192.168.0.9:6443/kurento';
+    var client, kmsServer = 'wss://192.168.0.9:6443/kurento',
+        rootScope = angular.element($('body')).scope().$root,
+        options = {};
 
-    var rootScope = angular.element($('body')).scope().$root;
-
-    var client;
-    //TODO: start each participant videos 
     function getopts(args, opts) {
         var result = opts.default || {};
         args.replace(
@@ -120,7 +118,6 @@ function startRecording() {
             ice_servers: undefined
         }
     });
-    var options = {};
     var webRtcPeer = kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(options, function (error) {
         if (error) return onError(error)
 
@@ -141,6 +138,7 @@ function startRecording() {
 
                 pipeline = yield client.create('MediaPipeline');
 
+                //setting recording pipeline to rootscope used in stop
                 rootScope.$apply(function () {
                     rootScope.pipeline = pipeline;
                 });
@@ -154,7 +152,6 @@ function startRecording() {
 
                 yield webRtc.connect(recorder);
                 yield webRtc.connect(webRtc);
-
                 yield recorder.record();
 
                 var sdpAnswer = yield webRtc.processOffer(sdpOffer);
@@ -175,30 +172,26 @@ function startRecording() {
 
     function setIceCandidateCallbacks(webRtcPeer, webRtcEp, onerror) {
         webRtcPeer.on('icecandidate', function (candidate) {
-            console.log("Local candidate:", candidate);
-
             candidate = kurentoClient.getComplexType('IceCandidate')(candidate);
-
             webRtcEp.addIceCandidate(candidate, onerror)
         });
 
         webRtcEp.on('OnIceCandidate', function (event) {
             var candidate = event.candidate;
-
-            console.log("Remote candidate:", candidate);
-
             webRtcPeer.addIceCandidate(candidate, onerror);
         });
     }
 };
 
 function stopRecording() {
-    var webRtcPeer, pipeline;
-    var rootScope = angular.element($('body')).scope().$root;
+    var webRtcPeer, pipeline,
+        rootScope = angular.element($('body')).scope().$root;
+
     rootScope.$apply(function () {
         webRtcPeer = rootScope.webRtcPeer;
         pipeline = rootScope.pipeline;
     });
+
     if (webRtcPeer) {
         webRtcPeer.dispose();
         webRtcPeer = null;
@@ -210,13 +203,15 @@ function stopRecording() {
 }
 
 function getFileName() {
-    var date = new Date($.now());
-    var roomName, userName;
-    var rootScope = angular.element($('body')).scope().$root;
+    var date = new Date($.now()),
+        roomName, userName,
+        rootScope = angular.element($('body')).scope().$root;
+    
     rootScope.$apply(function () {
         roomName = rootScope.roomName;
         userName = rootScope.userName;
     });
+    
     return roomName + '_' + userName + '_' + date.getDate() + '_' + (date.getMonth() + 1) + '_' + date.getFullYear() + '_' + (date.getHours() + 1) + ':' + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds();
 }
 
