@@ -1,1 +1,44 @@
-INFO	?	main	2016-11-28T09:22:06.825Z	org.javacs.Main#connectToNode	Connected to parent using socket on port 55282
+INFO	?	main	2016-11-28T17:14:53.996Z	org.javacs.Main#connectToNode	Connected to parent using socket on port 55282
+INFO	?	main	2016-11-28T17:14:55.376Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\KurentoRoomDemoApp.java]
+INFO	?	main	2016-11-28T17:14:55.787Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath3972037183711444316.txt
+INFO	?	main	2016-11-28T17:15:55.924Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
+INFO	?	main	2016-11-28T17:15:55.931Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
+INFO	?	InitialIndex	2016-11-28T17:15:56.682Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\test\java\org\kurento\room\test\demo\AddRemoveUsersDemoTest.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.706Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\test\java\org\kurento\room\test\demo\AddRemoveUsersNoSinkVerifyDemoTest.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.710Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\test\java\org\kurento\room\test\demo\fake\ExtraKmsFakeUsersDemoTest.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.713Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\test\java\org\kurento\room\test\demo\fake\MixedUsersDemoTest.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.715Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\test\java\org\kurento\room\test\demo\fake\ParallelNFakeUsersDemoTest.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.719Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\test\java\org\kurento\room\test\demo\NUsersEqualLifetimeDemoTest.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.725Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\test\java\org\kurento\room\test\demo\OneUserQuickReentryDemoTest.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.729Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\test\java\org\kurento\room\test\demo\SeqAddRemoveUserDemoTest.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.731Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\test\java\org\kurento\room\test\demo\SeqNUsersEqualLifetimeDemoTest.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.734Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\test\java\org\kurento\room\test\demo\TwoUsersEqualLifetimeDemoTest.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.736Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\test\java\org\kurento\room\test\demo\UnpublishMediaDemoTest.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.739Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\test\java\org\kurento\room\test\demo\UnsubscribeFromMediaDemoTest.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.743Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\test\java\org\kurento\room\test\demo\WebAppAvailabilityDemoTest.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.746Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\ClientConfig.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.773Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\DemoController.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.781Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\DemoJsonRpcUserControl.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.795Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\FixedNKmsManager.java
+INFO	?	InitialIndex	2016-11-28T17:15:56.805Z	org.javacs.SymbolIndex$1#parseAll	Index e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\KurentoRoomDemoApp.java
+INFO	?	main	2016-11-28T17:16:04.282Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\FixedNKmsManager.java]
+INFO	?	main	2016-11-28T17:16:04.332Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath2729921215958760352.txt
+INFO	?	main	2016-11-28T17:16:22.360Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
+INFO	?	main	2016-11-28T17:16:22.364Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
+INFO	?	main	2016-11-28T17:16:22.504Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath3119902262702620055.txt
+INFO	?	main	2016-11-28T17:16:41.878Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
+INFO	?	main	2016-11-28T17:16:41.882Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
+INFO	?	main	2016-11-28T17:16:41.953Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\DemoJsonRpcUserControl.java]
+INFO	?	main	2016-11-28T17:16:41.961Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath2880844797186620618.txt
+INFO	?	main	2016-11-28T17:16:54.535Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
+INFO	?	main	2016-11-28T17:16:54.537Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
+INFO	?	main	2016-11-28T17:16:54.581Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\DemoController.java]
+INFO	?	main	2016-11-28T17:16:54.595Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath2309534051328310509.txt
+INFO	?	main	2016-11-28T17:17:08.240Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
+INFO	?	main	2016-11-28T17:17:08.243Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
+INFO	?	main	2016-11-28T17:17:08.415Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\ClientConfig.java]
+INFO	?	main	2016-11-28T17:17:08.426Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\admin\AppData\Local\Temp\classpath6782228341137099055.txt
+INFO	?	main	2016-11-28T17:17:23.515Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
+INFO	?	main	2016-11-28T17:17:23.520Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
+INFO	?	main	2016-11-28T17:21:20.869Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\DemoJsonRpcUserControl.java]
+INFO	?	main	2016-11-28T17:21:28.525Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\DemoController.java]

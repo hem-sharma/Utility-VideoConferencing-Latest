@@ -53,14 +53,8 @@ function AppParticipant(stream) {
     }
 
     function playVideo() {
-        // var naming=stream.getGlobalID().split('-');
-        // var toName=naming[0];
-        // var t=stream.getGlobalID().split('_');
-        // toName+='_'+t[t.length-1];
         that.thumbnailId = "video-" + stream.getGlobalID();
-
         that.videoElement = document.createElement('div');
-        // that.videoElement.setAttribute("id", that.thumbnailId);
         that.videoElement.setAttribute("id", that.thumbnailId);
         that.videoElement.className = "video";
 
@@ -103,6 +97,9 @@ function AppParticipant(stream) {
 
 function startRecording() {
     var kmsServer = 'wss://192.168.0.9:6443/kurento';
+
+    var rootScope = angular.element($('body')).scope().$root;
+
     var client;
     //TODO: start each participant videos 
     function getopts(args, opts) {
@@ -123,14 +120,15 @@ function startRecording() {
             ice_servers: undefined
         }
     });
-    var options = {
-        // localVideo: videoInput,
-        // remoteVideo: videoOutput
-    };
+    var options = {};
     var webRtcPeer = kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(options, function (error) {
         if (error) return onError(error)
 
         this.generateOffer(onStartOffer)
+    });
+
+    rootScope.$apply(function () {
+        rootScope.webRtcPeer = webRtcPeer;
     });
 
     function onStartOffer(error, sdpOffer) {
@@ -142,6 +140,10 @@ function startRecording() {
                     client = yield kurentoClient(args.ws_uri);
 
                 pipeline = yield client.create('MediaPipeline');
+
+                rootScope.$apply(function () {
+                    rootScope.pipeline = pipeline;
+                });
 
                 var webRtc = yield pipeline.create('WebRtcEndpoint');
                 setIceCandidateCallbacks(webRtcPeer, webRtc, onError)
@@ -158,9 +160,6 @@ function startRecording() {
                 var sdpAnswer = yield webRtc.processOffer(sdpOffer);
                 webRtc.gatherCandidates(onError);
                 webRtcPeer.processAnswer(sdpAnswer)
-
-                //   setStatus(CALLING);
-
             } catch (e) {
                 onError(e);
             }
@@ -191,8 +190,24 @@ function startRecording() {
             webRtcPeer.addIceCandidate(candidate, onerror);
         });
     }
-
 };
+
+function stopRecording() {
+    var webRtcPeer, pipeline;
+    var rootScope = angular.element($('body')).scope().$root;
+    rootScope.$apply(function () {
+        webRtcPeer = rootScope.webRtcPeer;
+        pipeline = rootScope.pipeline;
+    });
+    if (webRtcPeer) {
+        webRtcPeer.dispose();
+        webRtcPeer = null;
+    }
+    if (pipeline) {
+        pipeline.release();
+        pipeline = null;
+    }
+}
 
 function getFileName() {
     var date = new Date($.now());

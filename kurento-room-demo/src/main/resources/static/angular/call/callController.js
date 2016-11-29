@@ -46,11 +46,14 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
             deferred.resolve(response);
             var result = response;
             if (result.data.status === 200 && result.data.isValid) {
-                room.roomName = result.data.event;
-                room.userName = result.data.user;
-                $scope.roomName = result.data.event;
-                $rootScope.roomName = result.data.event;
-                $rootScope.userName = result.data.user;
+                var event = result.data.event,
+                    user = result.data.user;
+                room.roomName = event;
+                room.userName = user;
+                $scope.roomName = event;
+                $rootScope.roomName = event;
+                $rootScope.userName = user;
+                setShortNameToScope(user);
                 register(room);
             } else {
                 //$location.path($rootScope.contextpath + '/');
@@ -62,6 +65,11 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         .then(function (response) {
             deferred.reject(response);
         });
+
+    function setShortNameToScope(fullName) {
+        $scope.nickName = fullName.split('-')[0];
+    }
+
     var register = function (room) {
 
         if (!room)
@@ -213,7 +221,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         ServiceRoom.getKurento().close();
 
         ServiceParticipant.removeParticipants();
-
+        //stop recording
+        stopRecording();
 
         $window.location.href = '#/thanks';
     };
@@ -222,6 +231,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
         if (ServiceParticipant.isConnected()) {
             ServiceRoom.getKurento().close();
+            //stop recording
+            stopRecording();
         }
     };
 
@@ -229,17 +240,16 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     $scope.shareScreen = function () {
         var def = $q.defer();
         var req = 'https://www.kazastream.com/api/common/getScreenShareUrl';
-        // var req = 'https://localhost:44300/api/common/getScreenShareUrl';
         $http.get(req)
             .then(function (response) {
                 def.resolve(response);
                 var result = response;
                 if (result.data.status === 200) {
                     var screenShare = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '');
-                    var openedWindow = window.open(screenShare, '_blank');
+                    window.open(screenShare, '_blank');
 
                     var dskKurento = ServiceRoom.getKurento();
-                    dskKurento.sendMessage($scope.roomName, $scope.userName, 'Please find the Screen having url: ' + screenShare);
+                    dskKurento.sendMessage($scope.roomName, $scope.nickName, 'Please find the Screen having url: ' + screenShare);
                     $scope.message = "";
 
                 } else {
@@ -314,6 +324,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         }
         ServiceParticipant.disconnectParticipant(participant);
         ServiceRoom.getKurento().disconnectParticipant(participant.getStream());
+        //stop recording for current participant
+        stopRecording();
     }
 
 
@@ -322,7 +334,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     $scope.sendMessage = function () {
         console.log("Sending message", $scope.message);
         var kurento = ServiceRoom.getKurento();
-        kurento.sendMessage($scope.roomName, $scope.userName, $scope.message);
+        // kurento.sendMessage($scope.roomName, $scope.userName, $scope.message);
+        kurento.sendMessage($scope.roomName, $scope.nickName, $scope.message);
         $scope.message = "";
     };
 
