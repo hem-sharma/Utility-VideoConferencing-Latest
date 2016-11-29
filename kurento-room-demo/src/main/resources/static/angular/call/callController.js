@@ -246,7 +246,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 var result = response;
                 if (result.data.status === 200) {
                     var url = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '');
-                    var msg = '<a href=' + url + ' target=\'_blank\'>' + 'Click and View</a>';
+                    var msg = '<a href=' + url + ' target=\'_blank\'>' + 'View</a>';
                     window.open(url, '_blank');
                     var dskKurento = ServiceRoom.getKurento();
                     dskKurento.sendMessage($scope.roomName, $scope.userName, 'Shared Screen : ' + msg);
