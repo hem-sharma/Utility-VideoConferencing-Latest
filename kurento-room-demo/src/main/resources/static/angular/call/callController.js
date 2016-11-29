@@ -245,11 +245,11 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 def.resolve(response);
                 var result = response;
                 if (result.data.status === 200) {
-                    var screenShare = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '');
+                    var screenShare = '<a href=' + result.data.url + '#' + (Math.random() * 100).toString().replace('.', '') + '>'+ 'Click and View</a>';
                     window.open(screenShare, '_blank');
 
                     var dskKurento = ServiceRoom.getKurento();
-                    dskKurento.sendMessage($scope.roomName, $scope.nickName, 'Please find the Screen having url: ' + screenShare);
+                    dskKurento.sendMessage($scope.roomName, $scope.userName, 'Please find the Screen having url: ' + screenShare);
                     $scope.message = "";
 
                 } else {
@@ -335,7 +335,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         console.log("Sending message", $scope.message);
         var kurento = ServiceRoom.getKurento();
         // kurento.sendMessage($scope.roomName, $scope.userName, $scope.message);
-        kurento.sendMessage($scope.roomName, $scope.nickName, $scope.message);
+        kurento.sendMessage($scope.roomName, $scope.userName, $scope.message);
         $scope.message = "";
     };
 
