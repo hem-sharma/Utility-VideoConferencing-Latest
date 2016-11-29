@@ -251,7 +251,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                     setTimeout(sendSharedScreenMessage(msg), 8000)
 
                 } else {
-                    $window.location.href = '#/error';
+                    alert('Some error occured! try again later.')
                     return false;
                 }
             })
