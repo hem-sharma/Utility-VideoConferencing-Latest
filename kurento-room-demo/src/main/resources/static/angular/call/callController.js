@@ -1,23 +1,5 @@
 kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, Fullscreen, LxNotificationService, $routeParams, $q, $rootScope, $location) {
 
-$scope.toggleChat = function () {
-        var selectedEffect = "slide";
-
-        var options = {
-            direction: "right"
-        };
-        if ($("#effect").is(':visible')) {
-            $("#content").animate({
-                width: '100%'
-            }, 500);
-        } else {
-            $("#content").animate({
-                width: '80%'
-            }, 500);
-        }
-
-        $("#effect").toggle(selectedEffect, options, 500);
-    };
     var options;
     $scope.roomName = '';
     $http.get('/getAllRooms').
@@ -261,8 +243,7 @@ $scope.toggleChat = function () {
                 if (result.data.status === 200) {
                     var url = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '') + '?mode=v';
                     var pUrl = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '') + '?mode=p';
-                    var msg = '<a href="javascript:void(0)" ng-click="showSharingPopup("' + url + '")">View</a>';
-                    msg+='<button ng-click="toggleChat();"></button>';
+                    var msg = '<a href="javascript:void(0)" ng-click="showSharingPopup( ' + url + ' )">View</a>';
                     sendSharedScreenMessage('Shared Screen : ' + msg)
                     window.open(pUrl, '_blank');
                     // setTimeout(function () {
@@ -368,7 +349,24 @@ $scope.toggleChat = function () {
     };
 
 
-    
+    $scope.toggleChat = function () {
+        var selectedEffect = "slide";
+
+        var options = {
+            direction: "right"
+        };
+        if ($("#effect").is(':visible')) {
+            $("#content").animate({
+                width: '100%'
+            }, 500);
+        } else {
+            $("#content").animate({
+                width: '80%'
+            }, 500);
+        }
+
+        $("#effect").toggle(selectedEffect, options, 500);
+    };
 
     $scope.showHat = function () {
         var targetHat = false;
