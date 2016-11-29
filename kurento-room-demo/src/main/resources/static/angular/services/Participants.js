@@ -169,7 +169,7 @@ function startRecording() {
     function onError(error) {
         if (error) {
             console.log(error);
-            // stop();
+            stopRecording();
         }
     }
 
