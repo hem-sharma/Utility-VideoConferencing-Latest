@@ -405,8 +405,7 @@ function Participants() {
             div2.className = "list-content-tile list-content-tile--two-lines";
             var strong = document.createElement('strong');
             strong.innerHTML = user.split('-')[0];
-            // var span = document.createElement('span');
-            var span = document.createElement('div');
+            var span = document.createElement('span');
             span.innerHTML = message;
             div2.appendChild(strong);
             div2.appendChild(span);
@@ -440,8 +439,7 @@ function Participants() {
             div2.className = "list-content-tile list-content-tile--two-lines";
             var strong = document.createElement('strong');
             strong.innerHTML = user.split('-')[0];
-            // var span = document.createElement('span');
-            var span = document.createElement('div');
+            var span = document.createElement('span');
             span.innerHTML = message;
             div2.appendChild(strong);
             div2.appendChild(span);
