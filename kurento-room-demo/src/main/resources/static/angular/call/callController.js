@@ -53,7 +53,6 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 $scope.roomName = event;
                 $rootScope.roomName = event;
                 $rootScope.userName = user;
-                setShortNameToScope(user);
                 register(room);
             } else {
                 //$location.path($rootScope.contextpath + '/');
@@ -65,10 +64,6 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         .then(function (response) {
             deferred.reject(response);
         });
-
-    function setShortNameToScope(fullName) {
-        $scope.nickName = fullName.split('-')[0];
-    }
 
     var register = function (room) {
 
