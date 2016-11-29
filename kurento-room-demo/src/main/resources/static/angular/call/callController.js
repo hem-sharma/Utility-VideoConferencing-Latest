@@ -246,12 +246,14 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 def.resolve(response);
                 var result = response;
                 if (result.data.status === 200) {
-                    var url = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '');
-                    var msg = '<a ng-click="showSharingPopup(' + url + ')">View</a>';
-                    window.open(url, '_blank');
-                    setTimeout(function () {
-                        sendSharedScreenMessage('Shared Screen : ' + msg)
-                    }, 10000)
+                    var url = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '') + '?mode=v';
+                    var pUrl = url + '?mode=p';
+                    var msg = '<a href="javascript:void(0)" ng-click="showSharingPopup(' + url + ')">View</a>';
+                    sendSharedScreenMessage('Shared Screen : ' + msg)
+                    window.open(pUrl, '_blank');
+                    // setTimeout(function () {
+                    //     sendSharedScreenMessage('Shared Screen : ' + msg)
+                    // }, 10000)
 
                 } else {
                     alert('Some error occured! try again later.')
