@@ -515,19 +515,31 @@ function Participants() {
     };
 
     this.streamSpeaking = function (participantId) {
-        if (participants[participantId.participantId] != undefined)
-            document.getElementById("speaker" + participants[participantId.participantId].thumbnailId).style.display = '';
+        try {
+            if (participants[participantId.participantId] != undefined)
+                document.getElementById("speaker" + participants[participantId.participantId].thumbnailId).style.display = '';
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     this.streamStoppedSpeaking = function (participantId) {
-        if (participants[participantId.participantId] != undefined)
-            document.getElementById("speaker" + participants[participantId.participantId].thumbnailId).style.display = "none";
+        try {
+            if (participants[participantId.participantId] != undefined)
+                document.getElementById("speaker" + participants[participantId.participantId].thumbnailId).style.display = "none";
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     this.updateMainSpeaker = function (participantId) {
-        if (participants[participantId.participantId] != undefined) {
-            if (mainSpeaker)
-                updateMainParticipant(participants[participantId.participantId]);
+        try {
+            if (participants[participantId.participantId] != undefined) {
+                if (mainSpeaker)
+                    updateMainParticipant(participants[participantId.participantId]);
+            }
+        } catch (e) {
+            console.log(e);
         }
     }
 }

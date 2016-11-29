@@ -42,3 +42,6 @@ INFO	?	main	2016-11-28T17:17:23.515Z	org.javacs.JavaLanguageServer#sourceDirecto
 INFO	?	main	2016-11-28T17:17:23.520Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
 INFO	?	main	2016-11-28T17:21:20.869Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\DemoJsonRpcUserControl.java]
 INFO	?	main	2016-11-28T17:21:28.525Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\DemoController.java]
+INFO	?	main	2016-11-29T08:58:41.495Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\DemoJsonRpcUserControl.java]
+INFO	?	main	2016-11-29T08:58:50.256Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\DemoController.java]
+INFO	?	main	2016-11-29T08:59:14.865Z	org.javacs.JavaLanguageServer#doLint	Lint [e:\DynApt\P2P all\javaroom\workingroom\kurento-room-demo\src\main\java\org\kurento\room\demo\FixedNKmsManager.java]
