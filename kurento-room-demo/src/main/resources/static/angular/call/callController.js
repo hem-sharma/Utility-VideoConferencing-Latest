@@ -1,5 +1,23 @@
 kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, Fullscreen, LxNotificationService, $routeParams, $q, $rootScope, $location) {
 
+$scope.toggleChat = function () {
+        var selectedEffect = "slide";
+
+        var options = {
+            direction: "right"
+        };
+        if ($("#effect").is(':visible')) {
+            $("#content").animate({
+                width: '100%'
+            }, 500);
+        } else {
+            $("#content").animate({
+                width: '80%'
+            }, 500);
+        }
+
+        $("#effect").toggle(selectedEffect, options, 500);
+    };
     var options;
     $scope.roomName = '';
     $http.get('/getAllRooms').
@@ -350,24 +368,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     };
 
 
-    $scope.toggleChat = function () {
-        var selectedEffect = "slide";
-
-        var options = {
-            direction: "right"
-        };
-        if ($("#effect").is(':visible')) {
-            $("#content").animate({
-                width: '100%'
-            }, 500);
-        } else {
-            $("#content").animate({
-                width: '80%'
-            }, 500);
-        }
-
-        $("#effect").toggle(selectedEffect, options, 500);
-    };
+    
 
     $scope.showHat = function () {
         var targetHat = false;
