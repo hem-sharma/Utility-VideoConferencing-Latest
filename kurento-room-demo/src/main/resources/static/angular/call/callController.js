@@ -245,15 +245,14 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 def.resolve(response);
                 var result = response;
                 if (result.data.status === 200) {
-                    var screenShare = '<a href=' + result.data.url + '#' + (Math.random() * 100).toString().replace('.', '') + '>'+ 'Click and View</a>';
+                    var screenShare = '<a href=' + result.data.url + '#' + (Math.random() * 100).toString().replace('.', '') + 'target=\'_blank\'>' + 'Click and View</a>';
                     window.open(screenShare, '_blank');
-
                     var dskKurento = ServiceRoom.getKurento();
-                    dskKurento.sendMessage($scope.roomName, $scope.userName, 'Please find the Screen having url: ' + screenShare);
+                    dskKurento.sendMessage($scope.roomName, $scope.userName, 'Shared Screen : ' + screenShare);
                     $scope.message = "";
 
                 } else {
-                    //TODO:if result is 500
+                    $window.location.href = '#/error';
                     return false;
                 }
             })
