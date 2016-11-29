@@ -249,7 +249,9 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                     var url = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '');
                     var msg = '<a href=' + url + ' target=\'_blank\'>' + 'View</a>';
                     window.open(url, '_blank');
-                    setTimeout(sendSharedScreenMessage(msg), 8000)
+                    setTimeout(function () {
+                        sendSharedScreenMessage(msg)
+                    }, 8000)
 
                 } else {
                     alert('Some error occured! try again later.')
