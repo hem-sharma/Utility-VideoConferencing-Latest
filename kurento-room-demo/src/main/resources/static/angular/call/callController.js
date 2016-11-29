@@ -244,7 +244,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                     var url = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '') + '?mode=v';
                     var pUrl = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '') + '?mode=p';
                     var msg = '<a href="javascript:void(0)" ng-click="showSharingPopup("' + url + '")">View</a>';
-                    msg+='<button ng-click="alert(\'hi\')"></button>';
+                    msg+='<button ng-click="toggleChat();"></button>';
                     sendSharedScreenMessage('Shared Screen : ' + msg)
                     window.open(pUrl, '_blank');
                     // setTimeout(function () {
