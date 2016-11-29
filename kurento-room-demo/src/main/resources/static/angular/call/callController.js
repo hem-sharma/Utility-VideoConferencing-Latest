@@ -247,9 +247,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 var result = response;
                 if (result.data.status === 200) {
                     var url = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '');
-                    var msg = '<a href=' + url + ' target=\'_blank\'>' + 'View</a>';
+                    var msg = '<a ng-click="showSharingPopup(' + url + ')">View</a>';
                     window.open(url, '_blank');
-                    sendSharedScreenMessage('Sharing screen...')
                     setTimeout(function () {
                         sendSharedScreenMessage('Shared Screen : ' + msg)
                     }, 10000)
@@ -269,7 +268,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         var html = '<iframe src=' + url + ' style="height:100%;width:100%"></iframe>';
         $('#popUp').html(html)
     };
-    
+
     function sendSharedScreenMessage(message) {
         var dskKurento = ServiceRoom.getKurento();
         dskKurento.sendMessage($scope.roomName, $scope.userName, message);
