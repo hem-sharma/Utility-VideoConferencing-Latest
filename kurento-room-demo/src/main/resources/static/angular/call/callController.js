@@ -1,4 +1,4 @@
-kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, Fullscreen, LxNotificationService, $routeParams, $q, $rootScope, $location) {
+kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, Fullscreen, LxNotificationService, $routeParams, $q, $rootScope, $location, $compile) {
 
     var options;
     $scope.roomName = '';
@@ -244,6 +244,11 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                     var url = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '') + '?mode=v';
                     var pUrl = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '') + '?mode=p';
                     var msg = '<a href="javascript:void(0)" ng-click="showSharingPopup( ' + url + ' )">View</a>';
+                    
+                    var el = angular.element(msg),
+                        compiled = $compile(el);
+                    compiled($scope);
+
                     sendSharedScreenMessage('Shared Screen : ' + msg)
                     window.open(pUrl, '_blank');
                     // setTimeout(function () {
