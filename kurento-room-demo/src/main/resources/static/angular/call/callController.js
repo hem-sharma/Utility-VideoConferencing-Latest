@@ -245,10 +245,11 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 def.resolve(response);
                 var result = response;
                 if (result.data.status === 200) {
-                    var screenShare = '<a href=' + result.data.url + '#' + (Math.random() * 100).toString().replace('.', '') + 'target=\'_blank\'>' + 'Click and View</a>';
-                    window.open(screenShare, '_blank');
+                    var url = result.data.url + '#' + (Math.random() * 100).toString().replace('.', '');
+                    var msg = '<a href=' + url + ' target=\'_blank\'>' + 'Click and View</a>';
+                    window.open(url, '_blank');
                     var dskKurento = ServiceRoom.getKurento();
-                    dskKurento.sendMessage($scope.roomName, $scope.userName, 'Shared Screen : ' + screenShare);
+                    dskKurento.sendMessage($scope.roomName, $scope.userName, 'Shared Screen : ' + msg);
                     $scope.message = "";
 
                 } else {
