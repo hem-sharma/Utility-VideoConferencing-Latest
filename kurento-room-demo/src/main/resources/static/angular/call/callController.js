@@ -251,7 +251,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                     window.open(url, '_blank');
                     sendSharedScreenMessage('Sharing screen...')
                     setTimeout(function () {
-                        sendSharedScreenMessage(msg)
+                        sendSharedScreenMessage('Shared Screen : ' + msg)
                     }, 10000)
 
                 } else {
@@ -266,7 +266,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
     function sendSharedScreenMessage(message) {
         var dskKurento = ServiceRoom.getKurento();
-        dskKurento.sendMessage($scope.roomName, $scope.userName, 'Shared Screen : ' + message);
+        dskKurento.sendMessage($scope.roomName, $scope.userName, message);
         $scope.message = "";
     }
 
