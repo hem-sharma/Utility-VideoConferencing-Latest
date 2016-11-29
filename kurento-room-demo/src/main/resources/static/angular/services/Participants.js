@@ -400,7 +400,7 @@ function Participants() {
             div1.className = "list-secondary-tile";
             var img = document.createElement("img");
             img.className = "list-primary-tile__img";
-            img.setAttribute("src", "/img/favicon.png");
+            img.setAttribute("src", "/img/user.png");
             var div2 = document.createElement('div');
             div2.className = "list-content-tile list-content-tile--two-lines";
             var strong = document.createElement('strong');
@@ -434,7 +434,7 @@ function Participants() {
             div1.className = "list-primary-tile";
             var img = document.createElement("img");
             img.className = "list-primary-tile__img";
-            img.setAttribute("src", "/img/favicon.png");
+            img.setAttribute("src", "/img/user.png");
             var div2 = document.createElement('div');
             div2.className = "list-content-tile list-content-tile--two-lines";
             var strong = document.createElement('strong');
