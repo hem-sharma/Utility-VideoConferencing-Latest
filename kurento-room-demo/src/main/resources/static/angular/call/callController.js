@@ -225,6 +225,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         stopRecording($rootScope.webRtcPeer, $rootScope.pipeline);
 
         $window.location.href = '#/thanks';
+        $window.location.reload();
     };
 
     window.onbeforeunload = function () {
