@@ -248,7 +248,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
                     //test
                     var w = encodeURIComponent('http://www.google.co.in');
-                    var test = '<a ng-click="showSharingPopup(' + w + ')">View</a>';
+                    var test = '<a ng-click="showSharingPopup(\'http://www.google.co.in\')">View</a>';
                     angular.element(document.querySelector('#room-name')).prepend($compile(test)($scope))
                         //test
                         // var compiledMessage = $compile(msg)($scope);
