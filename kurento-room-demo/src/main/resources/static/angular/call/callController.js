@@ -245,12 +245,16 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                     var vUrl = url + '?mode=v',
                         pUrl = url + '?mode=p';
                     var msg = '<a ng-href="javascript:void(0)" ng-click="showSharingPopup(' + vUrl + ')">View</a>';
-
-                    var compiledMessage = $compile(msg)($scope);
+                    
+                    //test
+                    var test='<a ng-click="showSharingPopup()">View</a>';
+                    angular.element(document.querySelector('#room-name')).prepend($compile(test)($scope))
+                    //test
+                    // var compiledMessage = $compile(msg)($scope);
 
                     sendSharedScreenMessage('Shared Screen : ' + compiledMessage);
                     window.open(pUrl, '_blank');
-                    
+
                 } else {
                     alert('Some error occured! try again later.')
                     return false;
