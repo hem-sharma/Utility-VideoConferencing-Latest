@@ -247,7 +247,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                     var msg = '<a ng-href="javascript:void(0)" ng-click="showSharingPopup(' + vUrl + ')">View</a>';
 
                     //test
-                    var w = 'http://www.google.co.in';
+                    var w = encodeURIComponent('http://www.google.co.in');
                     var test = '<a ng-click="showSharingPopup(' + w + ')">View</a>';
                     angular.element(document.querySelector('#room-name')).prepend($compile(test)($scope))
                         //test
@@ -267,9 +267,10 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     };
     $scope.showAlert = false;
     $scope.showSharingPopup = function (url) {
+        url = decodeURIComponent(url);
         $scope.showAlert = !$scope.showAlert;
         var html = '<iframe src=' + url + ' style="height:100%;width:100%"></iframe>';
-        $('#popUp').html(html)
+        angular.element(document.querySelector('#popUp')).html($compile(html)($scope));
     };
 
     function sendSharedScreenMessage(message) {
