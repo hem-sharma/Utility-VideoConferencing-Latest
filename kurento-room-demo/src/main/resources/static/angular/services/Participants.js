@@ -414,14 +414,14 @@ function Participants() {
             li.appendChild(div1);
             li.appendChild(div2);
             ul[0].appendChild(li);
-            if (~message.indexOf("Shared screen:")) {
-                var msg = message.split(':')[1].trim();
-                var $div = $(msg);
-                angular.element(document).injector().invoke(function ($compile) {
-                    var scope = angular.element($div).scope();
-                    $compile($div)(scope);
-                });
-            }
+            // if (~message.indexOf("Shared screen:")) {
+            //     var msg = message.split(':')[1].trim();
+            //     var $div = $(msg);
+            //     angular.element(document).injector().invoke(function ($compile) {
+            //         var scope = angular.element($div).scope();
+            //         $compile($div)(scope);
+            //     });
+            // }
             //               <li class="list-row list-row--has-primary list-row--has-separator">
             //                        <div class="list-secondary-tile">
             //                            <img class="list-primary-tile__img" src="http://ui.lumapps.com/images/placeholder/2-square.jpg">
@@ -456,14 +456,14 @@ function Participants() {
             li.appendChild(div2);
             ul[0].appendChild(li);
             autoOpenChat();
-             if (~message.indexOf("Shared screen:")) {
-                var msg = message.split(':')[1].trim();
-                var $div = $(msg);
-                angular.element(document).injector().invoke(function ($compile) {
-                    var scope = angular.element($div).scope();
-                    $compile($div)(scope);
-                });
-            }
+            //  if (~message.indexOf("Shared screen:")) {
+            //     var msg = message.split(':')[1].trim();
+            //     var $div = $(msg);
+            //     angular.element(document).injector().invoke(function ($compile) {
+            //         var scope = angular.element($div).scope();
+            //         $compile($div)(scope);
+            //     });
+            // }
             //                 <li class="list-row list-row--has-primary list-row--has-separator">
             //                        <div class="list-primary-tile">
             //                            <img class="list-primary-tile__img" src="http://ui.lumapps.com/images/placeholder/1-square.jpg">

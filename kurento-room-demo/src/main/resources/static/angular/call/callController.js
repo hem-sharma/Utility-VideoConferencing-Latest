@@ -245,10 +245,10 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                     var hash = '#' + (Math.random() * 100).toString().replace('.', ''),
                         msgUrl = '\'' + result.data.url + hash + '?mode=v' + '\'',
                         redirectUrl = result.data.url + hash,
-                        msg = '<a href="javascript:void(0)" ng-click="showSharingPopup(' + String(msgUrl) + ')">View</a>';
+                        msg = '<a href="javascript:void(0)" onclick="showSharingPopup(' + String(msgUrl) + ')">View</a>';
 
-                    var test = '<a ng-click="showSharingPopup(' + String(msgUrl) + ')">View</a>';
-                    angular.element(document.querySelector('#room-name')).prepend($compile(test)($scope));
+                    // var test = '<a ng-click="showSharingPopup(' + String(msgUrl) + ')">View</a>';
+                    // angular.element(document.querySelector('#room-name')).prepend($compile(test)($scope));
                     //test
                     // var compiledMessage = $compile(msg)($scope);
 
@@ -265,12 +265,12 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
             });
     };
 
-    $scope.showSharingPopup = function (url) {
-        url = decodeURIComponent(url);
-        $scope.showAlert = !$scope.showAlert;
-        var html = '<iframe src=' + url + ' style="height:100%;width:100%"></iframe>';
-        angular.element(document.querySelector('#popUp')).append($compile(html)($scope));
-    };
+    // $scope.showSharingPopup = function (url) {
+    //     url = decodeURIComponent(url);
+    //     $scope.showAlert = !$scope.showAlert;
+    //     var html = '<iframe src=' + url + ' style="height:100%;width:100%"></iframe>';
+    //     angular.element(document.querySelector('#popUp')).append($compile(html)($scope));
+    // };
 
     function sendSharedScreenMessage(message) {
         var dskKurento = ServiceRoom.getKurento();
