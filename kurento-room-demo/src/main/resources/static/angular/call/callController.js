@@ -247,7 +247,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                         redirectUrl = result.data.url + hash,
                         msg = '<a ng-href="javascript:void(0)" ng-click="showSharingPopup(' + String(msgUrl) + ')">View</a>';
 
-                    var test = '<a ng-click="showSharingPopup(' + String(vUrl) + ')">View</a>';
+                    var test = '<a ng-click="showSharingPopup(' + String(msg) + ')">View</a>';
                     angular.element(document.querySelector('#room-name')).prepend($compile(test)($scope));
                     //test
                     // var compiledMessage = $compile(msg)($scope);
