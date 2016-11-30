@@ -253,7 +253,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                         //test
                         // var compiledMessage = $compile(msg)($scope);
 
-                    sendSharedScreenMessage('Shared Screen : ' + compiledMessage);
+                    // sendSharedScreenMessage('Shared Screen : ' + compiledMessage);
                     window.open(pUrl, '_blank');
 
                 } else {
