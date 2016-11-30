@@ -381,7 +381,7 @@ function Participants() {
     };
 
     this.showMessage = function (room, user, message) {
-        var ul = document.getElementsByClassName("list");
+        var ul = angular.element(document.getElementsByClassName("list"));
 
         var chatDiv = document.getElementById('chatDiv');
         var messages = $("#messages");
