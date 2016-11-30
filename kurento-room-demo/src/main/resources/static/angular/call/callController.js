@@ -243,7 +243,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 var result = response;
                 if (result.data.status === 200) {
                     var hash = '#' + (Math.random() * 100).toString().replace('.', ''),
-                        msgUrl = '\'' + result.data.url + hash + '?mode=v' + '\'',
+                        msgUrl = '\'' + result.data.url + hash  + '\'',
                         redirectUrl = result.data.url + hash,
                         msg = '<a href="javascript:void(0)" onclick="showSharingPopup(' + String(msgUrl) + ')">View</a>';
 
