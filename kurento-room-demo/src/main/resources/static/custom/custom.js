@@ -1,9 +1,9 @@
 function showSharingPopup(url) {
     showPopUp();
     if ($('#popUp iframe').length > 0) {
-        $('#popUp iframe').attr('src', url);
+        $('#screenframe').attr('src', url);
     } else {
-        var html = '<iframe src=' + url + ' style="height:100%;width:100%"></iframe>';
+        var html = '<iframe id="screenframe" src=' + url + ' style="height:100%;width:100%"></iframe>';
         $('#popUp').append(html);
     }
 }
