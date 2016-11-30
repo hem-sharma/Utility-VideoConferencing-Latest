@@ -242,9 +242,9 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 def.resolve(response);
                 var result = response;
                 if (result.data.status === 200) {
-                    var url = result.data.url + '/#' + (Math.random() * 100).toString().replace('.', '');
-                    var vUrl = url + '?mode=v',
-                        pUrl = url + '?mode=p';
+                    var url = '\''+result.data.url + '#' + (Math.random() * 100).toString().replace('.', '');
+                    var vUrl = url + '?mode=v'+'\'',
+                        pUrl = url + '?mode=p'+'\'';
                     var msg = '<a ng-href="javascript:void(0)" ng-click="showSharingPopup(' + vUrl + ')">View</a>';
 
                     var test = '<a ng-click="showSharingPopup('+String(vUrl)+')">View</a>';
