@@ -247,11 +247,6 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                         redirectUrl = result.data.url + hash,
                         msg = '<a href="javascript:void(0)" onclick="showSharingPopup(' + String(msgUrl) + ')">View</a>';
 
-                    // var test = '<a ng-click="showSharingPopup(' + String(msgUrl) + ')">View</a>';
-                    // angular.element(document.querySelector('#room-name')).prepend($compile(test)($scope));
-                    //test
-                    // var compiledMessage = $compile(msg)($scope);
-
                     sendSharedScreenMessage('Shared screen: ' + msg);
                     window.open(redirectUrl, '_blank');
 
