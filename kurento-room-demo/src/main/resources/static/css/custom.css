@@ -16,9 +16,10 @@ word-wrap: break-word;
 }
 .popupAlert .closeAlert{
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 5px;
     z-index: 99999;
-    color: #ffffff;
+    color: #f44336;
     font-size: 20px;
+    cursor: pointer;
 }
