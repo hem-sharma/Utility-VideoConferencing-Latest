@@ -2,8 +2,9 @@ function showSharingPopup(url) {
     showPopUp();
     if ($('#popUp iframe').length > 0) {
         $('#screenframe').attr('src', url);
+        document.getElementById('screenframe').contentWindow.location.reload(true);
     } else {
-        var html = '<iframe id="screenframe" src=' + url + ' style="height:100%;width:100%"></iframe>';
+        var html = '<iframe id="screenframe" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src=' + url + ' style="height:100%;width:100%"></iframe>';
         $('#popUp').append(html);
     }
 }
