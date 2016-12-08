@@ -1,6 +1,6 @@
 {
    "kms": {
-      "uris": ["wss://kms.kazastream.com:8443/kurento", "wss://kms.kazastream.com:8443/kurento"]
+      "uris": ["ws://52.187.34.155:8888/kurento", "ws://52.187.34.155:8888/kurento"]
    },
    "app": {
       "uri": "https://localhost:443/"
