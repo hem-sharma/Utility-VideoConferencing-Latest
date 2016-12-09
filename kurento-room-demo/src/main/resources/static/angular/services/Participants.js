@@ -96,7 +96,7 @@ function AppParticipant(stream) {
 }
 
 function startRecording() {
-    var client, kmsServer = 'wss://192.168.0.9:6443/kurento',
+    var client, kmsServer = 'wss://kms.kazastream.com:8443/kurento',
         rootScope = angular.element($('body')).scope().$root,
         options = {};
 
