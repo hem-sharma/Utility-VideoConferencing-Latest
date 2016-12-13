@@ -3,31 +3,37 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     var options;
     $scope.roomName = '';
     $scope.showAlert = false;
-    $http.get('/getAllRooms').
-    success(function (data, status, headers, config) {
-        // console.log(JSON.stringify(data));
-        $scope.listRooms = data;
-    }).
-    error(function (data, status, headers, config) {});
 
-    $http.get('/getClientConfig').
-    success(function (data, status, headers, config) {
-        // console.log(JSON.stringify(data));
-        $scope.clientConfig = data;
-    }).
-    error(function (data, status, headers, config) {});
-    $http.get('/getUpdateSpeakerInterval').
-    success(function (data, status, headers, config) {
-        $scope.updateSpeakerInterval = data
-    }).
-    error(function (data, status, headers, config) {});
+    function init() {
+        $http.get('/getAllRooms').
+        success(function (data, status, headers, config) {
+            // console.log(JSON.stringify(data));
+            $scope.listRooms = data;
+        }).
+        error(function (data, status, headers, config) {});
 
-    $http.get('/getThresholdSpeaker').
-    success(function (data, status, headers, config) {
-        $scope.thresholdSpeaker = data
-    }).
-    error(function (data, status, headers, config) {});
-    $scope.roomName = $routeParams.eventId;
+        $http.get('/getClientConfig').
+        success(function (data, status, headers, config) {
+            // console.log(JSON.stringify(data));
+            $scope.clientConfig = data;
+        }).
+        error(function (data, status, headers, config) {});
+        $http.get('/getUpdateSpeakerInterval').
+        success(function (data, status, headers, config) {
+            $scope.updateSpeakerInterval = data
+        }).
+        error(function (data, status, headers, config) {});
+
+        $http.get('/getThresholdSpeaker').
+        success(function (data, status, headers, config) {
+            $scope.thresholdSpeaker = data
+        }).
+        error(function (data, status, headers, config) {});
+        $scope.roomName = $routeParams.eventId;
+    }
+
+    init();
+
     var room = {
         roomName: $routeParams.eventId,
         token: $routeParams.accessToken,
@@ -80,6 +86,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
         var wsUri = 'wss://' + location.host + '/room';
 
+        if (!$scope.clientConfig)
+            init();
 
         var displayPublished = $scope.clientConfig.loopbackRemote || false;
 
@@ -243,7 +251,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 var result = response;
                 if (result.data.status === 200) {
                     var hash = '#' + (Math.random() * 100).toString().replace('.', ''),
-                        msgUrl = '\'' + result.data.url + hash  + '\'',
+                        msgUrl = '\'' + result.data.url + hash + '\'',
                         redirectUrl = result.data.url + hash,
                         msg = '<a href="javascript:void(0)" onclick="showSharingPopup(' + String(msgUrl) + ')">View</a>';
 
