@@ -98,7 +98,7 @@ function AppParticipant(stream) {
 function startRecording() {
     var client, kmsServer = 'wss://kms.kazastream.com:8443/kurento',
         rootScope = angular.element($('body')).scope().$root,
-        options = {};
+        options = {audio:true};
 
     function getopts(args, opts) {
         var result = opts.default || {};
