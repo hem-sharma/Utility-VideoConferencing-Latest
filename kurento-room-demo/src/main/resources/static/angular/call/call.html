@@ -22,6 +22,9 @@
             <button class="btn btn--xl btn--red btn--fab mdi md-call-end " lx-ripple ng-click="leaveRoom()" id="buttonLeaveRoom" title="Leave room"></button>
             <!--colgar-->
             <button class="btn btn--xl btn--green btn--fab mdi md-fullscreen" lx-ripple ng-click="goFullscreen()" title="Fullscreen"></button>
+            <!--Share File-->
+            <input type="file" class="btn btn--xl btn--green btn--fab mdi md-file" lx-ripple ng-change="onFileSelect($files)" title="Share File"
+            />
             <!--fullscreen-->
             <button class="btn btn--xl btn--blue btn--fab mdi md-chat" lx-ripple ng-click="toggleChat()" title="Chat toggle"></button>
             <!--chat-->
@@ -29,16 +32,36 @@
         <div id="participants">
             <!--small videos-->
         </div>
-        <!--test for dsk sharing start-->
-        <!--<article>
-            <input type="text" id="room-name" disabled>
-            <table style="width: 100%;" id="rooms-list"></table>
-            <div id="videos-container"></div>-->
-        <!--<script src="./angular/call/screen/step1.js"></script>
-            <script src="./angular/call/screen/step2.js"></script>
-            <script src="./angular/call/screen/step3.js"></script>-->
-        <!--</article>-->
-        <!--test for dsk sharing end-->
+        <!--test for fs start-->
+        <div style="display:none">
+            <div class="overlay"></div>
+            <button class="btn-select-file"></button>
+            <iframe></iframe>
+            <header>
+                <div class="ribbon">
+                    <div class="ribbon-stitches-top"></div><strong class="ribbon-content"><h1>
+          <input type="text" id="room-id" placeholder="room-id"><button id="join-room">Join</button>
+        </h1></strong>
+                    <div class="ribbon-stitches-bottom"></div>
+                </div>
+            </header>
+            <div id="number-of-users" title="Number of online users.">0</div>
+            <div id="logs">
+                <p>
+                    Peer-to-Peer (private) file sharing.
+                </p>
+                <p>
+                    You can share/receive files from any platform/device e.g. destkop operating systems, Android, iOS etc.
+                </p>
+                <p>
+                    Create or join a room & select file using "+" button.
+                </p>
+            </div>
+            <a class="chrome-web-store-icon" href="https://chrome.google.com/webstore/detail/webrtc-file-sharing/nbnncbdkhpmbnkfngmkdbepoemljbnfo"
+                target="_blank" title="Install Chrome Desktop Extension"></a>
+            <a class="android-app-icon" href="https://play.google.com/store/apps/details?id=com.webrtc.experiment" target="_blank" title="Install Android App"></a>
+        </div>
+        <!--test for fs end-->
     </div>
     <!--CHAT-->
     <div class="toggler" style="width: 20%;height: 100%;float: right">

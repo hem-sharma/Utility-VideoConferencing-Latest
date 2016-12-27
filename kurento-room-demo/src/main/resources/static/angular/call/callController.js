@@ -1,4 +1,4 @@
-kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, Fullscreen, LxNotificationService, $routeParams, $q, $rootScope, $location, $compile) {
+kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, FileServe, Fullscreen, LxNotificationService, $routeParams, $q, $rootScope, $location, $compile) {
 
     var options;
     $scope.roomName = '';
@@ -83,6 +83,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
         $scope.userName = room.userName;
         $scope.roomName = room.roomName;
+        FileServe.setUserName(room.userName);
+        FileServe.setRoomName(room.roomName);
 
         var wsUri = 'wss://' + location.host + '/room';
 
@@ -209,7 +211,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
             localStream.init();
         });
 
-
+        FileServe.setKurento(kurento);
         ServiceRoom.setKurento(kurento);
         ServiceRoom.setRoomName($scope.roomName);
         ServiceRoom.setUserName($scope.userName);
@@ -267,13 +269,6 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
                 def.reject(response);
             });
     };
-
-    // $scope.showSharingPopup = function (url) {
-    //     url = decodeURIComponent(url);
-    //     $scope.showAlert = !$scope.showAlert;
-    //     var html = '<iframe src=' + url + ' style="height:100%;width:100%"></iframe>';
-    //     angular.element(document.querySelector('#popUp')).append($compile(html)($scope));
-    // };
 
     function sendSharedScreenMessage(message) {
         var dskKurento = ServiceRoom.getKurento();
@@ -414,4 +409,19 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
             }
         });
     };
+
+    //File sharing helpers start
+    $scope.onFileSelect = function (files) {
+            if (file && (file instanceof File || file instanceof Blob) && file.size) {
+                FileServe.onFileSelected(file);
+                return;
+            }
+
+            var fileSelector = new FileSelector();
+            fileSelector.selectSingleFile(function (file) {
+                FileServe.onFileSelected(file);
+            });
+        };
+        //File sharing helpers end
+
 });
