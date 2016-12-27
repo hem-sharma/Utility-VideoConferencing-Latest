@@ -215,6 +215,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         ServiceRoom.setKurento(kurento);
         ServiceRoom.setRoomName($scope.roomName);
         ServiceRoom.setUserName($scope.userName);
+        FileServe.setupWebRTCConnection();
     };
 
     $scope.roomName = ServiceRoom.getRoomName();
@@ -412,7 +413,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
     //File sharing helpers start
     $scope.onFileSelect = function (event) {
-        var file = event.target.files;
+        var file = event.target.files[0];
         if (file && (file instanceof File || file instanceof Blob) && file.size) {
             FileServe.onFileSelected(file);
             return;
@@ -422,6 +423,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         fileSelector.selectSingleFile(function (file) {
             FileServe.onFileSelected(file);
         });
+
     };
 
     $scope.initfile = '';

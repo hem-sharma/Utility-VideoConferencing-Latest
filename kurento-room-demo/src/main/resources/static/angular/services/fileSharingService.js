@@ -5,7 +5,7 @@ kurento_room.service('FileServe', function () {
     var userName;
     var fileSocketServer = 'https://rtcmulticonnection.herokuapp.com:443/';
     var socketMessageEvent = 'file-sharing-demo';
-    var connection;
+    var _connection;
     // 60k -- assuming receiving client is chrome
     var chunk_size = 60 * 1000;
 
@@ -46,9 +46,13 @@ kurento_room.service('FileServe', function () {
         connection = value;
     };
 
+    this.getConnection = function () {
+        return _connection;
+    };
+
     this.onFileSelected = function (file) {
-        if (connection) {
-            connection.send({
+        if (_connection) {
+            _connection.send({
                 doYouWannaReceiveThisFile: true,
                 fileName: file.size + file.name
             });
@@ -69,11 +73,14 @@ kurento_room.service('FileServe', function () {
         return chunk_size;
     };
 
-    this.setupWebRTCConnection = function (connection) {
-        if (connection) {
+    this.setupWebRTCConnection = function () {
+        var connection;
+
+        if (_connection) {
             return;
         }
         connection = new RTCMultiConnection();
+        this._connection = connection;
         connection.fileReceived = {};
         connection.socketURL = fileSocketServer;
         connection.socketMessageEvent = socketMessageEvent;
