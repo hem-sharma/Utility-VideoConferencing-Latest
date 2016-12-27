@@ -412,16 +412,18 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
     //File sharing helpers start
     $scope.onFileSelect = function (files) {
-            if (file && (file instanceof File || file instanceof Blob) && file.size) {
-                FileServe.onFileSelected(file);
-                return;
-            }
+        if (file && (file instanceof File || file instanceof Blob) && file.size) {
+            FileServe.onFileSelected(file);
+            return;
+        }
 
-            var fileSelector = new FileSelector();
-            fileSelector.selectSingleFile(function (file) {
-                FileServe.onFileSelected(file);
-            });
-        };
-        //File sharing helpers end
+        var fileSelector = new FileSelector();
+        fileSelector.selectSingleFile(function (file) {
+            FileServe.onFileSelected(file);
+        });
+    };
+
+    $scope.initfile = '';
+    //File sharing helpers end
 
 });
