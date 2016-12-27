@@ -44,7 +44,7 @@ kurento_room.service('FileServe', function () {
     }
 
     this.setConnection = function (value) {
-        connection = value;
+        _connection = value;
     };
 
     this.getConnection = function () {
@@ -81,7 +81,6 @@ kurento_room.service('FileServe', function () {
             return;
         }
         connection = new RTCMultiConnection();
-        this._connection = connection;
         connection.fileReceived = {};
         connection.socketURL = fileSocketServer;
         connection.socketMessageEvent = socketMessageEvent;
@@ -205,8 +204,8 @@ kurento_room.service('FileServe', function () {
                 that.sendMessage('Seems disconnected.', 'red')
             }, false);
         });
-
-        window.connection = connection;
+        return connection;
+        //window.connection = connection;
     };
 
     this.setFileProgressBarHandlers = function (connection) {
@@ -339,6 +338,8 @@ kurento_room.service('FileServe', function () {
 
     this.sendMessage = function (message, html) {
         //TODO:needs to be done 
+        if (kurento)
+            kurento.sendMessage(roomName, userName, message);
         return;
     };
 });

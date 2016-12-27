@@ -215,7 +215,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         ServiceRoom.setKurento(kurento);
         ServiceRoom.setRoomName($scope.roomName);
         ServiceRoom.setUserName($scope.userName);
-        FileServe.setupWebRTCConnection();
+        var connection = FileServe.setupWebRTCConnection();
+        FileServe.setConnection(connection);
     };
 
     $scope.roomName = ServiceRoom.getRoomName();
