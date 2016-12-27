@@ -1,5 +1,5 @@
 kurento_room.service('FileServe', function () {
-    
+
     var kurento;
     var roomName;
     var userName;
@@ -27,6 +27,10 @@ kurento_room.service('FileServe', function () {
 
     this.setUserName = function (value) {
         userName = value;
+    };
+
+    this.setRoomName = function (value) {
+        roomName = value;
     };
 
     //fs
