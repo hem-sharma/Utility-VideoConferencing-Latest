@@ -9,7 +9,7 @@
    "kurento": {
       "client": {
          //milliseconds
-         "requestTimeout": 20000
+         "requestTimeout": 60000
       }
    },
    "demo": {
