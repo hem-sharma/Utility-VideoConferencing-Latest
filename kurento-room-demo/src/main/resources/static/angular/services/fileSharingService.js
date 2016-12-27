@@ -6,6 +6,7 @@ kurento_room.service('FileServe', function () {
     var fileSocketServer = 'https://rtcmulticonnection.herokuapp.com:443/';
     var socketMessageEvent = 'file-sharing-demo';
     var _connection;
+    var that = this;
     // 60k -- assuming receiving client is chrome
     var chunk_size = 60 * 1000;
 
@@ -179,7 +180,7 @@ kurento_room.service('FileServe', function () {
             var message = 'Successfully connected to room: <b>' + roomid + '</b><hr>Other users can join you on iPhone/Android using "' + roomid + '" or desktop (Windows/MacOSX/Ubuntu) users can join using this (secure/private) URL: <a href="./file-sharing.html#' + roomid + '" target="_blank">file-sharing.html#' + roomid + '</a>';
 
             // if (isRoomEists) { }
-            this.sendMessage(message, '');
+            that.sendMessage(message, '');
 
             if (document.getElementById('room-id')) {
                 if (innerWidth > 500) {
@@ -191,7 +192,7 @@ kurento_room.service('FileServe', function () {
 
             var socket = connection.getSocket();
             socket.on('disconnect', function () {
-                this.sendMessage('Seems disconnected.', '');
+                that.sendMessage('Seems disconnected.', '');
             });
             socket.on('connect', function () {
                 location.reload();
@@ -201,7 +202,7 @@ kurento_room.service('FileServe', function () {
             });
 
             window.addEventListener('offline', function () {
-                this.sendMessage('Seems disconnected.', 'red')
+                that.sendMessage('Seems disconnected.', 'red')
             }, false);
         });
 
@@ -315,7 +316,7 @@ kurento_room.service('FileServe', function () {
                 message += '<br><b>' + file.name + '</b>.';
                 message += '<br>Size: <b>' + bytesToSize(file.size) + '</b>.';
                 message += '<br><a href="' + file.url + '" target="_blank" download="' + file.name + '">Download</a>';
-                var div = this.sendMessage(message, '')
+                var div = that.sendMessage(message, '')
                 return;
             }
 
@@ -323,7 +324,7 @@ kurento_room.service('FileServe', function () {
             message += '<br><b>' + file.name + '</b>.';
             message += '<br>With: <b>' + file.remoteUserId + '</b>.';
             message += '<br>Size: <b>' + bytesToSize(file.size) + '</b>.';
-            this.sendMessage(message, '')
+            that.sendMessage(message, '')
         };
 
         function updateLabel(progress, label) {
