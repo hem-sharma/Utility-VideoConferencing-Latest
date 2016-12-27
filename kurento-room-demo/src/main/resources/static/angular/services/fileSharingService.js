@@ -169,6 +169,7 @@ kurento_room.service('FileServe', function () {
         connection.onleave = function (user) {
             user.status = 'offline';
             connection.onUserStatusChanged(user);
+            _connection = null;
             //incrementOrDecrementUsers();
         };
 
