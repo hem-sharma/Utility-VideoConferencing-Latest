@@ -8,16 +8,9 @@ kurento_room.service('FileServe', function () {
     var that = this;
     this._lastSelectedFile;
 
-    this.getlastSelectedFile = function () {
-        return that._lastSelectedFile;
-    };
-
-    this.setlastSelectedFile = function (value) {
-        that._lastSelectedFile = value;
-    };
-
     // 60k -- assuming receiving client is chrome
     var chunk_size = 60 * 1000;
+    this._lxService;
 
     this.getKurento = function () {
         return kurento;
@@ -58,6 +51,22 @@ kurento_room.service('FileServe', function () {
 
     this.getConnection = function () {
         return _connection;
+    };
+
+    this.getlastSelectedFile = function () {
+        return that._lastSelectedFile;
+    };
+
+    this.setLxNotificationService = function (value) {
+        that._lxService = value;
+    }
+
+    this.getLxnotificationService = function () {
+        return that._lxService;
+    }
+
+    this.setlastSelectedFile = function (value) {
+        that._lastSelectedFile = value;
     };
 
     this.onFileSelected = function (file) {
@@ -285,7 +294,7 @@ kurento_room.service('FileServe', function () {
                 if (connection.connectedWith[e.userid]) return;
                 connection.connectedWith[e.userid] = true;
 
-                console.info( e.userid + ' is connected.')
+                console.info(e.userid + ' is connected.')
 
                 if (!that.getlastSelectedFile()) return;
                 var file = that.getlastSelectedFile();

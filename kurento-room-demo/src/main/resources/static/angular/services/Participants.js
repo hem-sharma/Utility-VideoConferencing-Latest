@@ -490,7 +490,7 @@ function Participants() {
         that.removeParticipants();
         LxNotificationService.alert('Error!', e.error.message, 'Reconnect', function (answer) {
             displayingRelogin = false;
-            $window.location.href = '/';
+            $window.location.href = $window.location.href;
         });
     };
 
@@ -503,7 +503,7 @@ function Participants() {
         that.removeParticipants();
         LxNotificationService.alert('Warning!', msg, 'Reload', function (answer) {
             displayingRelogin = false;
-            $window.location.href = '/';
+            $window.location.href = $window.location.href;
         });
     };
 

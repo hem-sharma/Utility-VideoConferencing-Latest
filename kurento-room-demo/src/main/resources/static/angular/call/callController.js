@@ -85,7 +85,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         $scope.roomName = room.roomName;
         FileServe.setUserName(room.userName);
         FileServe.setRoomName(room.roomName);
-
+        FileServe.setLxNotificationService(LxNotificationService);
         var wsUri = 'wss://' + location.host + '/room';
 
         if (!$scope.clientConfig)
