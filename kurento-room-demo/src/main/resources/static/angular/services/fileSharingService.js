@@ -7,6 +7,16 @@ kurento_room.service('FileServe', function () {
     var socketMessageEvent = 'file-sharing-demo';
     var _connection;
     var that = this;
+    this._lastSelectedFile;
+
+    this.getlastSelectedFile = function () {
+        return that._lastSelectedFile;
+    };
+
+    this.setlastSelectedFile = function (value) {
+        that._lastSelectedFile = value;
+    };
+
     // 60k -- assuming receiving client is chrome
     var chunk_size = 60 * 1000;
 
@@ -116,8 +126,8 @@ kurento_room.service('FileServe', function () {
                 }
             }
 
-            if (event.data.yesIWannaReceive && !!lastSelectedFile) {
-                connection.shareFile(lastSelectedFile, event.userid);
+            if (event.data.yesIWannaReceive && !!that.getlastSelectedFile()) {
+                connection.shareFile(that.getlastSelectedFile(), event.userid);
             }
         };
 
@@ -132,11 +142,11 @@ kurento_room.service('FileServe', function () {
             var message = '<b>' + e.userid + '</b><br>is connected.';
             this.sendMessage(message, '');
 
-            if (!lastSelectedFile) return;
+            if (!that.getlastSelectedFile()) return;
 
             // already shared the file
 
-            var file = lastSelectedFile;
+            var file = that.getlastSelectedFile();
             setTimeout(function () {
                 this.sendMessage('Sharing file<br><b>' + file.name + '</b><br>Size: <b>' + bytesToSize(file.size) + '<b><br>With <b>' + connection.getAllParticipants().length + '</b> users', '');
                 connection.send({
@@ -385,7 +395,7 @@ kurento_room.service('FileServe', function () {
             });
         };
 
-        var lastSelectedFile;
+
 
         var room_id = '';
 
@@ -432,8 +442,8 @@ kurento_room.service('FileServe', function () {
                     }
                 }
 
-                if (event.data.yesIWannaReceive && !!lastSelectedFile) {
-                    connection.shareFile(lastSelectedFile, event.userid);
+                if (event.data.yesIWannaReceive && !!that.getlastSelectedFile()) {
+                    connection.shareFile(that.getlastSelectedFile(), event.userid);
                 }
             };
 
@@ -448,8 +458,8 @@ kurento_room.service('FileServe', function () {
                 var message = '<b>' + e.userid + '</b><br>is connected.';
                 console.info(message)
 
-                if (!lastSelectedFile) return;
-                var file = lastSelectedFile;
+                if (!that.getlastSelectedFile()) return;
+                var file = that.getlastSelectedFile();
                 setTimeout(function () {
                     console.info('Sharing file<br><b>' + file.name + '</b><br>Size: <b>' + bytesToSize(file.size) + '<b><br>With <b>' + connection.getAllParticipants().length + '</b> users')
                     connection.send({
@@ -512,7 +522,7 @@ kurento_room.service('FileServe', function () {
                 }, false);
             });
             window.connection = connection;
-            globalConnection= connection;
+            globalConnection = connection;
         }
         //done in service
         function setFileProgressBarHandlers(connection) {
@@ -659,7 +669,7 @@ kurento_room.service('FileServe', function () {
             var innerHTML = 'You selected:<br><b>' + file.name + '</b><br>Size: <b>' + bytesToSize(file.size) + '</b>';
             console.info(innerHTML);
 
-            lastSelectedFile = file;
+            that.setlastSelectedFile(file);
 
             if (connection) {
                 connection.send({
