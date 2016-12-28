@@ -633,7 +633,7 @@ kurento_room.service('FileServe', function () {
                     message += '<br><b>' + file.name + '</b>.';
                     message += '<br>Size: <b>' + bytesToSize(file.size) + '</b>.';
                     message += '<br><a href="' + file.url + '" target="_blank" download="' + file.name + '">Download</a>';
-                    var div = console.info(message);
+                    var div = that.sendMessage(message,'');
                     return;
                 }
 
@@ -641,7 +641,7 @@ kurento_room.service('FileServe', function () {
                 message += '<br><b>' + file.name + '</b>.';
                 message += '<br>With: <b>' + file.remoteUserId + '</b>.';
                 message += '<br>Size: <b>' + bytesToSize(file.size) + '</b>.';
-                that.sendMessage(message, '')
+                console.info(message)
             };
 
             function updateLabel(progress, label) {
