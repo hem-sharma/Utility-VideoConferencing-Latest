@@ -641,7 +641,7 @@ kurento_room.service('FileServe', function () {
                 message += '<br><b>' + file.name + '</b>.';
                 message += '<br>With: <b>' + file.remoteUserId + '</b>.';
                 message += '<br>Size: <b>' + bytesToSize(file.size) + '</b>.';
-                console.info(message);
+                that.sendMessage(message, '')
             };
 
             function updateLabel(progress, label) {
