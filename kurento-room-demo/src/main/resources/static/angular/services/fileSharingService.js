@@ -512,6 +512,7 @@ kurento_room.service('FileServe', function () {
             });
             that._connection = connection;
             window.connection = connection;
+            return connection;
         }
         //done in service
         function setFileProgressBarHandlers(connection) {
