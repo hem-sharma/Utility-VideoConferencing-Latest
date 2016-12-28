@@ -370,6 +370,7 @@ kurento_room.service('FileServe', function () {
     };
 
     this.joinRoom = function (roomId) {
+        var globalConnection;
         var btnSelectFile = $('[type="file"]')[0];
         btnSelectFile.onclick = function (file) {
             if (file && (file instanceof File || file instanceof Blob) && file.size) {
@@ -510,9 +511,8 @@ kurento_room.service('FileServe', function () {
                     appendLog('Seems disconnected.', 'red');
                 }, false);
             });
-            that._connection = connection;
             window.connection = connection;
-            return connection;
+            globalConnection= connection;
         }
         //done in service
         function setFileProgressBarHandlers(connection) {
@@ -753,5 +753,6 @@ kurento_room.service('FileServe', function () {
 
             btnSelectFile.onclick(file);
         }, false);
+        return globalConnection;
     }
 });
