@@ -260,7 +260,7 @@ kurento_room.service('FileServe', function () {
                 // oneway: true --- to make it one-to-many
             };
 
-            connection.filesContainer = $('#logs')[0];;
+            connection.filesContainer = $('#logs')[0];
             connection.connectedWith = {};
 
             connection.onmessage = function (event) {
