@@ -62,6 +62,7 @@ kurento_room.service('FileServe', function () {
     };
 
     this.onFileSelected = function (file) {
+        that.setlastSelectedFile(file);
         if (_connection) {
             _connection.send({
                 doYouWannaReceiveThisFile: true,
@@ -84,166 +85,166 @@ kurento_room.service('FileServe', function () {
         return chunk_size;
     };
 
-    this.setupWebRTCConnection = function () {
-        var connection;
+    // this.setupWebRTCConnection = function () {
+    //     var connection;
 
-        if (_connection) {
-            return;
-        }
-        connection = new RTCMultiConnection();
-        connection.fileReceived = {};
-        connection.socketURL = fileSocketServer;
-        connection.socketMessageEvent = socketMessageEvent;
-        connection.chunkSize = chunk_size;
+    //     if (_connection) {
+    //         return;
+    //     }
+    //     connection = new RTCMultiConnection();
+    //     connection.fileReceived = {};
+    //     connection.socketURL = fileSocketServer;
+    //     connection.socketMessageEvent = socketMessageEvent;
+    //     connection.chunkSize = chunk_size;
 
-        connection.sdpConstraints.mandatory = {
-            OfferToReceiveAudio: false,
-            OfferToReceiveVideo: false
-        };
+    //     connection.sdpConstraints.mandatory = {
+    //         OfferToReceiveAudio: false,
+    //         OfferToReceiveVideo: false
+    //     };
 
-        connection.enableFileSharing = true;
+    //     connection.enableFileSharing = true;
 
-        if (userName && userName.length) {
-            connection.userid = userName;
-        }
+    //     if (userName && userName.length) {
+    //         connection.userid = userName;
+    //     }
 
-        connection.channel = connection.sessionid = roomName;
+    //     connection.channel = connection.sessionid = roomName;
 
-        connection.session = {
-            data: true,
-            // oneway: true --- to make it one-to-many
-        };
+    //     connection.session = {
+    //         data: true,
+    //         // oneway: true --- to make it one-to-many
+    //     };
 
-        connection.filesContainer = $('#logs')[0];
-        connection.connectedWith = {};
-        connection.onmessage = function (event) {
-            if (event.data.doYouWannaReceiveThisFile) {
-                if (!connection.fileReceived[event.data.fileName]) {
-                    connection.send({
-                        yesIWannaReceive: true,
-                        fileName: event.data.fileName
-                    });
-                }
-            }
+    //     connection.filesContainer = $('#logs')[0];
+    //     connection.connectedWith = {};
+    //     connection.onmessage = function (event) {
+    //         if (event.data.doYouWannaReceiveThisFile) {
+    //             if (!connection.fileReceived[event.data.fileName]) {
+    //                 connection.send({
+    //                     yesIWannaReceive: true,
+    //                     fileName: event.data.fileName
+    //                 });
+    //             }
+    //         }
 
-            if (event.data.yesIWannaReceive && !!that.getlastSelectedFile()) {
-                connection.shareFile(that.getlastSelectedFile(), event.userid);
-            }
-        };
+    //         if (event.data.yesIWannaReceive && !!that.getlastSelectedFile()) {
+    //             connection.shareFile(that.getlastSelectedFile(), event.userid);
+    //         }
+    //     };
 
-        connection.onopen = function (e) {
-            try {
-                chrome.power.requestKeepAwake('display');
-            } catch (e) {}
+    //     connection.onopen = function (e) {
+    //         try {
+    //             chrome.power.requestKeepAwake('display');
+    //         } catch (e) {}
 
-            if (connection.connectedWith[e.userid]) return;
-            connection.connectedWith[e.userid] = true;
+    //         if (connection.connectedWith[e.userid]) return;
+    //         connection.connectedWith[e.userid] = true;
 
-            var message = '<b>' + e.userid + '</b><br>is connected.';
-            this.sendMessage(message, '');
+    //         var message = '<b>' + e.userid + '</b><br>is connected.';
+    //         this.sendMessage(message, '');
 
-            if (!that.getlastSelectedFile()) return;
+    //         if (!that.getlastSelectedFile()) return;
 
-            // already shared the file
+    //         // already shared the file
 
-            var file = that.getlastSelectedFile();
-            setTimeout(function () {
-                this.sendMessage('Sharing file<br><b>' + file.name + '</b><br>Size: <b>' + bytesToSize(file.size) + '<b><br>With <b>' + connection.getAllParticipants().length + '</b> users', '');
-                connection.send({
-                    doYouWannaReceiveThisFile: true,
-                    fileName: file.size + file.name
-                });
-            }, 500);
-        };
+    //         var file = that.getlastSelectedFile();
+    //         setTimeout(function () {
+    //             this.sendMessage('Sharing file<br><b>' + file.name + '</b><br>Size: <b>' + bytesToSize(file.size) + '<b><br>With <b>' + connection.getAllParticipants().length + '</b> users', '');
+    //             connection.send({
+    //                 doYouWannaReceiveThisFile: true,
+    //                 fileName: file.size + file.name
+    //             });
+    //         }, 500);
+    //     };
 
-        connection.onclose = function (e) {
-            incrementOrDecrementUsers();
+    //     connection.onclose = function (e) {
+    //         incrementOrDecrementUsers();
 
-            if (connection.connectedWith[e.userid]) return;
+    //         if (connection.connectedWith[e.userid]) return;
 
-            this.sendMessage('Data connection has been closed between you and <b>' + e.userid + '</b>. Re-Connecting..', '')
-            connection.join(roomId);
-        };
+    //         this.sendMessage('Data connection has been closed between you and <b>' + e.userid + '</b>. Re-Connecting..', '')
+    //         connection.join(roomId);
+    //     };
 
-        connection.onerror = function (e) {
-            if (connection.connectedWith[e.userid]) return;
-            this.sendMessage('Data connection failed. between you and <b>' + e.userid + '</b>. Retrying..', '')
-        };
+    //     connection.onerror = function (e) {
+    //         if (connection.connectedWith[e.userid]) return;
+    //         this.sendMessage('Data connection failed. between you and <b>' + e.userid + '</b>. Retrying..', '')
+    //     };
 
-        this.setFileProgressBarHandlers(connection);
+    //     this.setFileProgressBarHandlers(connection);
 
-        connection.onUserStatusChanged = function (user) {
-            //incrementOrDecrementUsers();
-        };
+    //     connection.onUserStatusChanged = function (user) {
+    //         //incrementOrDecrementUsers();
+    //     };
 
-        connection.onleave = function (user) {
-            user.status = 'offline';
-            connection.onUserStatusChanged(user);
-            _connection = null;
-            //incrementOrDecrementUsers();
-        };
+    //     connection.onleave = function (user) {
+    //         user.status = 'offline';
+    //         connection.onUserStatusChanged(user);
+    //         _connection = null;
+    //         //incrementOrDecrementUsers();
+    //     };
 
-        var message = 'Connecting room:<br><b>' + connection.channel + '</b>';
-        this.sendMessage(message, '');
+    //     var message = 'Connecting room:<br><b>' + connection.channel + '</b>';
+    //     this.sendMessage(message, '');
 
-        connection.openOrJoin(connection.channel, function (isRoomExists, roomid) {
-            var message = 'Successfully connected to room: <b>' + roomid + '</b><hr>Other users can join you on iPhone/Android using "' + roomid + '" or desktop (Windows/MacOSX/Ubuntu) users can join using this (secure/private) URL: <a href="./file-sharing.html#' + roomid + '" target="_blank">file-sharing.html#' + roomid + '</a>';
+    //     connection.openOrJoin(connection.channel, function (isRoomExists, roomid) {
+    //         var message = 'Successfully connected to room: <b>' + roomid + '</b><hr>Other users can join you on iPhone/Android using "' + roomid + '" or desktop (Windows/MacOSX/Ubuntu) users can join using this (secure/private) URL: <a href="./file-sharing.html#' + roomid + '" target="_blank">file-sharing.html#' + roomid + '</a>';
 
-            // if (isRoomEists) { }
-            that.sendMessage(message, '');
+    //         // if (isRoomEists) { }
+    //         that.sendMessage(message, '');
 
-            if (document.getElementById('room-id')) {
-                if (innerWidth > 500) {
-                    $('#room-id')[0].parentNode.innerHTML = 'Joined room: ' + roomid;
-                } else {
-                    $('#room-id')[0].parentNode.innerHTML = 'Joined room:<br>' + roomid;
-                }
-            }
+    //         if (document.getElementById('room-id')) {
+    //             if (innerWidth > 500) {
+    //                 $('#room-id')[0].parentNode.innerHTML = 'Joined room: ' + roomid;
+    //             } else {
+    //                 $('#room-id')[0].parentNode.innerHTML = 'Joined room:<br>' + roomid;
+    //             }
+    //         }
 
-            var socket = connection.getSocket();
-            socket.on('disconnect', function () {
-                that.sendMessage('Seems disconnected.', '');
-            });
-            socket.on('connect', function () {
-                location.reload();
-            });
-            socket.on('error', function () {
-                location.reload();
-            });
+    //         var socket = connection.getSocket();
+    //         socket.on('disconnect', function () {
+    //             that.sendMessage('Seems disconnected.', '');
+    //         });
+    //         socket.on('connect', function () {
+    //             location.reload();
+    //         });
+    //         socket.on('error', function () {
+    //             location.reload();
+    //         });
 
-            window.addEventListener('offline', function () {
-                that.sendMessage('Seems disconnected.', 'red')
-            }, false);
-        });
-        window.connection = connection;
-        //listeners
-        window.addEventListener('online', function () {
-            location.reload();
-        }, false);
-        document.addEventListener('dragover', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.dataTransfer.dropEffect = 'copy';
-        }, false);
-        document.addEventListener('drop', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
+    //         window.addEventListener('offline', function () {
+    //             that.sendMessage('Seems disconnected.', 'red')
+    //         }, false);
+    //     });
+    //     window.connection = connection;
+    //     //listeners
+    //     window.addEventListener('online', function () {
+    //         location.reload();
+    //     }, false);
+    //     document.addEventListener('dragover', function (e) {
+    //         e.preventDefault();
+    //         e.stopPropagation();
+    //         e.dataTransfer.dropEffect = 'copy';
+    //     }, false);
+    //     document.addEventListener('drop', function (e) {
+    //         e.preventDefault();
+    //         e.stopPropagation();
 
-            if (!e.dataTransfer.files || !e.dataTransfer.files.length) {
-                return;
-            }
+    //         if (!e.dataTransfer.files || !e.dataTransfer.files.length) {
+    //             return;
+    //         }
 
-            var file = e.dataTransfer.files[0];
+    //         var file = e.dataTransfer.files[0];
 
-            if (!connection) {
-                $('#join-room')[0].onclick();
-            }
+    //         if (!connection) {
+    //             $('#join-room')[0].onclick();
+    //         }
 
-            btnSelectFile.onclick(file);
-        }, false);
-        return connection;
-        //window.connection = connection;
-    };
+    //         btnSelectFile.onclick(file);
+    //     }, false);
+    //     return connection;
+    //     //window.connection = connection;
+    // };
 
     this.setFileProgressBarHandlers = function (connection) {
         var progressHelper = {};
