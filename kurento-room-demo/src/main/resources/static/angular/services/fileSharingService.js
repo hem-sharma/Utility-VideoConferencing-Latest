@@ -389,9 +389,10 @@ kurento_room.service('FileServe', function () {
         var room_id = '';
 
         function setupWebRTCConnection() {
-            if (connection) {
+            if (_connection) {
                 return;
             }
+
             connection = new RTCMultiConnection();
             connection.fileReceived = {};
 
@@ -465,7 +466,7 @@ kurento_room.service('FileServe', function () {
 
             connection.onerror = function (e) {
                 if (connection.connectedWith[e.userid]) return;
-                 console.info('Data connection failed. between you and <b>' + e.userid + '</b>. Retrying..');
+                console.info('Data connection failed. between you and <b>' + e.userid + '</b>. Retrying..');
             };
 
             setFileProgressBarHandlers(connection);
@@ -509,7 +510,7 @@ kurento_room.service('FileServe', function () {
                     appendLog('Seems disconnected.', 'red');
                 }, false);
             });
-
+            that._connection = connection;
             window.connection = connection;
         }
         //done in service
@@ -676,7 +677,7 @@ kurento_room.service('FileServe', function () {
         var logsDiv = $('#logs')[0];
 
         function appendLog(html, color) {
-           console.info(html);
+            console.info(html);
 
             return div;
         }
