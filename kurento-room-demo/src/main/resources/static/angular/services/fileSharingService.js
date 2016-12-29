@@ -82,9 +82,7 @@ kurento_room.service('FileServe', function () {
                 fileName: file.size + file.name
             });
         };
-        lxS.alert('Info!', 'Processing.. Other users will get a message after processing.', 'Ok', function (answer) {
-            return false;
-        });
+
     };
 
     this.bytesToSize = function (bytes) {
@@ -194,6 +192,9 @@ kurento_room.service('FileServe', function () {
 
         // www.RTCMultiConnection.org/docs/onFileProgress/
         connection.onFileProgress = function (chunk) {
+            lxS.alert('Info!', 'Processing.. Other users will get a message after processing.', 'Ok', function (answer) {
+                return false;
+            });
             if (connection.fileReceived[chunk.size + chunk.name]) return;
 
             var helper = progressHelper[chunk.uuid];
