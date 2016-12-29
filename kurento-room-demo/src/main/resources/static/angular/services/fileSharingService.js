@@ -82,6 +82,9 @@ kurento_room.service('FileServe', function () {
                 fileName: file.size + file.name
             });
         };
+        lxS.alert('Info!', 'Processing.. Other users will get a message after processing.', 'Ok', function (answer) {
+            return false;
+        });
     };
 
     this.bytesToSize = function (bytes) {
