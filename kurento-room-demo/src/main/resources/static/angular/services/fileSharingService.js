@@ -73,8 +73,8 @@ kurento_room.service('FileServe', function () {
         that.setlastSelectedFile(file);
         var lxS = that.getLxnotificationService();
         if (!that.isValidSize(that.bytesToSize(file.size), 20))
-            lxS.alert('Sorry! file size shouldn\'t exceed 20MB.', 'Ok', function (answer) {
-                return;
+            lxS.alert('Alert!', 'file size shouldn\'t exceed 20MB.', 'Ok', function (answer) {
+                return false;
             });
         if (_connection) {
             _connection.send({
