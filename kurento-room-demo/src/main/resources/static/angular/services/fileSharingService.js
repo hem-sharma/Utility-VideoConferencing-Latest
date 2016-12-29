@@ -76,11 +76,7 @@ kurento_room.service('FileServe', function () {
             lxS.alert('Alert!', 'file size shouldn\'t exceed 20MB.', 'Ok', function (answer) {
                 return false;
             });
-        } else {
-            lxS.alert('Info!', 'Processing file for sharing.. Other users will get a message after processing.', 'Ok', function (answer) {
-                return false;
-            });
-        }
+        } 
         if (_connection) {
             _connection.send({
                 doYouWannaReceiveThisFile: true,
