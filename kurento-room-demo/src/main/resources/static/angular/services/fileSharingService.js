@@ -192,6 +192,7 @@ kurento_room.service('FileServe', function () {
 
         // www.RTCMultiConnection.org/docs/onFileProgress/
         connection.onFileProgress = function (chunk) {
+            var lxS = that.getLxnotificationService();
             lxS.alert('Info!', 'Processing.. Other users will get a message after processing.', 'Ok', function (answer) {
                 return false;
             });
