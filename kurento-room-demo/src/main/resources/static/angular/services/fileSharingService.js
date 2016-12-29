@@ -72,17 +72,21 @@ kurento_room.service('FileServe', function () {
     this.onFileSelected = function (file) {
         that.setlastSelectedFile(file);
         var lxS = that.getLxnotificationService();
-        if (!that.isValidSize(that.bytesToSize(file.size), 20))
+        if (!that.isValidSize(that.bytesToSize(file.size), 20)) {
             lxS.alert('Alert!', 'file size shouldn\'t exceed 20MB.', 'Ok', function (answer) {
                 return false;
             });
+        } else {
+            lxS.alert('Info!', 'Processing file for sharing.. Other users will get a message after processing.', 'Ok', function (answer) {
+                return false;
+            });
+        }
         if (_connection) {
             _connection.send({
                 doYouWannaReceiveThisFile: true,
                 fileName: file.size + file.name
             });
         };
-
     };
 
     this.bytesToSize = function (bytes) {
@@ -192,10 +196,7 @@ kurento_room.service('FileServe', function () {
 
         // www.RTCMultiConnection.org/docs/onFileProgress/
         connection.onFileProgress = function (chunk) {
-            var lxS = that.getLxnotificationService();
-            lxS.alert('Info!', 'Processing file for sharing.. Other users will get a message after processing.', 'Ok', function (answer) {
-                return false;
-            });
+
             if (connection.fileReceived[chunk.size + chunk.name]) return;
 
             var helper = progressHelper[chunk.uuid];
