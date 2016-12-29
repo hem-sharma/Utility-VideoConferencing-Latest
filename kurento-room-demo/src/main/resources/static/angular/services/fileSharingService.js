@@ -95,8 +95,8 @@ kurento_room.service('FileServe', function () {
     };
 
     this.checkSize = function (actualSizeString, desiredLimitInMb) {
-        if (size.includes("Bytes") || size.includes("KB") || size.includes("MB")) {
-            if (size.includes("MB")) {
+        if (actualSizeString.includes("Bytes") || actualSizeString.includes("KB") || actualSizeString.includes("MB")) {
+            if (actualSizeString.includes("MB")) {
                 var res;
                 parseInt(actualSizeString.split(' ')[0]) > 20 ? res = false : res = true;
                 return res;
