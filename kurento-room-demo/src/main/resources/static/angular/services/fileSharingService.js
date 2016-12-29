@@ -72,8 +72,8 @@ kurento_room.service('FileServe', function () {
     this.onFileSelected = function (file) {
         that.setlastSelectedFile(file);
         var lxS = that.getLxnotificationService();
-        if (that.checkSize(that.bytesToSize(file.size)))
-            LxNotificationService.alert('Sorry! file size shouldn\'t exceed 20MB.', 'Ok', function (answer) {
+        if (!that.isValidSize(that.bytesToSize(file.size), 20))
+            lxS.alert('Sorry! file size shouldn\'t exceed 20MB.', 'Ok', function (answer) {
                 return;
             });
         if (_connection) {
@@ -94,11 +94,11 @@ kurento_room.service('FileServe', function () {
         return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
     };
 
-    this.checkSize = function (actualSizeString, desiredLimitInMb) {
+    this.isValidSize = function (actualSizeString, desiredLimitInMb) {
         if (actualSizeString.includes("Bytes") || actualSizeString.includes("KB") || actualSizeString.includes("MB")) {
             if (actualSizeString.includes("MB")) {
                 var res;
-                parseInt(actualSizeString.split(' ')[0]) > 20 ? res = false : res = true;
+                parseInt(actualSizeString.split(' ')[0]) > desiredLimitInMb ? res = false : res = true;
                 return res;
             }
             return true;
