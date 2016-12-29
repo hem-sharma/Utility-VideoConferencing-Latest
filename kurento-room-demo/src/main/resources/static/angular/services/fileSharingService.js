@@ -71,6 +71,11 @@ kurento_room.service('FileServe', function () {
 
     this.onFileSelected = function (file) {
         that.setlastSelectedFile(file);
+        var lxS = that.getLxnotificationService();
+        if (that.checkSize(that.bytesToSize(file.size)))
+            LxNotificationService.alert('Sorry! file size shouldn\'t exceed 20MB.', 'Ok', function (answer) {
+                return;
+            });
         if (_connection) {
             _connection.send({
                 doYouWannaReceiveThisFile: true,
@@ -87,6 +92,19 @@ kurento_room.service('FileServe', function () {
         }
         var i = parseInt(Math.floor(Math.log(bytes) / Math.log(k)), 10);
         return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
+    };
+
+    this.checkSize = function (actualSizeString, desiredLimitInMb) {
+        if (size.includes("Bytes") || size.includes("KB") || size.includes("MB")) {
+            if (size.includes("MB")) {
+                var res;
+                parseInt(actualSizeString.split(' ')[0]) > 20 ? res = false : res = true;
+                return res;
+            }
+            return true;
+        }
+        return false;
+
     };
 
     this.getChunkSize = function () {
