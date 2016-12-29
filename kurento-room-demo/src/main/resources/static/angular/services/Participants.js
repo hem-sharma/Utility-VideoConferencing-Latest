@@ -490,7 +490,8 @@ function Participants() {
         that.removeParticipants();
         LxNotificationService.alert('Error!', e.error.message, 'Reconnect', function (answer) {
             displayingRelogin = false;
-            $window.location.href = $window.location.href;
+            //$window.location.href = $window.location.href;
+            $window.location.reload(true);
         });
     };
 
@@ -503,7 +504,8 @@ function Participants() {
         that.removeParticipants();
         LxNotificationService.alert('Warning!', msg, 'Reload', function (answer) {
             displayingRelogin = false;
-            $window.location.href = $window.location.href;
+            //$window.location.href = $window.location.href;
+            $window.location.reload(true);
         });
     };
 
@@ -521,7 +523,8 @@ function Participants() {
                 console.log("User agrees upon media error: " + answer);
                 if (answer) {
                     that.removeParticipants();
-                    $window.location.href = '/';
+                    $window.location.reload(true);
+                    //$window.location.href = '/';
                 }
                 if (typeof callback === "function") {
                     callback(answer);
