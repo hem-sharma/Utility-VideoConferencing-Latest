@@ -3,7 +3,7 @@ kurento_room.service('FileServe', function () {
     var roomName;
     var userName;
     // var fileSocketServer = 'https://rtcmulticonnection.herokuapp.com:443/';
-    var fileSocketServer = '192.168.0.44/';
+    var fileSocketServer = 'https://192.168.0.44:9000/';
     var socketMessageEvent = 'file-sharing-demo';
     var _connection;
     var that = this;
