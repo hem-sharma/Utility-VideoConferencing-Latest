@@ -28,13 +28,18 @@ kurento_room.filter('split', function () {
         return '';
     }
 });
-kurento_room.directive('customOnChange', function() {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      var onChangeHandler = scope.$eval(attrs.customOnChange);
-      element.bind('change', onChangeHandler);
-    }
-  };
+kurento_room.directive('customOnChange', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var onChangeHandler = scope.$eval(attrs.customOnChange);
+            element.bind('change', onChangeHandler);
+        }
+    };
 });
 
+kurento_room.filter('trustUrl', function ($sce) {
+    return function (url) {
+        return $sce.trustAsResourceUrl(url);
+    };
+});
