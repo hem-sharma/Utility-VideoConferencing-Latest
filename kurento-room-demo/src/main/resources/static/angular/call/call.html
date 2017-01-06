@@ -21,9 +21,13 @@
             <button class="btn btn--xl btn--orange btn--fab mdi md-desktop-mac " lx-ripple ng-click="shareScreen()" title="Desktop sharing"></button>
             <button class="btn btn--xl btn--red btn--fab mdi md-call-end " lx-ripple ng-click="leaveRoom()" id="buttonLeaveRoom" title="Leave room"></button>
             <!--colgar-->
-            <button class="btn btn--xl btn--purple btn--fab mdi md-fullscreen" style="font-size: 1.9rem" lx-ripple ng-click="goFullscreen()" title="Fullscreen"></button>
+            <button class="btn btn--xl btn--purple btn--fab mdi md-fullscreen" style="font-size: 1.9rem" lx-ripple ng-click="goFullscreen()"
+                title="Fullscreen"></button>
             <!--Share File-->
-            <button type="file" class="btn btn--xl btn--green btn--fab mdi md-attach-file" lx-ripple  custom-on-change="onFileSelect" title="Share File">
+            <button type="file" class="btn btn--xl btn--green btn--fab mdi md-attach-file" lx-ripple custom-on-change="onFileSelect"
+                title="Share File">
+            </button>
+            <button class="btn btn--xl btn--green btn--fab mdi md-content-paste" lx-ripple title="Whiteboard">
             </button>
             <!--fullscreen-->
             <button class="btn btn--xl btn--blue btn--fab mdi md-chat" lx-ripple ng-click="toggleChat()" title="Chat toggle"></button>
@@ -88,6 +92,17 @@
                     <button type="submit" class="btn btn--m btn--green btn--raised" lx-ripple ng-click="sendMessage()">Send</button>
                 </form>
             </div>
+        </div>
+    </div>
+    <!--Whiteboard-->
+    <div class="toggler" style="width: 70%;height: 100%;float: left">
+        <div id="whiteboard" style="display:none">
+            <div>
+                <strong>Whiteboard</strong>
+                <button class="btn btn--s btn--blue btn--icon mdi md-close" lx-ripple ng-click="toggleWhiteboard()" id="button"></button>
+                <!--close-->
+            </div>
+            <iframe allowfullscreen ng-src="{{whiteboardsource}}"></iframe>
         </div>
     </div>
 </div>

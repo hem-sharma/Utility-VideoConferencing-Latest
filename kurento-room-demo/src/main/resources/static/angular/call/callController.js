@@ -375,6 +375,26 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
         $("#effect").toggle(selectedEffect, options, 500);
     };
+    
+    //TODO: initiate whiteboard source url
+    $scope.whiteboardsource = 'http://room.kazastream.com/?room=' + $scope.roomName;
+
+    $scope.toggleWhiteboard = function () {
+        var selectedEffect = "slide";
+        var options = {
+            direction: "left"
+        };
+        if ($("#whiteboard").is(':visible')) {
+            $("#content").animate({
+                width: '100%'
+            }, 500);
+        } else {
+            $("#content").animate({
+                width: '30%'
+            }, 500);
+        }
+        $("#whiteboard").toggle(selectedEffect, options, 500);
+    }
 
     $scope.showHat = function () {
         var targetHat = false;
