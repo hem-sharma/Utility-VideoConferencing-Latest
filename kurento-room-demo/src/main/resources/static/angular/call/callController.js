@@ -83,6 +83,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
         $scope.userName = room.userName;
         $scope.roomName = room.roomName;
+        $scope.whiteboardsource = 'http://room.kazastream.com/?room=' + $scope.roomName;
         FileServe.setUserName(room.userName);
         FileServe.setRoomName(room.roomName);
         FileServe.setLxNotificationService(LxNotificationService);
@@ -377,12 +378,12 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     };
 
     //TODO: initiate whiteboard source url
-    $scope.whiteboardsource = 'http://room.kazastream.com/?room=' + $scope.roomName;
+
 
     $scope.toggleWhiteboard = function () {
         var selectedEffect = "slide";
         var options = {
-            direction: "right"
+            direction: "left"
         };
         if ($("#whiteboard").is(':visible')) {
             $("#content").animate({
