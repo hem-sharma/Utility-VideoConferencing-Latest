@@ -375,14 +375,14 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
         $("#effect").toggle(selectedEffect, options, 500);
     };
-    
+
     //TODO: initiate whiteboard source url
     $scope.whiteboardsource = 'http://room.kazastream.com/?room=' + $scope.roomName;
 
     $scope.toggleWhiteboard = function () {
         var selectedEffect = "slide";
         var options = {
-            direction: "left"
+            direction: "right"
         };
         if ($("#whiteboard").is(':visible')) {
             $("#content").animate({
