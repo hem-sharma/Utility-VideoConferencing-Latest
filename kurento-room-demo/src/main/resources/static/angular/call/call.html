@@ -76,7 +76,7 @@
                 <button class="btn btn--s btn--blue btn--icon mdi md-close" lx-ripple ng-click="toggleChat()" id="button"></button>
                 <!--close-->
             </div>
-            <div id="chatDiv" style="height: 30em;  overflow: scroll;">
+            <div id="chatDiv" style="height: 75%;  overflow: scroll;">
                 <div id="messages">
                     <ul class="list">
                         <!--chat messages with scroll-->
@@ -87,7 +87,8 @@
             <div>
                 <form>
                     <lx-text-field label="Message">
-                        <input id="inputMessage" type="text" ng-model="message">
+                        <!--<input id="inputMessage" type="text" ng-model="message">-->
+                        <textarea style="height:50px;max-height:50px;" id="inputMessage" ng-model="message"></textarea>
                     </lx-text-field>
                     <button type="submit" class="btn btn--m btn--green btn--raised" lx-ripple ng-click="sendMessage()">Send</button>
                 </form>
