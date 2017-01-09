@@ -1,12 +1,13 @@
-html, body {
+html,
+body {
     height: 100%;
 }
 
-#buttonActions>button{
+#buttonActions>button {
     font-size: 1.9rem;
 }
 
-#room{
+#room {
     height: 100%;
 }
 
@@ -88,34 +89,50 @@ video {
 }
 
 .blinking {
-
-  animation-name: blinking;
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-
-  -webkit-animation-name: blinking;
-  -webkit-animation-duration: 2s;
-  -webkit-animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
+    animation-name: blinking;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: blinking;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
 }
 
-@-moz-keyframes blinking{
-  0% { opacity: 1.0; }
-  50% { opacity: 0.0; }
-  100% { opacity: 1.0; }
+@-moz-keyframes blinking {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 1.0;
+    }
 }
 
 @-webkit-keyframes blinking {
-  0% { opacity: 1.0; }
-  50% { opacity: 0.0; }
-   100% { opacity: 1.0; }
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 1.0;
+    }
 }
 
 @keyframes blinking {
-  0% { opacity: 1.0; }
-   50% { opacity: 0.0; }
-  100% { opacity: 1.0; }
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 1.0;
+    }
 }
 
 .video {
@@ -194,6 +211,7 @@ video {
     margin: auto 0 auto 0;
 }
 
+
 /*.join p {
     margin: 20px 0 0;
 }
@@ -220,9 +238,11 @@ video {
     font-size: 13px;
 }
 
+
 /*chat effect*/
 
-#effect {
+#effect,
+#whiteboard {
     position: relative;
     padding: 0.4em;
 }
@@ -232,5 +252,5 @@ video {
 }
 
 .card__actions {
-	border-top-width: 0px;
+    border-top-width: 0px;
 }
