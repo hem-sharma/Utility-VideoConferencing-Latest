@@ -1,8 +1,10 @@
-.list-content-tile--two-lines span, .list-content-tile--two-lines strong {
-line-height: 20px;
-word-wrap: break-word;
+.list-content-tile--two-lines span,
+.list-content-tile--two-lines strong {
+    line-height: 20px;
+    word-wrap: break-word;
 }
-.popupAlert{
+
+.popupAlert {
     position: fixed;
     width: 80%;
     height: 80%;
@@ -14,7 +16,8 @@ word-wrap: break-word;
     margin: auto;
     z-index: 9999999999999999999;
 }
-.popupAlert .closeAlert{
+
+.popupAlert .closeAlert {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -23,14 +26,20 @@ word-wrap: break-word;
     font-size: 20px;
     cursor: pointer;
 }
-@media screen and (max-width : 480px){
-    #room-name{
+
+@media screen and (max-width: 1230px) and (min-width: 480px) {
+    .mb {
+        margin-top: 60px!important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #room-name {
         margin-top: 120px;
         font-size: 1em;
     }
-    .mb{
-        margin-top: 60px;
-
+    .mb {
+        margin-top: 60px!important;
     }
     #buttonActions>button {
         font-size: 1em;
@@ -38,17 +47,18 @@ word-wrap: break-word;
         width: 35px;
         line-height: 35px;
     }
-    #content{
+    #content {
         width: 100%!important;
         z-index: 1;
     }
-    .toggler{
+    .toggler {
         z-index: 2;
         margin-left: 0!important;
         width: 100%!important;
         position: absolute;
     }
-    #effect,#whiteboard{
+    #effect,
+    #whiteboard {
         background-color: #eee;
         padding: 10px!important;
         height: 100%;
