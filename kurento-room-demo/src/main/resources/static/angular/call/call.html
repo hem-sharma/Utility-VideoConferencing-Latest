@@ -68,8 +68,8 @@
         <!--test for fs end-->
     </div>
     <!--CHAT-->
-    <div class="toggler" style="width: 20%;height: 100%;float: right">
-        <div id="effect" style="display:none">
+    <!--<div class="toggler" style="width: 20%;height: 100%;float: right">-->
+        <div class="toggler" id="effect" style="display:none;width: 20%;height: 100%;float: right">
             <!--head-->
             <div>
                 <strong>Chat</strong>
@@ -93,15 +93,15 @@
                 </form>
             </div>
         </div>
-    </div>
+    <!--</div>-->
     <!--Whiteboard-->
-    <div class="toggler" style="width: 70%;height: 100%;margin-left:30%;">
-        <div id="whiteboard" style="display:none;height:100%;width:100%;">
+    <!--<div class="toggler" style="width: 70%;height: 100%;margin-left:30%;">-->
+        <div class="toggler" id="whiteboard" style="display:none;width: 70%;height: 100%;margin-left:30%;">
             <div>
                 <strong>Whiteboard</strong>
                 <button class="btn btn--s btn--blue btn--icon mdi md-close" lx-ripple ng-click="toggleWhiteboard()" id="button"></button>
             </div>
             <iframe allowfullscreen style="height:100%;width:100%" ng-if="whiteboardsource" ng-src="{{ whiteboardsource | trustUrl }}"></iframe>
         </div>
-    </div>
+    <!--</div>-->
 </div>

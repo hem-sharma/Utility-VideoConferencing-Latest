@@ -23,3 +23,17 @@ word-wrap: break-word;
     font-size: 20px;
     cursor: pointer;
 }
+@media screen and (max-width : 480px){
+    #content{
+        width: 100%!important;
+    }
+    .toggler{
+        width: 100%!important;
+        position: absolute;
+    }
+    #effect,#whiteboard{
+        background-color: #eee;
+        padding: 0px!important;
+        height: 100%;
+    }
+}

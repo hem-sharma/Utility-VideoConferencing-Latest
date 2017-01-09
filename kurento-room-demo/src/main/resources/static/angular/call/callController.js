@@ -381,6 +381,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     
     $scope.toggleWhiteboard = function () {
         $('#effect').hide();
+        var selectedEffect = "slide";
         var options = {
             direction: "left"
         };
