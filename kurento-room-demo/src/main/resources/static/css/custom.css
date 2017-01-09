@@ -24,16 +24,33 @@ word-wrap: break-word;
     cursor: pointer;
 }
 @media screen and (max-width : 480px){
+    #room-name{
+        margin-top: 120px;
+        font-size: 1em;
+    }
+    .mb{
+        margin-top: 60px;
+
+    }
+    #buttonActions>button {
+        font-size: 1em;
+        height: 35px;
+        width: 35px;
+        line-height: 35px;
+    }
     #content{
         width: 100%!important;
+        z-index: 1;
     }
     .toggler{
+        z-index: 2;
+        margin-left: 0!important;
         width: 100%!important;
         position: absolute;
     }
     #effect,#whiteboard{
         background-color: #eee;
-        padding: 0px!important;
+        padding: 10px!important;
         height: 100%;
     }
 }

@@ -383,7 +383,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         $('#effect').hide();
         var selectedEffect = "slide";
         var options = {
-            direction: "left"
+            direction: "right"
         };
         if ($("#whiteboard").is(':visible')) {
             $("#content").animate({
