@@ -83,7 +83,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
         $scope.userName = room.userName;
         $scope.roomName = room.roomName;
-        $scope.whiteboardsource = 'http://room.kazastream.com/?room=' + $scope.roomName;
+        //TODO: initiate whiteboard source url
+        $scope.whiteboardsource = 'https://room.kazastream.com:8000/?room=' + $scope.roomName;
         FileServe.setUserName(room.userName);
         FileServe.setRoomName(room.roomName);
         FileServe.setLxNotificationService(LxNotificationService);
@@ -376,10 +377,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
         $("#effect").toggle(selectedEffect, options, 500);
     };
-
-    //TODO: initiate whiteboard source url
-
-
+    
     $scope.toggleWhiteboard = function () {
         var selectedEffect = "slide";
         var options = {
