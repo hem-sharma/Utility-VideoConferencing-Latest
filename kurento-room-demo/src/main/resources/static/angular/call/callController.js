@@ -360,6 +360,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
 
     $scope.toggleChat = function () {
+        $('#whiteboard').hide();
         var selectedEffect = "slide";
 
         var options = {
@@ -379,7 +380,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     };
     
     $scope.toggleWhiteboard = function () {
-        var selectedEffect = "slide";
+        $('#effect').hide();
         var options = {
             direction: "left"
         };
@@ -394,6 +395,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         }
         $("#whiteboard").toggle(selectedEffect, options, 500);
     }
+
 
     $scope.showHat = function () {
         var targetHat = false;

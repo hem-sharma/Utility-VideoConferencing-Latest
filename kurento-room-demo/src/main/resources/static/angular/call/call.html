@@ -101,7 +101,7 @@
                 <strong>Whiteboard</strong>
                 <button class="btn btn--s btn--blue btn--icon mdi md-close" lx-ripple ng-click="toggleWhiteboard()" id="button"></button>
             </div>
-            <iframe allowfullscreen ng-if="whiteboardsource" ng-src="{{ whiteboardsource | trustUrl }}"></iframe>
+            <iframe allowfullscreen style="height:100%;width:100%" ng-if="whiteboardsource" ng-src="{{ whiteboardsource | trustUrl }}"></iframe>
         </div>
     </div>
 </div>
