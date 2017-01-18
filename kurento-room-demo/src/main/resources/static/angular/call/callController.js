@@ -455,7 +455,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     //File sharing helpers end
 
     //email-id share
-    $scope.shareUser = function () {
+    $scope.shareUser = function (event) {
         //TODO: share by email popup and call api on email id and userid
         var confirm = $mdDialog.prompt()
             .title('What would you name your dog?')
@@ -463,7 +463,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
             .placeholder('Dog name')
             .ariaLabel('Dog name')
             .initialValue('Buddy')
-            .targetEvent(ev)
+            .targetEvent(event)
             .ok('Okay!')
             .cancel('I\'m a cat person');
 
