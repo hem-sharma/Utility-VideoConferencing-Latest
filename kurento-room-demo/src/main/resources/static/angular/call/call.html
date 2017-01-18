@@ -33,7 +33,7 @@
             <!--chat-->
             <button class="btn btn--xl btn--blue btn--fab mdi md-chat" lx-ripple ng-click="toggleChat()" title="Chat toggle"></button>
             <!--sharing-->
-            <button class="btn btn--xl btn--blue btn--fab mdi md-share" lx-ripple ng-clik="shareUser()" title="Share to someone"></button>
+            <button class="btn btn--xl btn--blue btn--fab mdi md-share" lx-ripple ng-click="shareUser()" title="Share to someone"></button>
             <!--chat-->
         </div>
         <div id="participants">
@@ -72,40 +72,57 @@
     </div>
     <!--CHAT-->
     <!--<div class="toggler" style="width: 20%;height: 100%;float: right">-->
-        <div class="toggler" id="effect" style="display:none;width: 20%;height: 100%;float: right">
-            <!--head-->
-            <div>
-                <strong>Chat</strong>
-                <button class="btn btn--s btn--blue btn--icon mdi md-close" lx-ripple ng-click="toggleChat()" id="button"></button>
-                <!--close-->
-            </div>
-            <div id="chatDiv" style="height: 75%;  overflow: scroll;">
-                <div id="messages">
-                    <ul class="list">
-                        <!--chat messages with scroll-->
-                    </ul>
-                </div>
-            </div>
-            <!--message and button to send-->
-            <div>
-                <form>
-                    <lx-text-field label="Message">
-                        <!--<input id="inputMessage" type="text" ng-model="message">-->
-                        <textarea style="height:50px;max-height:50px;" id="inputMessage" ng-model="message"></textarea>
-                    </lx-text-field>
-                    <button type="submit" class="btn btn--m btn--green btn--raised" lx-ripple ng-click="sendMessage()">Send</button>
-                </form>
+    <div class="toggler" id="effect" style="display:none;width: 20%;height: 100%;float: right">
+        <!--head-->
+        <div>
+            <strong>Chat</strong>
+            <button class="btn btn--s btn--blue btn--icon mdi md-close" lx-ripple ng-click="toggleChat()" id="button"></button>
+            <!--close-->
+        </div>
+        <div id="chatDiv" style="height: 75%;  overflow: scroll;">
+            <div id="messages">
+                <ul class="list">
+                    <!--chat messages with scroll-->
+                </ul>
             </div>
         </div>
+        <!--message and button to send-->
+        <div>
+            <form>
+                <lx-text-field label="Message">
+                    <!--<input id="inputMessage" type="text" ng-model="message">-->
+                    <textarea style="height:50px;max-height:50px;" id="inputMessage" ng-model="message"></textarea>
+                </lx-text-field>
+                <button type="submit" class="btn btn--m btn--green btn--raised" lx-ripple ng-click="sendMessage()">Send</button>
+            </form>
+        </div>
+    </div>
     <!--</div>-->
     <!--Whiteboard-->
     <!--<div class="toggler" style="width: 70%;height: 100%;margin-left:30%;">-->
-        <div class="toggler" id="whiteboard" style="display:none;width: 70%;height: 100%;margin-left:30%;">
-            <div>
-                <strong>Whiteboard</strong>
-                <button class="btn btn--s btn--blue btn--icon mdi md-close" lx-ripple ng-click="toggleWhiteboard()" id="button"></button>
-            </div>
-            <iframe allowfullscreen style="height:100%;width:100%" ng-if="whiteboardsource" ng-src="{{ whiteboardsource | trustUrl }}"></iframe>
+    <div class="toggler" id="whiteboard" style="display:none;width: 70%;height: 100%;margin-left:30%;">
+        <div>
+            <strong>Whiteboard</strong>
+            <button class="btn btn--s btn--blue btn--icon mdi md-close" lx-ripple ng-click="toggleWhiteboard()" id="button"></button>
         </div>
+        <iframe allowfullscreen style="height:100%;width:100%" ng-if="whiteboardsource" ng-src="{{ whiteboardsource | trustUrl }}"></iframe>
+    </div>
     <!--</div>-->
+    <!--material popup-->
+    <div class="md-padding" id="popupContainer" ng-cloak>
+        <div style="visibility: hidden">
+            <div class="md-dialog-container" id="myDialog">
+                <md-dialog layout-padding>
+                    <h2>Pre-Rendered Dialog</h2>
+                    <p>
+                        This is a pre-rendered dialog, which means that <code>$mdDialog</code> doesn't compile its template
+                        on each opening.
+                        <br/><br/> The Dialog Element is a static element in the DOM, which is just visually hidden.<br/>                        Once the dialog opens, we just fetch the element from the DOM into our dialog and upon close we restore
+                        the element back into its old DOM position.
+                    </p>
+                </md-dialog>
+            </div>
+        </div>
+    </div>
+    <!--material popup-->
 </div>

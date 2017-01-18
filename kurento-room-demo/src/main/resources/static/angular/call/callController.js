@@ -1,4 +1,4 @@
-kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, FileServe, Fullscreen, LxNotificationService, $routeParams, $q, $rootScope, $location, $compile) {
+kurento_room.controller('callController', function ($scope, $http, $window, ServiceParticipant, ServiceRoom, FileServe, Fullscreen, LxNotificationService, $routeParams, $q, $rootScope, $location, $compile, $mdDialog) {
 
     var options;
     $scope.roomName = '';
@@ -457,5 +457,21 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     //email-id share
     $scope.shareUser = function () {
         //TODO: share by email popup and call api on email id and userid
-    }
+        var confirm = $mdDialog.prompt()
+            .title('What would you name your dog?')
+            .textContent('Bowser is a common name.')
+            .placeholder('Dog name')
+            .ariaLabel('Dog name')
+            .initialValue('Buddy')
+            .targetEvent(ev)
+            .ok('Okay!')
+            .cancel('I\'m a cat person');
+
+        $mdDialog.show(confirm).then(function (result) {
+            console.log(result)
+        }, function () {
+            console.log('You didn\'t name your dog.')
+        });
+
+    };
 });
