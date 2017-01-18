@@ -436,7 +436,6 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         });
     };
 
-    //File sharing helpers start
     $scope.onFileSelect = function (event) {
         // var file = event.target.files[0];
         // if (file && (file instanceof File || file instanceof Blob) && file.size) {
@@ -451,27 +450,20 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
     };
 
-    // $scope.initfile = '';
-    //File sharing helpers end
-
-    //email-id share
     $scope.shareUser = function (event) {
-        //TODO: share by email popup and call api on email id and userid
         var confirm = $mdDialog.prompt()
-            .title('What would you name your dog?')
-            .textContent('Bowser is a common name.')
-            .placeholder('Dog name')
+            .title('Hub Sharing')
+            .textContent('Provide a valid email address.')
+            .placeholder('EmailId')
             .ariaLabel('Dog name')
-            .initialValue('Buddy')
+            .initialValue('example@example.com')
             .targetEvent(event)
-            .ok('Okay!')
-            .cancel('I\'m a cat person');
+            .ok('Share!')
+            .cancel('Cancel');
 
         $mdDialog.show(confirm).then(function (result) {
+            //TODO: call sharing api
             console.log(result)
-        }, function () {
-            console.log('You didn\'t name your dog.')
-        });
-
+        }, function () {});
     };
 });
