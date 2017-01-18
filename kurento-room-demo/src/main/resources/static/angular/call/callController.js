@@ -378,7 +378,7 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
 
         $("#effect").toggle(selectedEffect, options, 500);
     };
-    
+
     $scope.toggleWhiteboard = function () {
         $('#effect').hide();
         var selectedEffect = "slide";
@@ -454,4 +454,8 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
     // $scope.initfile = '';
     //File sharing helpers end
 
+    //email-id share
+    $scope.shareUser = function () {
+        //TODO: share by email popup and call api on email id and userid
+    }
 });

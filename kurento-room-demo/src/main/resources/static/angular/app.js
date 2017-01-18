@@ -16,6 +16,10 @@ kurento_room.config(function ($routeProvider) {
         .when('/thanks', {
             templateUrl: 'angular/thanks/thanks.html'
         })
+        .when('/join/hub/:hub', {
+            templateUrl: 'angular/login/login.html',
+            controller: 'loginController'
+        })
         .otherwise({
             templateUrl: 'angular/home/index.html'
         });
