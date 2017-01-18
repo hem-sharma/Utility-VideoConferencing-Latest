@@ -1,4 +1,4 @@
-kurento_room.controller('loginController', function ($scope, $http, ServiceParticipant, $window, ServiceRoom, LxNotificationService) {
+kurento_room.controller('loginController', function ($scope, $http, ServiceParticipant, $window, ServiceRoom, LxNotificationService, $routeParams) {
 
     // var options;
 
@@ -172,7 +172,7 @@ kurento_room.controller('loginController', function ($scope, $http, ServiceParti
     //     //redirect to call
     //     $window.location.href = '#/call';
     // };
-   
+
     $scope.clear = function () {
         $scope.room = "";
         $scope.userName = "";
@@ -183,6 +183,23 @@ kurento_room.controller('loginController', function ($scope, $http, ServiceParti
     $scope.joinHub = function (room) {
         console.log('room details by user: ')
         console.log(room)
-        //TODO: call first api to set name and valiate token and redirect to response url
+        let hubGuid = $routeParams.hub,
+            emailId = room.email,
+            name = room.userName;
+        var deferred = $q.defer();
+        var req = 'https://localhost:44300/api/common/CheckSharedTokenAndProcess?';
+        req += 'hubGuid=' + hubGuid;
+        req += '&emailId=' + emailId;
+        req += '&name=' + name;
+        $http.get(req)
+            .then(function (response) {
+                deferred.resolve(response);
+                var result = response;
+                console.log(result);
+                $scope.SharedUser = true;
+            })
+            .then(function (response) {
+                deferred.reject(response);
+            });
     }
 });
