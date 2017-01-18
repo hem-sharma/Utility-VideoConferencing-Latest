@@ -464,6 +464,34 @@ kurento_room.controller('callController', function ($scope, $http, $window, Serv
         $mdDialog.show(confirm).then(function (result) {
             //TODO: call sharing api
             console.log(result)
+            // var deferred = $q.defer();
+            // var req = 'https://www.kazastream.com/api/common/checkroomaccess?';
+            // req += 'eventId=' + room.roomName;
+            // req += '&accessToken=' + room.token;
+            // req += '&user=' + room.userName;
+            // $http.get(req)
+            //     .then(function (response) {
+            //         deferred.resolve(response);
+            //         var result = response;
+            //         if (result.data.status === 200 && result.data.isValid) {
+            //             var event = result.data.event,
+            //                 user = result.data.user;
+            //             room.roomName = event;
+            //             room.userName = user;
+            //             $scope.roomName = event;
+            //             $rootScope.roomName = event;
+            //             $rootScope.userName = user;
+            //             register(room);
+            //         } else {
+            //             //$location.path($rootScope.contextpath + '/');
+            //             $scope.roomName = $routeParams.eventId;
+            //             $window.location.href = '#/error';
+            //             return false;
+            //         }
+            //     })
+            //     .then(function (response) {
+            //         deferred.reject(response);
+            //     });
         }, function () {});
     };
 });

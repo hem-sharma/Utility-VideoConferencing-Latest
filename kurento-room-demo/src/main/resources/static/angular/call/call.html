@@ -109,10 +109,10 @@
     </div>
     <!--</div>-->
     <!--material popup-->
-    <div class="md-padding" id="popupContainer" ng-cloak>
+    <div style="padding: 8px; display: none !important;" id="popupContainer">
         <div style="visibility: hidden">
-            <div class="md-dialog-container" id="myDialog">
-                <md-dialog layout-padding>
+            <div class="mdcontainer" id="myDialog">
+                <md-dialog class="dialogclass" layout-padding>
                     <h2>Pre-Rendered Dialog</h2>
                     <p>
                         This is a pre-rendered dialog, which means that <code>$mdDialog</code> doesn't compile its template
