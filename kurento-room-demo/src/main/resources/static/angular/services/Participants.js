@@ -96,103 +96,103 @@ function AppParticipant(stream) {
 }
 
 function startRecording() {
-    var client, kmsServer = 'wss://kms.kazastream.com:8443/kurento',
-        rootScope = angular.element($('body')).scope().$root,
-        options = {audio:true};
+//     var client, kmsServer = 'wss://kms.kazastream.com:8443/kurento',
+//         rootScope = angular.element($('body')).scope().$root,
+//         options = {audio:true};
 
-    function getopts(args, opts) {
-        var result = opts.default || {};
-        args.replace(
-            new RegExp("([^?=&]+)(=([^&]*))?", "g"),
-            function ($0, $1, $2, $3) {
-                result[$1] = decodeURI($3);
-            });
+//     function getopts(args, opts) {
+//         var result = opts.default || {};
+//         args.replace(
+//             new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+//             function ($0, $1, $2, $3) {
+//                 result[$1] = decodeURI($3);
+//             });
 
-        return result;
-    };
+//         return result;
+//     };
 
-    var args = getopts(location.search, {
-        default: {
-            ws_uri: kmsServer,
-            //file_uri: 'file:///tmp/' + getFileName() + '.webm', // file to be stored in media server
-            ice_servers: undefined
-        }
-    });
-    var webRtcPeer = kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(options, function (error) {
-        if (error) return onError(error)
-        this.generateOffer(onStartOffer)
-    });
+//     var args = getopts(location.search, {
+//         default: {
+//             ws_uri: kmsServer,
+//             //file_uri: 'file:///tmp/' + getFileName() + '.webm', // file to be stored in media server
+//             ice_servers: undefined
+//         }
+//     });
+//     var webRtcPeer = kurentoUtils.WebRtcPeer.WebRtcPeerSendonly(options, function (error) {
+//         if (error) return onError(error)
+//         this.generateOffer(onStartOffer)
+//     });
 
-    function onStartOffer(error, sdpOffer) {
-        if (error) return onError(error)
+//     function onStartOffer(error, sdpOffer) {
+//         if (error) return onError(error)
 
-        co(function* () {
-            try {
-                if (!client)
-                    client = yield kurentoClient(args.ws_uri);
+//         co(function* () {
+//             try {
+//                 if (!client)
+//                     client = yield kurentoClient(args.ws_uri);
 
-                pipeline = yield client.create('MediaPipeline');
+//                 pipeline = yield client.create('MediaPipeline');
 
-                var userName, roomName;
-                //setting recording pipeline to rootscope used in stop
-                rootScope.$apply(function () {
+//                 var userName, roomName;
+//                 //setting recording pipeline to rootscope used in stop
+//                 rootScope.$apply(function () {
 
-                    rootScope.webRtcPeer = webRtcPeer;
-                    rootScope.pipeline = pipeline;
-                    userName = rootScope.userName;
-                    roomName = rootScope.roomName;
-                });
+//                     rootScope.webRtcPeer = webRtcPeer;
+//                     rootScope.pipeline = pipeline;
+//                     userName = rootScope.userName;
+//                     roomName = rootScope.roomName;
+//                 });
 
-                var webRtc = yield pipeline.create('WebRtcEndpoint');
-                setIceCandidateCallbacks(webRtcPeer, webRtc, onError)
-                    //can use here only
-                var recorder = yield pipeline.create('RecorderEndpoint', {
-                    uri: getFileName(userName, roomName)
-                });
+//                 var webRtc = yield pipeline.create('WebRtcEndpoint');
+//                 setIceCandidateCallbacks(webRtcPeer, webRtc, onError)
+//                     //can use here only
+//                 var recorder = yield pipeline.create('RecorderEndpoint', {
+//                     uri: getFileName(userName, roomName)
+//                 });
 
-                yield webRtc.connect(recorder);
-                yield webRtc.connect(webRtc);
-                yield recorder.record();
+//                 yield webRtc.connect(recorder);
+//                 yield webRtc.connect(webRtc);
+//                 yield recorder.record();
 
-                var sdpAnswer = yield webRtc.processOffer(sdpOffer);
-                webRtc.gatherCandidates(onError);
-                webRtcPeer.processAnswer(sdpAnswer)
-            } catch (e) {
-                onError(e);
-            }
-        })();
-    }
+//                 var sdpAnswer = yield webRtc.processOffer(sdpOffer);
+//                 webRtc.gatherCandidates(onError);
+//                 webRtcPeer.processAnswer(sdpAnswer)
+//             } catch (e) {
+//                 onError(e);
+//             }
+//         })();
+//     }
 
-    function onError(error) {
-        if (error) {
-            console.log(error);
-            //stopRecording();//TODO:getting pipeline and peer
-        }
-    }
+//     function onError(error) {
+//         if (error) {
+//             console.log(error);
+//             //stopRecording();//TODO:getting pipeline and peer
+//         }
+//     }
 
-    function setIceCandidateCallbacks(webRtcPeer, webRtcEp, onerror) {
-        webRtcPeer.on('icecandidate', function (candidate) {
-            candidate = kurentoClient.getComplexType('IceCandidate')(candidate);
-            webRtcEp.addIceCandidate(candidate, onerror)
-        });
+//     function setIceCandidateCallbacks(webRtcPeer, webRtcEp, onerror) {
+//         webRtcPeer.on('icecandidate', function (candidate) {
+//             candidate = kurentoClient.getComplexType('IceCandidate')(candidate);
+//             webRtcEp.addIceCandidate(candidate, onerror)
+//         });
 
-        webRtcEp.on('OnIceCandidate', function (event) {
-            var candidate = event.candidate;
-            webRtcPeer.addIceCandidate(candidate, onerror);
-        });
-    }
+//         webRtcEp.on('OnIceCandidate', function (event) {
+//             var candidate = event.candidate;
+//             webRtcPeer.addIceCandidate(candidate, onerror);
+//         });
+//     }
 };
 
 function stopRecording(webRtcPeer, pipeline) {
 
-    if (webRtcPeer) {
-        webRtcPeer.dispose();
-        webRtcPeer = null;
-    }
-    if (pipeline) {
-        pipeline.release();
-        pipeline = null;
-    }
+    // if (webRtcPeer) {
+    //     webRtcPeer.dispose();
+    //     webRtcPeer = null;
+    // }
+    // if (pipeline) {
+    //     pipeline.release();
+    //     pipeline = null;
+    // }
 }
 
 function getFileName(userName, roomName) {
